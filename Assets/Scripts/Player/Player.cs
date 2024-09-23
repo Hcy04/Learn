@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -19,6 +20,8 @@ public class Player : Entity
     public PlayerAttack1 attack1 { get; private set; }
     public PlayerAttack2 attack2 { get; private set; }
     public PlayerAttack3 attack3 { get; private set; }
+
+    public PlayerCounterAttackState counterAttack { get; private set; }
     #endregion
 
     #region  Info  
@@ -35,10 +38,13 @@ public class Player : Entity
 
     [Header("Attack Info")]
     public float comboWindow;
-    public int comboCounter;
-    public float lastTimeAttacked;
+    [HideInInspector] public int comboCounter;
+    [HideInInspector] public float lastTimeAttacked;
+
     public bool attackTypeAhead;
-    public float attackMoveSpeed;
+    [HideInInspector] public float attackMoveSpeed;
+
+    public float counterAttackDuration = .2f;
 
     [Space]
     public float wallJumpDuration;
@@ -63,6 +69,8 @@ public class Player : Entity
         attack1 = new PlayerAttack1(this, stateMachine, "Attack1");
         attack2 = new PlayerAttack2(this, stateMachine, "Attack2");
         attack3 = new PlayerAttack3(this, stateMachine, "Attack3");
+
+        counterAttack = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
     }
 
     protected override void Start()
@@ -82,6 +90,10 @@ public class Player : Entity
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
     public void SetAttackMoveSpeed(float speed) => attackMoveSpeed = speed;
 
+    public void SetAttackCheckX(float x) => attackCheck.position = new Vector3(x, attackCheck.position.y);
+    public void SetAttackCheckY(float y) => attackCheck.position = new Vector3(attackCheck.position.y, y);
+    public void SetAttackCheckRadius(float radius) => attackCheckRadius = radius;
+
     public void CheckForDashInput()
     {
         dashUsageTimer -= Time.deltaTime;
@@ -95,6 +107,11 @@ public class Player : Entity
 
             stateMachine.ChangeState(dashState);
         }
+    }
+
+    public override void Damage()
+    {
+        fx.StartCoroutine("FlashFX");
     }
 
     /*public IEnumerable Busyfor(float _seconds)

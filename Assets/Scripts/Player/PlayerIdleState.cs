@@ -21,6 +21,7 @@ public class PlayerIdleState : PlayerGroundedState
         
         if (xInput != 0 && !player.IsWallDetected() || (player.IsWallDetected() &&(xInput == -player.facingDir)))
             stateMachine.ChangeState(player.moveState);
+        else if (!Input.GetKeyDown(KeyCode.Space)) player.ZeroVelocity();
     }
 
     public override void Exit()

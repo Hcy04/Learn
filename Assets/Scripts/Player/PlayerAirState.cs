@@ -18,9 +18,12 @@ public class PlayerAirState : PlayerState
     {
         base.Update();
 
-        if (player.IsGroundDetected()) stateMachine.ChangeState(player.idleState);
-        if (player.IsWallDetected() && xInput == player.facingDir) stateMachine.ChangeState(player.wallSlide);
-        if (xInput != 0) player.SetVelocity(xInput * player.moveSpeed * 0.8f, rb.velocity.y);
+        if (player.IsGroundDetected())
+        {
+            stateMachine.ChangeState(player.idleState);
+        }
+        else if (player.IsWallDetected() && xInput == player.facingDir) stateMachine.ChangeState(player.wallSlide);
+        else if (xInput != 0) player.SetVelocity(xInput * player.moveSpeed * 0.8f, rb.velocity.y);
     }
 
     public override void Exit()

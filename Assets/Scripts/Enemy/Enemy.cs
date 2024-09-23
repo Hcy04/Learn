@@ -4,26 +4,38 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    #region States
     public EnemyStateMachine stateMachine { get; private set; }
 
-    public EnemyIdleState idleState { get; private set; }
-    #endregion
+    [SerializeField] protected Transform playerCheck;
+    [SerializeField] protected float detectionDistance;
+    [SerializeField] protected LayerMask whatIsPlayer;
+
+    [Header("Stunned Info")]
+    public float stunDuration;
+    public Vector2 stunDirection;
+    protected bool canBeStunned;
+    [SerializeField] protected GameObject counterImage;
+
+    [Header("Move Info")]
+    public float moveSpeed; 
+    public float idleTime;
+
+    [Header("Attack Info")]
+    public float attackDistance;
+    public float attackCD;
+    public float battleTime;
+    [HideInInspector] public float lastTimeAttacked;
 
     protected override void Awake()
     {
         base.Awake();
 
         stateMachine = new EnemyStateMachine();
-
-        idleState = new EnemyIdleState(this, stateMachine, "Idle");
     }
 
     protected override void Start()
     {
         base.Start();
-
-        stateMachine.Initialize(idleState);
     }
 
     protected override void Update()
@@ -31,5 +43,40 @@ public class Enemy : Entity
         base.Update();
 
         stateMachine.currentState.Update();
+    }
+
+    public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+    public virtual RaycastHit2D IsPlayerDetected() => Physics2D.Raycast(playerCheck.position, Vector2.right * facingDir, detectionDistance, whatIsPlayer);
+
+    public virtual bool TryStunned()
+    {
+        if (canBeStunned) 
+        {
+            CloseCounterAttackWindow();
+            return true;
+        }
+        return false;
+    }
+
+    public virtual void OpenCounterAttackWindow()
+    {
+        canBeStunned = true;
+        counterImage.SetActive(true);
+    }
+
+    public virtual void CloseCounterAttackWindow()
+    {
+        canBeStunned = false;
+        counterImage.SetActive(false);
+    }
+
+    protected override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+
+        //Gizmos.color = Color.yellow;
+        //Gizmos.DrawLine(playerCheck.position, new Vector3(playerCheck.position.x + detectionDistance * facingDir, playerCheck.position.y));
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + attackDistance * facingDir, transform.position.y));
     }
 }
