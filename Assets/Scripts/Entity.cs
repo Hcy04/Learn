@@ -6,10 +6,16 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    #region Managers
+    [HideInInspector] public PlayerManager playerManager;
+    [HideInInspector] public SkillManager skill;
+    #endregion
+
     #region Components
     [HideInInspector] public Animator anim;
     [HideInInspector] public Rigidbody2D rb;
     public EntityFX fx { get; private set;}
+    public CharacterStats stats { get; private set; }
     #endregion
 
     [Header("Knockback Info")]
@@ -36,9 +42,13 @@ public class Entity : MonoBehaviour
 
     protected virtual void Start()
     {
+        playerManager = PlayerManager.instance;
+        skill = SkillManager.instance;
+
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         fx = GetComponent<EntityFX>();
+        stats = GetComponent<CharacterStats>();
     }
 
     protected virtual void Update()
@@ -46,18 +56,20 @@ public class Entity : MonoBehaviour
 
     }
 
-    public virtual void Damage()
+    protected Transform damageFromPosition;
+
+    public virtual void Damage(Transform damagePosition)
     {
+        damageFromPosition = damagePosition;
+
         fx.StartCoroutine("FlashFX");
         StartCoroutine("HitKnockback");
     }
-
-    Transform player;
     
     protected virtual IEnumerator HitKnockback()
     {
-        player = GameObject.Find("Player").transform;
-        float moveDir =  (transform.position.x - player.position.x) / Mathf.Abs(transform.position.x - player.position.x);
+        float moveDir =  (transform.position.x - damageFromPosition.position.x)
+            / Mathf.Abs(transform.position.x - damageFromPosition.position.x);
 
         isKnocked = true;
         rb.velocity = new Vector2(knockbackDirection.x * moveDir, knockbackDirection.y);

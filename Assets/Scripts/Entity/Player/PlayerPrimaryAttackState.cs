@@ -13,6 +13,7 @@ public class PlayerPrimaryAttackState : PlayerState
         base.Enter();
 
         stateTimer = .05f;
+        player.attackTypeAhead = false;
     }
 
     public override void Update()

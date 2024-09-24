@@ -22,6 +22,9 @@ public class Player : Entity
     public PlayerAttack3 attack3 { get; private set; }
 
     public PlayerCounterAttackState counterAttack { get; private set; }
+
+    public PlayerAimSwordState aimSword { get; private set; }
+    public PlayerCatchSwordState catchSword { get; private set; }
     #endregion
 
     #region  Info  
@@ -30,15 +33,13 @@ public class Player : Entity
     public float jumpForce;
 
     [Header("Dash Info")]
-    [SerializeField] private float dashCD;
-    private float dashUsageTimer;
     public float dashSpeed;
     public float dashDuration;
     public float dashDir { get; private set; }
 
     [Header("Attack Info")]
     public float comboWindow;
-    [HideInInspector] public int comboCounter;
+    public int comboCounter;
     [HideInInspector] public float lastTimeAttacked;
 
     public bool attackTypeAhead;
@@ -71,6 +72,9 @@ public class Player : Entity
         attack3 = new PlayerAttack3(this, stateMachine, "Attack3");
 
         counterAttack = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
+
+        aimSword = new PlayerAimSwordState(this, stateMachine, "AimSword");
+        catchSword = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
     }
 
     protected override void Start()
@@ -87,21 +91,13 @@ public class Player : Entity
         stateMachine.currentState.Update();
     }
 
-    public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+    public virtual void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
     public void SetAttackMoveSpeed(float speed) => attackMoveSpeed = speed;
-
-    public void SetAttackCheckX(float x) => attackCheck.position = new Vector3(x, attackCheck.position.y);
-    public void SetAttackCheckY(float y) => attackCheck.position = new Vector3(attackCheck.position.y, y);
-    public void SetAttackCheckRadius(float radius) => attackCheckRadius = radius;
 
     public void CheckForDashInput()
     {
-        dashUsageTimer -= Time.deltaTime;
-        
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer < 0) 
+        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill()) 
         {
-            dashUsageTimer = dashCD;
-
             dashDir = Input.GetAxisRaw("Horizontal");
             if (dashDir == 0) dashDir = facingDir;
 
@@ -109,7 +105,7 @@ public class Player : Entity
         }
     }
 
-    public override void Damage()
+    public override void Damage(Transform damagePosition)
     {
         fx.StartCoroutine("FlashFX");
     }

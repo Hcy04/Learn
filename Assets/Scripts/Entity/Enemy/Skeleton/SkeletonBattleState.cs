@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SkeletonBattleState : SkeletonState
 {
-    private Transform player;
+    Transform player;
     private int moveDir;
 
     public SkeletonBattleState(Enemy_Skeleton _enemy_Skeleton, EnemyStateMachine _stateMachine, string _animBoolName) : base(_enemy_Skeleton, _stateMachine, _animBoolName)
@@ -16,7 +16,7 @@ public class SkeletonBattleState : SkeletonState
     {
         base.Enter();
 
-        player = GameObject.Find("Player").transform;
+        player = PlayerManager.instance.player.transform;
         enemy_Skeleton.anim.speed = 2;
     }
 

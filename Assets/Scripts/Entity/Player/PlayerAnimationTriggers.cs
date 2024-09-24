@@ -22,7 +22,16 @@ public class PlayerAnimationTriggers : MonoBehaviour
 
         foreach (var hit in colliders)
         {
-            if (hit.GetComponent<Enemy>() != null) hit.GetComponent<Enemy>().Damage();
+            if (hit.GetComponent<Enemy>() != null)
+            {
+                hit.GetComponent<Enemy>().Damage(player.transform);
+                hit.GetComponent<CharacterStats>().TakeDamege(player.stats.damege);
+            }
         }
+    }
+
+    private void ThrowSword()
+    {
+        SkillManager.instance.sword.CreateSword();
     }
 }
