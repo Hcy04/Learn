@@ -25,7 +25,7 @@ public class Sword_Skill : Skill
         
         Sword_Skill_Controller newSwordScript = newSword.GetComponent<Sword_Skill_Controller>();
 
-        newSwordScript.SetUpSword(launchDir, swordGravity);
+        newSwordScript.SetUpSword(finalDir, swordGravity);
     }
 
     public Vector2 AimDirection()
