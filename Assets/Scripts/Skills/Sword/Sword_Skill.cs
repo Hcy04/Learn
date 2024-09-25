@@ -15,7 +15,7 @@ public class Sword_Skill : Skill
     {
         base.Update();
 
-        if (Input.GetKeyUp(KeyCode.F))
+        if (Input.GetKeyUp(KeyCode.Mouse1))
             finalDir = new Vector2(AimDirection().normalized.x * launchDir.x, AimDirection().normalized.y * launchDir.y);
     }
 

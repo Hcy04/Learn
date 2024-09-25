@@ -51,8 +51,6 @@ public class Player : Entity
     public float wallJumpDuration;
     #endregion
     
-    //public bool isBusy;
-
     protected override void Awake()
     {
         base.Awake();
@@ -96,7 +94,8 @@ public class Player : Entity
 
     public void CheckForDashInput()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill()) 
+        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill()
+            && stateMachine.currentState != wallSlide && stateMachine.currentState != counterAttack) 
         {
             dashDir = Input.GetAxisRaw("Horizontal");
             if (dashDir == 0) dashDir = facingDir;
@@ -109,13 +108,4 @@ public class Player : Entity
     {
         fx.StartCoroutine("FlashFX");
     }
-
-    /*public IEnumerable Busyfor(float _seconds)
-    {
-        isBusy = true;
-
-        yield return new WaitForSeconds(_seconds);
-
-        isBusy = false;
-    }*/
 }

@@ -29,7 +29,6 @@ public class PlayerCounterAttackState : PlayerState
                 {
                     stateTimer = 10;
                     player.anim.SetBool("SuccessfulCounterAttack", true);
-                    player.skill.dash.CDTimer = .25f;
                 }
             }
         }

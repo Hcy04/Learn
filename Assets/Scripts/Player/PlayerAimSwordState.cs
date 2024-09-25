@@ -17,7 +17,7 @@ public class PlayerAimSwordState : PlayerState
     {
         base.Update();
 
-        if (Input.GetKeyUp(KeyCode.F)) stateMachine.ChangeState(player.idleState);
+        if (Input.GetKeyUp(KeyCode.Mouse1)) stateMachine.ChangeState(player.idleState);
     }
 
     public override void Exit()

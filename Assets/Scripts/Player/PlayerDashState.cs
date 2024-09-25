@@ -13,7 +13,7 @@ public class PlayerDashState : PlayerState
         base.Enter();
 
         stateTimer = player.dashDuration;
-        if (player.IsGroundDetected()) player.skill.clone.CreatClone(player.transform);
+        SkillManager.instance.clone.CreatClone(player.transform);
     }
 
     public override void Update()

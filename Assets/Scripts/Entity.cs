@@ -6,11 +6,6 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    #region Managers
-    [HideInInspector] public PlayerManager playerManager;
-    [HideInInspector] public SkillManager skill;
-    #endregion
-
     #region Components
     [HideInInspector] public Animator anim;
     [HideInInspector] public Rigidbody2D rb;
@@ -42,9 +37,6 @@ public class Entity : MonoBehaviour
 
     protected virtual void Start()
     {
-        playerManager = PlayerManager.instance;
-        skill = SkillManager.instance;
-
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         fx = GetComponent<EntityFX>();

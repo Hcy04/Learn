@@ -17,8 +17,6 @@ public class PlayerWallSlideState : PlayerState
     public override void Update()
     {
         base.Update();
-        //无效化WallSlide时触发的ChangeState(player.dashState)
-        if (stateMachine.currentState == player.dashState) stateMachine.ChangeState(player.wallSlide);
 
         if (!player.IsWallDetected() || xInput != player.facingDir) stateMachine.ChangeState(player.airState);
         if (player.IsGroundDetected()) stateMachine.ChangeState(player.idleState);

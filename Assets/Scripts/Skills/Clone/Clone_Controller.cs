@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShortcutManagement;
 using UnityEngine;
 
 public class Clone_Controller : MonoBehaviour
@@ -41,9 +42,29 @@ public class Clone_Controller : MonoBehaviour
 
         if (true) 
         {
-            attackDir = PlayerManager.instance.player.facingDir;
-            if (attackDir == -1) transform.Rotate(0, 180, 0);
-            anim.SetInteger("AttackNumber", PlayerManager.instance.player.comboCounter + 1);
+            FaceClosestTarget();
+
+            if (!PlayerManager.instance.player.IsGroundDetected()) anim.SetInteger("AttackNumber", 2);
+            else anim.SetInteger("AttackNumber", PlayerManager.instance.player.comboCounter + 1);
         }
+    }
+
+    private Transform clocestTarget;
+
+    private void FaceClosestTarget()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 10);
+
+        foreach (var hit in colliders)
+        {
+            if (hit.GetComponent<Enemy>() != null)
+            {
+                if (clocestTarget == null ||
+                    (Vector2.Distance(transform.position, clocestTarget.position) > Vector2.Distance(transform.position, hit.transform.position)))
+                    clocestTarget = hit.GetComponent<Enemy>().transform;
+            }
+        }
+        
+        if (clocestTarget != null && transform.position.x > clocestTarget.position.x) transform.Rotate(0, 180, 0);
     }
 }
