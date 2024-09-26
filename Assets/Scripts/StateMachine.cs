@@ -14,6 +14,7 @@ public class StateMachine<TState> where TState : State
 
     public void ChangeState(TState _newState)
     {
+        //Debug.Log(currentState + " to " + _newState);
         currentState.Exit();
         currentState = _newState;
         currentState.Enter();
