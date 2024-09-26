@@ -46,9 +46,9 @@ public class Character : Entity
 
     protected Transform damageFromPosition;
 
-    public virtual void Damage(Transform damagePosition)
+    public virtual void Damage(Transform damageFrom)
     {
-        damageFromPosition = damagePosition;
+        damageFromPosition = damageFrom;
 
         fx.StartCoroutine("FlashFX");
         StartCoroutine("HitKnockback");

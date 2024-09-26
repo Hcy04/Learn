@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class Enemy : Character
@@ -13,8 +14,8 @@ public class Enemy : Character
     [Header("Stunned Info")]
     public float stunDuration;
     public Vector2 stunDirection;
-    protected bool canBeStunned;
-    [SerializeField] protected GameObject counterImage;
+    [SerializeField] protected Transform attackWarning;
+    [SerializeField] protected float attackWarningTime;
 
     [Header("Move Info")]
     public float moveSpeed; 
@@ -36,6 +37,8 @@ public class Enemy : Character
     protected override void Start()
     {
         base.Start();
+
+        attackWarning = transform.Find("AttackWarning");
     }
 
     protected override void Update()
@@ -48,26 +51,21 @@ public class Enemy : Character
     public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
     public virtual RaycastHit2D IsPlayerDetected() => Physics2D.Raycast(playerCheck.position, Vector2.right * facingDir, detectionDistance, whatIsPlayer);
 
-    public virtual bool TryStunned()
+    public virtual void AttackWarning()
     {
-        if (canBeStunned) 
-        {
-            CloseCounterAttackWindow();
-            return true;
-        }
-        return false;
+        StartCoroutine("Warning");
     }
 
-    public virtual void OpenCounterAttackWindow()
+    private IEnumerator Warning()
     {
-        canBeStunned = true;
-        counterImage.SetActive(true);
+        attackWarning.gameObject.SetActive(true);
+        yield return new WaitForSeconds(attackWarningTime);
+        attackWarning.gameObject.SetActive(false);
     }
 
-    public virtual void CloseCounterAttackWindow()
+    public virtual void IsStunned()
     {
-        canBeStunned = false;
-        counterImage.SetActive(false);
+
     }
 
     protected override void OnDrawGizmos()

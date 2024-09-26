@@ -36,13 +36,10 @@ public class Enemy_Skeleton : Enemy
         base.Update();
     }
 
-    public override bool TryStunned()
+    public override void IsStunned()
     {
-        if (base.TryStunned())
-        {
-            stateMachine.ChangeState(stunnedState);
-            return true;
-        }
-        return false;
+        base.IsStunned();
+
+        stateMachine.ChangeState(stunnedState);
     }
 }

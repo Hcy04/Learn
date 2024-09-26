@@ -20,7 +20,8 @@ public class PlayerAirState : PlayerState
 
         if (player.IsGroundDetected())
         {
-            player.stateMachine.ChangeState(player.idleState);
+            if (xInput == 0) player.stateMachine.ChangeState(player.idleState);
+            else player.stateMachine.ChangeState(player.moveState);
         }
         else if (player.IsWallDetected() && xInput == player.facingDir) player.stateMachine.ChangeState(player.wallSlide);
         else if (xInput != 0) player.SetVelocity(xInput * player.moveSpeed * 0.8f, player.rb.velocity.y);

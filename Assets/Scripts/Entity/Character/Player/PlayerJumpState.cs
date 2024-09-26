@@ -19,7 +19,7 @@ public class PlayerJumpState : PlayerState
     {
         base.Update();
 
-        if (player.rb.velocity.y < 0) player.stateMachine.ChangeState(player.airState);
+        if (player.rb.velocity.y < player.rb.gravityScale / 2f) player.stateMachine.ChangeState(player.jumpToAir1);
     }
 
     public override void Exit()

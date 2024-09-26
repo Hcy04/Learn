@@ -26,7 +26,7 @@ public class PlayerGroundedState : PlayerState
             else if (player.comboCounter == 1) player.stateMachine.ChangeState(player.attack2);
             else if (player.comboCounter == 0) player.stateMachine.ChangeState(player.attack1);
         }
-        else if (Input.GetKeyDown(KeyCode.Q)) player.stateMachine.ChangeState(player.counterAttack);
+        else if (Input.GetKeyDown(KeyCode.Q)) player.stateMachine.ChangeState(player.parryState);
         else if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected()) player.stateMachine.ChangeState(player.jumpState);
         else if (!player.IsGroundDetected()) player.stateMachine.ChangeState(player.airState);
         else if (Input.GetKeyDown(KeyCode.Mouse1)) player.stateMachine.ChangeState(player.aimSword);
