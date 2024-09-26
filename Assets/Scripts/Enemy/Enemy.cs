@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    public EnemyStateMachine stateMachine { get; private set; }
-
+    public StateMachine<EnemyState> stateMachine { get; private set; }
+    
     [SerializeField] protected Transform playerCheck;
     [SerializeField] protected float detectionDistance;
     [SerializeField] protected LayerMask whatIsPlayer;
@@ -30,7 +30,7 @@ public class Enemy : Entity
     {
         base.Awake();
 
-        stateMachine = new EnemyStateMachine();
+        stateMachine = new StateMachine<EnemyState>();
     }
 
     protected override void Start()

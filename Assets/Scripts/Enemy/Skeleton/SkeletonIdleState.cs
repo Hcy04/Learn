@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SkeletonIdleState : SkeletonGroundedState
 {
-    public SkeletonIdleState(Enemy_Skeleton _enemy_Skeleton, EnemyStateMachine _stateMachine, string _animBoolName) : base(_enemy_Skeleton, _stateMachine, _animBoolName)
+    public SkeletonIdleState(Enemy_Skeleton _enemy_Skeleton, string _animName) : base(_enemy_Skeleton, _animName)
     {
     }
 
@@ -18,7 +18,7 @@ public class SkeletonIdleState : SkeletonGroundedState
     {
         base.Update();
 
-        if (stateTimer < 0) stateMachine.ChangeState(enemy_Skeleton.moveState);
+        if (stateTimer < 0) enemy_Skeleton.stateMachine.ChangeState(enemy_Skeleton.moveState);
         enemy_Skeleton.ZeroVelocity();
     }
 

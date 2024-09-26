@@ -17,11 +17,11 @@ public class Enemy_Skeleton : Enemy
     {
         base.Awake();
 
-        idleState = new SkeletonIdleState(this, stateMachine, "Idle");
-        moveState = new SkeletonMoveState(this, stateMachine, "Move");
-        battleState = new SkeletonBattleState(this, stateMachine, "Move");
-        attackState = new SkeletonAttackState(this, stateMachine, "Attack");
-        stunnedState = new SkeletonStunnedState(this, stateMachine, "Stunned");
+        idleState = new SkeletonIdleState(this, "Idle");
+        moveState = new SkeletonMoveState(this, "Move");
+        battleState = new SkeletonBattleState(this, "Move");
+        attackState = new SkeletonAttackState(this, "Attack");
+        stunnedState = new SkeletonStunnedState(this, "Stunned");
     }
 
     protected override void Start()

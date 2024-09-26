@@ -3,40 +3,36 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class EnemyState
+public class EnemyState : State
 {
     protected Enemy enemy;
-    protected EnemyStateMachine stateMachine;
-    protected string animBoolName;
 
     protected float stateTimer;
     protected bool triggerCalled;
 
     protected Rigidbody2D rb;
 
-    public EnemyState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName)
+    public EnemyState(Enemy _enemy,  string _animName) : base(_enemy, _animName)
     {
         this.enemy = _enemy;
-        this.stateMachine = _stateMachine;
-        this.animBoolName = _animBoolName;
     }
 
-    public virtual  void Enter()
+    public override void Enter()
     {
-        enemy.anim.SetBool(animBoolName, true);
-
         triggerCalled = false;
         rb = enemy.rb;
     }
 
-    public virtual void Update()
+    public override void Update()
     {
+        base.Update();
+        
         stateTimer -= Time.deltaTime;
     }
 
-    public virtual void Exit()
+    public override void Exit()
     {
-        enemy.anim.SetBool(animBoolName, false);
+        base.Exit();
     }
 
     public virtual void AnimationFinishTrigger()

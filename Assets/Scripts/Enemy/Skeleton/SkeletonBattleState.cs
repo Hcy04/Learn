@@ -8,7 +8,7 @@ public class SkeletonBattleState : SkeletonState
     Transform player;
     private int moveDir;
 
-    public SkeletonBattleState(Enemy_Skeleton _enemy_Skeleton, EnemyStateMachine _stateMachine, string _animBoolName) : base(_enemy_Skeleton, _stateMachine, _animBoolName)
+    public SkeletonBattleState(Enemy_Skeleton _enemy_Skeleton, string _animName) : base(_enemy_Skeleton, _animName)
     {
     }
 
@@ -31,13 +31,13 @@ public class SkeletonBattleState : SkeletonState
             {
                 if (Time.time - enemy_Skeleton.lastTimeAttacked > enemy_Skeleton.attackCD)
                 {
-                    stateMachine.ChangeState(enemy_Skeleton.attackState);
+                    enemy_Skeleton.stateMachine.ChangeState(enemy_Skeleton.attackState);
                 }
             }
         }
         
         if (!enemy_Skeleton.IsGroundDetected() || stateTimer < 0)
-            stateMachine.ChangeState(enemy_Skeleton.idleState);
+            enemy_Skeleton.stateMachine.ChangeState(enemy_Skeleton.idleState);
 
         if (player.position.x > enemy_Skeleton.transform.position.x) moveDir = 1;
         else if (player.position.x < enemy_Skeleton.transform.position.x) moveDir = -1;

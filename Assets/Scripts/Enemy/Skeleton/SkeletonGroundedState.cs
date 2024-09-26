@@ -6,7 +6,7 @@ public class SkeletonGroundedState : SkeletonState
 {
     protected Transform player;
 
-    public SkeletonGroundedState(Enemy_Skeleton _enemy_Skeleton, EnemyStateMachine _stateMachine, string _animBoolName) : base(_enemy_Skeleton, _stateMachine, _animBoolName)
+    public SkeletonGroundedState(Enemy_Skeleton _enemy_Skeleton, string _animName) : base(_enemy_Skeleton, _animName)
     {
     }
 
@@ -23,7 +23,7 @@ public class SkeletonGroundedState : SkeletonState
 
         if ((enemy_Skeleton.IsPlayerDetected() && !enemy_Skeleton.IsWallDetected() && enemy_Skeleton.IsGroundDetected())
             || Vector2.Distance(enemy_Skeleton.transform.position, player.position) < 2)
-            stateMachine.ChangeState(enemy_Skeleton.battleState);
+            enemy_Skeleton.stateMachine.ChangeState(enemy_Skeleton.battleState);
     }
 
     public override void Exit()
