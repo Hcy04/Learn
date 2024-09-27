@@ -6,6 +6,8 @@ using UnityEngine;
 public class Enemy : Character
 {
     public StateMachine<EnemyState> stateMachine { get; private set; }
+
+    public Player player;
     
     [SerializeField] protected Transform playerCheck;
     [SerializeField] protected float detectionDistance;
@@ -39,6 +41,8 @@ public class Enemy : Character
         base.Start();
 
         attackWarning = transform.Find("AttackWarning");
+
+        player = PlayerManager.instance.player;
     }
 
     protected override void Update()

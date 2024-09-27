@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : Character
@@ -32,6 +33,8 @@ public class Player : Character
     public PlayerCatchSwordState catchSword { get; private set; }
     #endregion
 
+    [HideInInspector] public SkillManager skill;
+
     #region  Info  
     [Header("Move Info")]
     public float moveSpeed;
@@ -47,10 +50,14 @@ public class Player : Character
     public int comboCounter;
     [HideInInspector] public float lastTimeAttacked;
 
-    public bool attackTypeAhead;
+    [HideInInspector] public bool attackTypeAhead;
     [HideInInspector] public float attackMoveSpeed;
 
     public float counterAttackDuration = .2f;
+
+    [Header("Sword Skill")]
+    public GameObject sword;
+    public float catchSpeed;
 
     [Space]
     public float wallJumpDuration;
@@ -91,6 +98,7 @@ public class Player : Character
         base.Start();
 
         stateMachine.Initialize(idleState);
+        skill = SkillManager.instance;
     }
 
     protected override void Update()
@@ -106,7 +114,8 @@ public class Player : Character
     public void CheckForDashInput()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill()
-            && stateMachine.currentState != wallSlide && stateMachine.currentState != successfulParry) 
+            && stateMachine.currentState != wallSlide && stateMachine.currentState != successfulParry 
+            && stateMachine.currentState != aimSword && stateMachine.currentState != throwSword) 
         {
             dashDir = Input.GetAxisRaw("Horizontal");
             if (dashDir == 0) dashDir = facingDir;
@@ -125,4 +134,5 @@ public class Player : Character
             damageFrom.GetComponent<Enemy>().IsStunned();
         }
     }
+
 }

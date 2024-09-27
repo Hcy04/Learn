@@ -17,16 +17,9 @@ public class PlayerSuccessfulParryState : PlayerState
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0)) player.attackTypeAhead = true;
-
         if (triggerCalled)
         {
-            if (player.attackTypeAhead)
-            {
-                player.stateMachine.ChangeState(player.attack3);
-                player.attackTypeAhead = false;
-            }
-            else player.stateMachine.ChangeState(player.idleState);
+            player.stateMachine.ChangeState(player.idleState);
         }
     }
 

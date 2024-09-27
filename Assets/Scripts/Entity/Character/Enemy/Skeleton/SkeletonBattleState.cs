@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class SkeletonBattleState : SkeletonState
 {
-    Transform player;
     private int moveDir;
 
     public SkeletonBattleState(Enemy_Skeleton _Skeleton, string _animName) : base(_Skeleton, _animName)
@@ -16,8 +15,8 @@ public class SkeletonBattleState : SkeletonState
     {
         base.Enter();
 
-        player = PlayerManager.instance.player.transform;
-        Skeleton.anim.speed = 2;
+        Skeleton.anim.speed = 1.5f;
+        stateTimer = Skeleton.battleTime;
     }
 
     public override void Update()
@@ -30,17 +29,15 @@ public class SkeletonBattleState : SkeletonState
             if (Skeleton.IsPlayerDetected().distance < Skeleton.attackDistance)
             {
                 if (Time.time - Skeleton.lastTimeAttacked > Skeleton.attackCD)
-                {
                     Skeleton.stateMachine.ChangeState(Skeleton.attackState);
-                }
             }
         }
         
         if (!Skeleton.IsGroundDetected() || stateTimer < 0)
             Skeleton.stateMachine.ChangeState(Skeleton.idleState);
 
-        if (player.position.x > Skeleton.transform.position.x) moveDir = 1;
-        else if (player.position.x < Skeleton.transform.position.x) moveDir = -1;
+        if (Skeleton.player.transform.position.x > Skeleton.transform.position.x) moveDir = 1;
+        else if (Skeleton.player.transform.position.x < Skeleton.transform.position.x) moveDir = -1;
         else moveDir = 0;
 
         Skeleton.SetVelocity(Skeleton.moveSpeed * moveDir * 1.5f, Skeleton.rb.velocity.y);
