@@ -26,6 +26,7 @@ public class PlayerState : CharacterState
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
 
+        if (Time.time - player.lastTimeAttacked > player.comboWindow) player.comboCounter = 0;
         player.CheckForDashInput();
     }
 

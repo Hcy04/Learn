@@ -23,9 +23,7 @@ public class Sword_Skill : Skill
     {
         GameObject newSword = Instantiate(swordPrefab, player.transform.position, transform.rotation);
         
-        Sword_Skill_Controller newSwordScript = newSword.GetComponent<Sword_Skill_Controller>();
-
-        newSwordScript.SetUpSword(finalDir, swordGravity);
+        newSword.GetComponent<Sword>().SetUpSword(finalDir, swordGravity);
     }
 
     public Vector2 AimDirection()

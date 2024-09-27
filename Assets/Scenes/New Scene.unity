@@ -20833,7 +20833,6 @@ MonoBehaviour:
     m_Bits: 2048
   stunDuration: 1
   stunDirection: {x: 0, y: 8}
-  attackWarning: {fileID: 0}
   attackWarningTime: 0.2
   moveSpeed: 1
   idleTime: 1
@@ -21055,8 +21054,7 @@ MonoBehaviour:
   CD: 0
   CDTimer: 0
   clonePrefab: {fileID: 3716850114462784030, guid: 6b10d790c15dc6844b03585526db9f3c, type: 3}
-  cloneDuration: 0.5
-  colorloosingSpeed: 1
+  colorloosingSpeed: 2
 --- !u!114 &1661045524
 MonoBehaviour:
   m_ObjectHideFlags: 0

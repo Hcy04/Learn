@@ -3,30 +3,40 @@ using System.Collections.Generic;
 using UnityEditor.ShortcutManagement;
 using UnityEngine;
 
-public class Clone_Controller : MonoBehaviour
+public class Clone : Projectile
 {
     private SpriteRenderer sr;
-    public Animator anim;
-    public Rigidbody2D rb;
 
     private float colorloosingSpeed;
-    private float cloneTimer;
+    [HideInInspector] public bool triggerCalled;
 
     public Transform attackCheck;
-    public int attackDir;
     public float attackCheckRadius;
+
+    private int attackDir = 1;
+    [HideInInspector] public float moveSpeed;
     
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         sr = GetComponentInChildren<SpriteRenderer>();
-        anim = GetComponentInChildren<Animator>();
-        rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+    protected override void Start()
     {
-        if (cloneTimer > 0) cloneTimer -= Time.deltaTime;
-        else
+        base.Start();
+
+        triggerCalled = false;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        rb.velocity = new Vector2(moveSpeed * attackDir, 0);
+
+        if (triggerCalled)
         {
             sr.color = new Color(1, 1, 1, sr.color.a - (Time.deltaTime * colorloosingSpeed));
 
@@ -34,10 +44,9 @@ public class Clone_Controller : MonoBehaviour
         }
     }
 
-    public void SetupClone(Transform _newTransform, float _cloneDuration, float _colorloosingSpeed)
+    public void SetupClone(Transform _newTransform, float _colorloosingSpeed)
     {
         transform.position = _newTransform.position;
-        cloneTimer = _cloneDuration;
         colorloosingSpeed = _colorloosingSpeed;
 
         if (true) 
@@ -45,7 +54,13 @@ public class Clone_Controller : MonoBehaviour
             FaceClosestTarget();
 
             if (!PlayerManager.instance.player.IsGroundDetected()) anim.SetInteger("AttackNumber", 2);
-            else anim.SetInteger("AttackNumber", PlayerManager.instance.player.comboCounter + 1);
+            else 
+            {
+                anim.SetInteger("AttackNumber", PlayerManager.instance.player.comboCounter + 1);
+                
+                PlayerManager.instance.player.lastTimeAttacked = Time.time;
+                PlayerManager.instance.player.comboCounter++;
+            }
         }
     }
 
@@ -65,6 +80,10 @@ public class Clone_Controller : MonoBehaviour
             }
         }
         
-        if (clocestTarget != null && transform.position.x > clocestTarget.position.x) transform.Rotate(0, 180, 0);
+        if (clocestTarget != null && transform.position.x > clocestTarget.position.x)
+        {
+            attackDir *= -1;
+            transform.Rotate(0, 180, 0);
+        }
     }
 }

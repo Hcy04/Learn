@@ -14,7 +14,7 @@ public class Enemy : Character
     [Header("Stunned Info")]
     public float stunDuration;
     public Vector2 stunDirection;
-    [SerializeField] protected Transform attackWarning;
+    protected Transform attackWarning;
     [SerializeField] protected float attackWarningTime;
 
     [Header("Move Info")]

@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class CloneAnimationTriggers : MonoBehaviour
 {
-    private Clone_Controller clone => GetComponentInParent<Clone_Controller>();
+    private Clone clone => GetComponentInParent<Clone>();
 
     private void AnimationTrigger()
     {
-        clone.anim.SetInteger("AttackNumber", 0);
+        
     }
 
     private void HandleAttackMoveSpeed(float speed)
     {
-        clone.rb.velocity = new Vector2(speed * clone.attackDir, 0);
+        clone.moveSpeed = speed;
     }
 
     private void AttackTrigger()
     {
+        clone.triggerCalled = true;
+
         Collider2D[] colliders = Physics2D.OverlapCircleAll(clone.attackCheck.position, clone.attackCheckRadius);
 
         foreach (var hit in colliders)

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Character : Entity
 {
     #region Components
-    [HideInInspector] public Rigidbody2D rb;
     public EntityFX fx { get; private set;}
     #endregion
 
@@ -35,7 +34,6 @@ public class Character : Entity
     {
         base.Start();
 
-        rb = GetComponent<Rigidbody2D>();
         fx = GetComponent<EntityFX>();
     }
 

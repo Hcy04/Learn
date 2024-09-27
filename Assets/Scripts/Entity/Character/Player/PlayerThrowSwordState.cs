@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAimSwordState : PlayerState
+public class PlayerThrowSwordState : PlayerState
 {
-    public PlayerAimSwordState(Player _player, string _animName) : base(_player, _animName)
+    public PlayerThrowSwordState(Player _player, string _animName) : base(_player, _animName)
     {
     }
 
@@ -17,7 +17,7 @@ public class PlayerAimSwordState : PlayerState
     {
         base.Update();
 
-        if (Input.GetKeyUp(KeyCode.Mouse1)) player.stateMachine.ChangeState(player.throwSword);
+        if (triggerCalled) player.stateMachine.ChangeState(player.idleState);
     }
 
     public override void Exit()

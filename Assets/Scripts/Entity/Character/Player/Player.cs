@@ -28,6 +28,7 @@ public class Player : Character
     public PlayerSuccessfulParryState successfulParry { get; private set; }
 
     public PlayerAimSwordState aimSword { get; private set; }
+    public PlayerThrowSwordState throwSword { get; private set; }
     public PlayerCatchSwordState catchSword { get; private set; }
     #endregion
 
@@ -81,6 +82,7 @@ public class Player : Character
         successfulParry = new PlayerSuccessfulParryState(this, "SuccessfulParry");
 
         aimSword = new PlayerAimSwordState(this, "AimSword");
+        throwSword = new PlayerThrowSwordState(this, "ThrowSword");
         catchSword = new PlayerCatchSwordState(this, "CatchSword");
     }
 

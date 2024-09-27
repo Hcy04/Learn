@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sword_Skill_Controller : MonoBehaviour
+public class Sword : Projectile
 {
-    private Animator anim;
-    private Rigidbody2D rb;
     private CircleCollider2D cd;
-    private Player player;
 
-    private void Awake()
+    protected override void Awake()
     {
-        anim = GetComponentInChildren<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        base.Awake();
+        
         cd = GetComponent<CircleCollider2D>();
     }
 

@@ -22,10 +22,7 @@ public class PlayerAnimationTriggers : MonoBehaviour
 
         foreach (var hit in colliders)
         {
-            if (hit.GetComponent<Enemy>() != null)
-            {
-                hit.GetComponent<Enemy>().Damage(player.transform);
-            }
+            if (hit.GetComponent<Enemy>() != null) hit.GetComponent<Enemy>().Damage(player.transform);
         }
     }
 

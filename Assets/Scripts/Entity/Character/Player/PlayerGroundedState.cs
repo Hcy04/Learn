@@ -18,8 +18,6 @@ public class PlayerGroundedState : PlayerState
     {
         base.Update();
 
-        if (Time.time - player.lastTimeAttacked > player.comboWindow) player.comboCounter = 0;
-
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (player.comboCounter == 2) player.stateMachine.ChangeState(player.attack3);
