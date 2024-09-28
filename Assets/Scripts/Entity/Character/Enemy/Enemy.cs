@@ -29,6 +29,8 @@ public class Enemy : Character
     public float battleTime;
     [HideInInspector] public float lastTimeAttacked;
 
+    protected bool isFreeze;
+
     protected override void Awake()
     {
         base.Awake();
@@ -49,18 +51,38 @@ public class Enemy : Character
     {
         base.Update();
 
-        stateMachine.currentState.Update();
+        if (player.skill.freeze.isActive && !isFreeze) FreezeTime(true);
+        else if (!player.skill.freeze.isActive && isFreeze) FreezeTime(false);
+
+        if (!isFreeze) stateMachine.currentState.Update();
+        else anim.speed = 0;
     }
 
     public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
     public virtual RaycastHit2D IsPlayerDetected() => Physics2D.Raycast(playerCheck.position, Vector2.right * facingDir, detectionDistance, whatIsPlayer);
+
+    public virtual void FreezeTime(bool _timeFrozen)
+    {
+        if (_timeFrozen)
+        {
+            isFreeze = true;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        else
+        {
+            isFreeze = false;
+            rb.constraints = RigidbodyConstraints2D.None;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            anim.speed = 1;
+        }
+    }
 
     public virtual void AttackWarning()
     {
         StartCoroutine("Warning");
     }
 
-    private IEnumerator Warning()
+    protected virtual IEnumerator Warning()
     {
         attackWarning.gameObject.SetActive(true);
         yield return new WaitForSeconds(attackWarningTime);

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Sword_Skill : Skill
 {
     [Header("Skill Info")]
+    [SerializeField] private int skillMode;
     [SerializeField] private GameObject swordPrefab;
     [SerializeField] private float launchForce;
     [SerializeField] private float swordGravity;
@@ -30,10 +31,7 @@ public class Sword_Skill : Skill
 
         if (Input.GetKey(KeyCode.Mouse1))
         {
-            for (int i = 0; i < numberOfDots; i++)
-            {
-                dots[i].transform.position = DotsPosition(i * spaceBeetwenDots);
-            }
+            for (int i = 0; i < numberOfDots; i++) dots[i].transform.position = DotsPosition(i * spaceBeetwenDots);
         }
     }
 
@@ -41,7 +39,7 @@ public class Sword_Skill : Skill
     {
         GameObject newSword = Instantiate(swordPrefab, player.transform.position, transform.rotation);
         
-        newSword.GetComponent<Sword>().SetUpSword(AimDirection() * launchForce, swordGravity, returnSpeed);
+        newSword.GetComponent<Sword>().SetUpSword(AimDirection() * launchForce, swordGravity, returnSpeed, skillMode);
 
         DotsActive(false);
         player.sword = newSword;

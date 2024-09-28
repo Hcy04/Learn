@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.ShortcutManagement;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ public class Clone : Projectile
 
     private int attackDir = 1;
     [HideInInspector] public float moveSpeed;
+
+    [SerializeField] private Transform clocestTarget = null;
     
     protected override void Awake()
     {
@@ -49,26 +52,22 @@ public class Clone : Projectile
         transform.position = _newTransform.position;
         colorloosingSpeed = _colorloosingSpeed;
 
-        if (true) 
-        {
-            FaceClosestTarget();
+        FaceClosestTarget();
+        if (clocestTarget == null) Destroy(this.gameObject);
 
-            if (!PlayerManager.instance.player.IsGroundDetected()) anim.SetInteger("AttackNumber", 2);
-            else 
-            {
-                anim.SetInteger("AttackNumber", PlayerManager.instance.player.comboCounter + 1);
-                
-                PlayerManager.instance.player.lastTimeAttacked = Time.time;
-                PlayerManager.instance.player.comboCounter++;
-            }
+        if (!PlayerManager.instance.player.IsGroundDetected()) anim.SetInteger("AttackNumber", 2);
+        else 
+        {
+            anim.SetInteger("AttackNumber", PlayerManager.instance.player.comboCounter + 1);
+            
+            PlayerManager.instance.player.lastTimeAttacked = Time.time;
+            PlayerManager.instance.player.comboCounter++;
         }
     }
 
-    private Transform clocestTarget;
-
     private void FaceClosestTarget()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 10);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 5);
 
         foreach (var hit in colliders)
         {
@@ -80,10 +79,17 @@ public class Clone : Projectile
             }
         }
         
-        if (clocestTarget != null && transform.position.x > clocestTarget.position.x)
+        if (clocestTarget != null) 
         {
-            attackDir *= -1;
-            transform.Rotate(0, 180, 0);
+            int temp = Random.Range(0, 2);
+            if (temp == 0) temp = -1;
+            transform.position = new Vector2(clocestTarget.transform.position.x + temp * 1.5f, clocestTarget.transform.position.y);
+
+            if (transform.position.x > clocestTarget.position.x)
+            {
+                attackDir *= -1;
+                transform.Rotate(0, 180, 0);
+            }
         }
     }
 }

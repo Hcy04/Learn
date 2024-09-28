@@ -58,9 +58,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &7393717352246114109
 CircleCollider2D:
@@ -114,6 +114,10 @@ MonoBehaviour:
   isBouncing: 0
   amountOfBounce: 4
   enemyTarget: {fileID: 0}
+  isPierce: 0
+  addSpeed: 1.5
+  isSpin: 0
+  amountOfSpin: 5
 --- !u!1 &8024558786735086586
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,9 +189,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1156614999
-  m_SortingLayer: 2
-  m_SortingOrder: -1
+  m_SortingLayerID: -1683076221
+  m_SortingLayer: 3
+  m_SortingOrder: 0
   m_Sprite: {fileID: -1715931916, guid: f6b296ee51c42564abe9c05f1c502ecd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -31,9 +31,12 @@ public class Player : Character
     public PlayerAimSwordState aimSword { get; private set; }
     public PlayerThrowSwordState throwSword { get; private set; }
     public PlayerCatchSwordState catchSword { get; private set; }
+
+    public PlayerFreezeState freezeState { get; private set; }
     #endregion
 
     [HideInInspector] public SkillManager skill;
+    [HideInInspector] public SpriteRenderer sr;
 
     #region  Info  
     [Header("Move Info")]
@@ -91,6 +94,8 @@ public class Player : Character
         aimSword = new PlayerAimSwordState(this, "AimSword");
         throwSword = new PlayerThrowSwordState(this, "ThrowSword");
         catchSword = new PlayerCatchSwordState(this, "CatchSword");
+
+        freezeState = new PlayerFreezeState(this, "Freeze");
     }
 
     protected override void Start()
@@ -98,7 +103,9 @@ public class Player : Character
         base.Start();
 
         stateMachine.Initialize(idleState);
+
         skill = SkillManager.instance;
+        sr = GetComponentInChildren<SpriteRenderer>();
     }
 
     protected override void Update()
@@ -106,6 +113,7 @@ public class Player : Character
         base.Start();
 
         stateMachine.currentState.Update();
+        if (Input.GetKeyDown(KeyCode.F)) skill.crystal.CanUseSkill();
     }
 
     public virtual void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
@@ -115,7 +123,8 @@ public class Player : Character
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill()
             && stateMachine.currentState != wallSlide && stateMachine.currentState != successfulParry 
-            && stateMachine.currentState != aimSword && stateMachine.currentState != throwSword) 
+            && stateMachine.currentState != aimSword && stateMachine.currentState != throwSword
+            && stateMachine.currentState != freezeState) 
         {
             dashDir = Input.GetAxisRaw("Horizontal");
             if (dashDir == 0) dashDir = facingDir;
