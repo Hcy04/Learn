@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Freeze_Skill : Skill
 {
-    public bool isActive;
-    [SerializeField] private int amoutOfAttack = 10;
+    [Header("Skill Active")]
+    [SerializeField] private bool canFreeze;
+    [SerializeField] private bool addAmount;
+
+    [Header("Skill Info")]
+    [SerializeField] private int amountOfAttack;
+    [HideInInspector] public bool isActive;
     private float lastAttack;
 
     private Vector2 playerDefaultPosition;
@@ -32,7 +37,7 @@ public class Freeze_Skill : Skill
             }
             else if (Time.time - lastAttack > 0.4f)
             {
-                amoutOfAttack--;
+                amountOfAttack--;
                 
                 targetindex++;
                 if (targetindex >= targetList.Count) targetindex = 0;
@@ -42,8 +47,14 @@ public class Freeze_Skill : Skill
 
                 lastAttack = Time.time;
             }
-            else if (amoutOfAttack <= 0) SkillEnd();
+            else if (amountOfAttack <= 0) SkillEnd();
         }
+    }
+
+    public override bool CanUseSkill()
+    {
+        if (base.CanUseSkill() && canFreeze) return true;
+        else return false;
     }
 
     public void SkillStart()
@@ -52,6 +63,9 @@ public class Freeze_Skill : Skill
         player.stateMachine.ChangeState(player.freezeState);
         playerDefaultPosition = player.transform.position;
 
+        if (!addAmount) amountOfAttack = 6;
+        else amountOfAttack = 10;
+        
         FindTarget();
     }
 
@@ -61,7 +75,6 @@ public class Freeze_Skill : Skill
         player.stateMachine.ChangeState(player.idleState);
         player.transform.position = playerDefaultPosition;
 
-        amoutOfAttack = 10;
         targetindex = 0;
     }
 

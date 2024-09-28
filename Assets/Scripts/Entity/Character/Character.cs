@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class Character : Entity
 {
     #region Components
-    public EntityFX fx { get; private set;}
+    public EntityFX fx { get; private set; }
+    public CharacterStats stats { get; private set; }
     #endregion
 
     [Header("Knockback Info")]
@@ -35,6 +37,7 @@ public class Character : Entity
         base.Start();
 
         fx = GetComponent<EntityFX>();
+        stats = GetComponent<CharacterStats>();
     }
 
     protected override void Update()

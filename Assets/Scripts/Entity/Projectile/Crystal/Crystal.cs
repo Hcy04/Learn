@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Crystal : Projectile
 {
+    private bool addDuration;
+    private bool canExplode;
+    private bool canMoving;
+
     private Collider2D cd;
 
     public float crystalTimer;
     public bool triggerCalled;
     public float attackCheckRadius;
 
-    private bool canMoving;
     private float moveSpeed;
     private Transform clocestTarget;
 
@@ -41,21 +44,30 @@ public class Crystal : Projectile
                 if (clocestTarget != null)
                 {
                     rb.velocity = (clocestTarget.position - transform.position).normalized * moveSpeed;
-                    if (Vector2.Distance(transform.position, clocestTarget.position) < 1) DestroyCrystal();
+                    if (Vector2.Distance(transform.position, clocestTarget.position) < .5f) DestroyCrystal();
                 }
             }
         }
-        else DestroyCrystal();
+        else
+        {
+            if (canExplode) DestroyCrystal();
+            else Destroy(this.gameObject);
+        }
 
         if (triggerCalled) Destroy(this.gameObject);
     }
 
-    public void SetUpCrystal(float _crystalDuration, float _attackCheckRadius, bool _canMoving, float _moveSpeed)
+    public void SetUpCrystal(float _attackCheckRadius, float _moveSpeed, bool _addDuration, bool _canExplode, bool _canMoving)
     {
-        crystalTimer = _crystalDuration;
         attackCheckRadius = _attackCheckRadius;
-        canMoving = _canMoving;
         moveSpeed = _moveSpeed;
+
+        addDuration = _addDuration;
+        canExplode = _canExplode;
+        canMoving = _canMoving;
+
+        if (!addDuration) crystalTimer = 2;
+        else crystalTimer = 4;
     }
 
     public void DestroyCrystal()

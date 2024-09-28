@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Skill : MonoBehaviour
 {
+    [Header("CD Info")]
     public float CD;
     public float CDTimer;
 
@@ -23,16 +24,10 @@ public class Skill : MonoBehaviour
     {
         if (CDTimer < 0) 
         {
-            UseSkill();
             CDTimer = CD;
             return true;
         }
 
         return false;
-    }
-
-    public virtual void UseSkill()
-    {
-
     }
 }

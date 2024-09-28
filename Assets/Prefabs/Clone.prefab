@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: -8853726992609439679}
   - component: {fileID: 1289800020517527040}
   - component: {fileID: 6019946312603583501}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Clone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

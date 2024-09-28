@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class Sword_Skill : Skill
 {
+    [Header("Skill Active")]
+    [SerializeField] private bool canThrowSword;
+    [SerializeField] private bool haveAimDots;
+    [SerializeField] private int skillMode;//1:isBouncing 2:isPierce 3:isSpin
+    
     [Header("Skill Info")]
-    [SerializeField] private int skillMode;
     [SerializeField] private GameObject swordPrefab;
-    [SerializeField] private float launchForce;
-    [SerializeField] private float swordGravity;
-    [SerializeField] private float returnSpeed;
+    [SerializeField] private float launchForce = 20;
+    [SerializeField] private float swordGravity = 3;
+    [SerializeField] private float returnSpeed = 20;
 
     [Header("Aim Dots")]
-    [SerializeField] private int numberOfDots;
-    [SerializeField] private float spaceBeetwenDots;
+    [SerializeField] private int numberOfDots = 10;
+    [SerializeField] private float spaceBeetwenDots = .1f;
     [SerializeField] private GameObject dotPrefab;
 
     private GameObject[] dots;
@@ -35,17 +39,31 @@ public class Sword_Skill : Skill
         }
     }
 
-    public void CreateSword()
+    public override bool CanUseSkill()
     {
-        GameObject newSword = Instantiate(swordPrefab, player.transform.position, transform.rotation);
-        
-        newSword.GetComponent<Sword>().SetUpSword(AimDirection() * launchForce, swordGravity, returnSpeed, skillMode);
-
-        DotsActive(false);
-        player.sword = newSword;
+        if (base.CanUseSkill() && !player.sword && canThrowSword) return true;
+        else return false;
     }
 
-    public Vector2 AimDirection()
+    public void CreateSword()
+    {
+        if (canThrowSword)
+        {
+            GameObject newSword = Instantiate(swordPrefab, player.transform.position, transform.rotation);
+            
+            newSword.GetComponent<Sword>().SetUpSword(AimDirection() * launchForce, swordGravity, returnSpeed, skillMode);
+
+            DotsActive(false);
+            player.sword = newSword;
+        }
+    }
+
+    public void CanSetDotsActive()
+    {
+        if (haveAimDots) DotsActive(true);
+    }
+
+    private Vector2 AimDirection()
     {
         Vector2 playerPosition = player.transform.position;
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -53,7 +71,7 @@ public class Sword_Skill : Skill
         return (mousePosition - playerPosition).normalized;
     }
 
-    public void DotsActive(bool _isActive)
+    private void DotsActive(bool _isActive)
     {
         for (int i = 0; i < numberOfDots; i++) dots[i].SetActive(_isActive);
     }

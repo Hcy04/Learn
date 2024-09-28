@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class Clone : Projectile
 {
+    private bool homingTarget;
+    private bool addComboCounter;
+    public bool canCreatNewClone;
+
     private SpriteRenderer sr;
 
     private float colorloosingSpeed;
@@ -13,11 +17,10 @@ public class Clone : Projectile
 
     public Transform attackCheck;
     public float attackCheckRadius;
+    public float moveSpeed;
 
     private int attackDir = 1;
-    [HideInInspector] public float moveSpeed;
-
-    [SerializeField] private Transform clocestTarget = null;
+    private Transform clocestTarget = null;
     
     protected override void Awake()
     {
@@ -47,21 +50,27 @@ public class Clone : Projectile
         }
     }
 
-    public void SetupClone(Transform _newTransform, float _colorloosingSpeed)
+    public void SetupClone(Transform _Transform, float _colorloosingSpeed, bool _homingTarget, bool _addComboCounter, bool _canCreatNewClone)
     {
-        transform.position = _newTransform.position;
+        transform.position = _Transform.position;
         colorloosingSpeed = _colorloosingSpeed;
 
+        homingTarget = _homingTarget;
+        addComboCounter = _addComboCounter;
+        canCreatNewClone = _canCreatNewClone;
+
         FaceClosestTarget();
-        if (clocestTarget == null) Destroy(this.gameObject);
 
         if (!PlayerManager.instance.player.IsGroundDetected()) anim.SetInteger("AttackNumber", 2);
         else 
         {
-            anim.SetInteger("AttackNumber", PlayerManager.instance.player.comboCounter + 1);
+            anim.SetInteger("AttackNumber", PlayerManager.instance.player.comboCounter % 3 + 1);
             
-            PlayerManager.instance.player.lastTimeAttacked = Time.time;
-            PlayerManager.instance.player.comboCounter++;
+            if (addComboCounter)
+            {
+                PlayerManager.instance.player.lastTimeAttacked = Time.time;
+                PlayerManager.instance.player.comboCounter++;
+            }
         }
     }
 
@@ -78,14 +87,24 @@ public class Clone : Projectile
                     clocestTarget = hit.GetComponent<Enemy>().transform;
             }
         }
+
+        if (clocestTarget == null) Destroy(this.gameObject);
         
-        if (clocestTarget != null) 
+        if (homingTarget)
         {
             int temp = Random.Range(0, 2);
             if (temp == 0) temp = -1;
             transform.position = new Vector2(clocestTarget.transform.position.x + temp * 1.5f, clocestTarget.transform.position.y);
 
             if (transform.position.x > clocestTarget.position.x)
+            {
+                attackDir *= -1;
+                transform.Rotate(0, 180, 0);
+            }
+        }
+        else 
+        {
+            if (PlayerManager.instance.player.facingDir == -1)
             {
                 attackDir *= -1;
                 transform.Rotate(0, 180, 0);

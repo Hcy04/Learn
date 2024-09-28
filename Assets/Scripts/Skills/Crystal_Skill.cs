@@ -5,36 +5,44 @@ using UnityEngine;
 
 public class Crystal_Skill : Skill
 {
-    [Header("Skill Info")]
+    [Header("Skill Active")]
+    [SerializeField] private bool canCreatCrystal;
+    [SerializeField] private bool addDuration;
+    [SerializeField] private bool canExplode;
     [SerializeField] private bool canMoving;
+
+    [Header("Skill Info")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private GameObject crystalPrefab;
-    [SerializeField] private float crystalDuration;
     [SerializeField] private float attackCheckRadius;
     private GameObject currentCrystal;
 
     Crystal crystalScript;
 
-    public override void UseSkill()
+    public override bool CanUseSkill()
     {
-        base.UseSkill();
-
-        if (currentCrystal == null)
+        if (base.CanUseSkill() && canCreatCrystal)
         {
-            currentCrystal = Instantiate(crystalPrefab, player.transform.position, Quaternion.identity);
-            crystalScript = currentCrystal.GetComponent<Crystal>();
-            crystalScript.SetUpCrystal(crystalDuration, attackCheckRadius, canMoving, moveSpeed);
-        }
-        else if (currentCrystal.GetComponent<Crystal>().crystalTimer >= 0)
-        {
-            if (!canMoving)
+            if (currentCrystal == null)
             {
-                Vector2 playerPos = player.transform.position;
-                player.transform.position = currentCrystal.transform.position;
-                currentCrystal.transform.position = playerPos;
-
-                crystalScript.DestroyCrystal();
+                currentCrystal = Instantiate(crystalPrefab, player.transform.position, Quaternion.identity);
+                crystalScript = currentCrystal.GetComponent<Crystal>();
+                crystalScript.SetUpCrystal(attackCheckRadius, moveSpeed, addDuration, canExplode, canMoving);
             }
+            else if (crystalScript.crystalTimer >= 0)
+            {
+                if (!canMoving)
+                {
+                    Vector2 playerPos = player.transform.position;
+                    player.transform.position = currentCrystal.transform.position;
+                    currentCrystal.transform.position = playerPos;
+
+                    if (canExplode) crystalScript.DestroyCrystal();
+                    else Destroy(currentCrystal);
+                }
+            }
+            return true;
         }
+        else return false;
     }
 }

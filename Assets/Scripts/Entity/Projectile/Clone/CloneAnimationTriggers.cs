@@ -8,7 +8,10 @@ public class CloneAnimationTriggers : MonoBehaviour
 
     private void AnimationTrigger()
     {
-        
+        if (clone.canCreatNewClone)
+        {
+            if (Random.Range(0, 100) < 35) SkillManager.instance.clone.CreatClone(clone.transform);
+        }
     }
 
     private void HandleAttackMoveSpeed(float speed)

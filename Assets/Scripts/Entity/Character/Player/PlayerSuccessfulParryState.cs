@@ -11,6 +11,8 @@ public class PlayerSuccessfulParryState : PlayerState
     public override void Enter()
     {
         base.Enter();
+
+        player.skill.clone.CloneParry();
     }
 
     public override void Update()
