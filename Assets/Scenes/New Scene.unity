@@ -20604,8 +20604,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CD: 0
   CDTimer: 0
+  canMoving: 1
+  moveSpeed: 2
   crystalPrefab: {fileID: 4253601645864843431, guid: bfd502368371cf743ab88f491c0f0b60, type: 3}
   crystalDuration: 2
+  attackCheckRadius: 1
 --- !u!114 &1661045526
 MonoBehaviour:
   m_ObjectHideFlags: 0

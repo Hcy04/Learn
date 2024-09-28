@@ -6,9 +6,14 @@ using UnityEngine;
 public class Crystal_Skill : Skill
 {
     [Header("Skill Info")]
+    [SerializeField] private bool canMoving;
+    [SerializeField] private float moveSpeed;
     [SerializeField] private GameObject crystalPrefab;
-    private GameObject currentCrystal;
     [SerializeField] private float crystalDuration;
+    [SerializeField] private float attackCheckRadius;
+    private GameObject currentCrystal;
+
+    Crystal crystalScript;
 
     public override void UseSkill()
     {
@@ -17,12 +22,19 @@ public class Crystal_Skill : Skill
         if (currentCrystal == null)
         {
             currentCrystal = Instantiate(crystalPrefab, player.transform.position, Quaternion.identity);
-            currentCrystal.GetComponent<Crystal>().SetUpCrystal(crystalDuration);
+            crystalScript = currentCrystal.GetComponent<Crystal>();
+            crystalScript.SetUpCrystal(crystalDuration, attackCheckRadius, canMoving, moveSpeed);
         }
         else if (currentCrystal.GetComponent<Crystal>().crystalTimer >= 0)
         {
-            player.transform.position = currentCrystal.transform.position;
-            Destroy(currentCrystal);
+            if (!canMoving)
+            {
+                Vector2 playerPos = player.transform.position;
+                player.transform.position = currentCrystal.transform.position;
+                currentCrystal.transform.position = playerPos;
+
+                crystalScript.DestroyCrystal();
+            }
         }
     }
 }

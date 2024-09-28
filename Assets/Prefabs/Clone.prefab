@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: -8853726992609439679}
   - component: {fileID: 1289800020517527040}
   - component: {fileID: 6019946312603583501}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Clone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,3 +266,4 @@ MonoBehaviour:
   attackCheck: {fileID: 5213214350126008113}
   attackCheckRadius: 1
   moveSpeed: 0
+  clocestTarget: {fileID: 0}
