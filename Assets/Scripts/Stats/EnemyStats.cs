@@ -13,10 +13,10 @@ public class EnemyStats : CharacterStats
         enemy = GetComponent<Enemy>();
     }
 
-    public override void TakeDamage(Transform damageFrom, float _damage)
+    public override void TakeDamage(Transform _damageFrom, float _Damage, float _fireDamage, float _iceDamage, float _lightningDamage)
     {
-        base.TakeDamage(damageFrom, _damage);
+        base.TakeDamage(_damageFrom, _Damage, _fireDamage, _iceDamage, _lightningDamage);
 
-        enemy.IsBattle();
+        if (currentHealth > 0) enemy.IsBattle();
     }
 }

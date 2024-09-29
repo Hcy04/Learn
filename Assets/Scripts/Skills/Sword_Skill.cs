@@ -13,7 +13,7 @@ public class Sword_Skill : Skill
     [SerializeField] private GameObject swordPrefab;
     [SerializeField] private float launchForce = 20;
     [SerializeField] private float swordGravity = 3;
-    [SerializeField] private float returnSpeed = 20;
+    [SerializeField] private float returnSpeed = 16;
 
     [Header("Aim Dots")]
     [SerializeField] private int numberOfDots = 10;
@@ -89,5 +89,10 @@ public class Sword_Skill : Skill
     private Vector2 DotsPosition(float t)
     {
         return (Vector2)player.transform.position +  AimDirection() * launchForce * t + .5f * Physics2D.gravity * swordGravity * t * t;
+    }
+
+    public float GetReturnSpeed()
+    {
+        return returnSpeed;
     }
 }

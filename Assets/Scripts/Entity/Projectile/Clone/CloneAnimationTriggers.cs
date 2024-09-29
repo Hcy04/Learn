@@ -8,10 +8,6 @@ public class CloneAnimationTriggers : MonoBehaviour
 
     private void AnimationTrigger()
     {
-        if (clone.canCreatNewClone)
-        {
-            if (Random.Range(0, 100) < 35) SkillManager.instance.clone.CreatClone(clone.transform);
-        }
     }
 
     private void HandleAttackMoveSpeed(float speed)
@@ -27,7 +23,7 @@ public class CloneAnimationTriggers : MonoBehaviour
 
         foreach (var hit in colliders)
         {
-            if (hit.GetComponent<Enemy>() != null) hit.GetComponent<EnemyStats>().TakeDamage(clone.transform, clone.damage);
+            if (hit.gameObject.layer == 12) hit.GetComponent<EnemyStats>().TakeDamage(clone.transform, clone.damage, 0, 0, 0);
         }
     }
 }

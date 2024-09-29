@@ -82,9 +82,9 @@ public class Crystal : Projectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Enemy>() != null)
+        if (collision.gameObject.layer == 12)
         {
-            collision.GetComponent<EnemyStats>().TakeDamage(transform, damage);
+            collision.GetComponent<EnemyStats>().TakeDamage(transform, damage, 0, 0, 0);
         }
     }
 

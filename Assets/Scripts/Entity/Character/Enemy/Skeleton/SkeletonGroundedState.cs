@@ -17,9 +17,10 @@ public class SkeletonGroundedState : SkeletonState
     {
         base.Update();
 
-        if ((Skeleton.IsPlayerDetected() && !Skeleton.IsWallDetected() && Skeleton.IsGroundDetected())
-            || Vector2.Distance(Skeleton.transform.position, Skeleton.player.transform.position) < 2)
-            Skeleton.stateMachine.ChangeState(Skeleton.battleState);
+        if ((Skeleton.IsPlayerDetected() && Skeleton.IsGroundDetected()) || Vector2.Distance(Skeleton.transform.position, Skeleton.player.transform.position) < 2)
+        {
+            if (Skeleton.player.stateMachine.currentState != Skeleton.player.diedState) Skeleton.stateMachine.ChangeState(Skeleton.battleState);
+        }
     }
 
     public override void Exit()

@@ -13,14 +13,9 @@ public class PlayerStats : CharacterStats
         player = GetComponent<Player>();
     }
 
-    public override void TakeDamage(Transform damageFrom, float _damage)
+    public override void TakeDamage(Transform _damageFrom, float _Damage, float _fireDamage, float _iceDamage, float _lightningDamage)
     {
-        player.DamageFX(damageFrom);
-
-        if (!player.CheckForParry(damageFrom))
-        {
-            currentHealth -= _damage;
-            if (currentHealth <= 0) Die();
-        }
+        if (!player.CheckForParry(_damageFrom) && player.stateMachine.currentState != player.successfulParry && player.stateMachine.currentState != player.dashState)
+            base.TakeDamage(_damageFrom, _Damage, _fireDamage, _iceDamage, _lightningDamage);
     }
 }

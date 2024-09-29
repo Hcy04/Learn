@@ -18,6 +18,8 @@ public class PlayerGroundedState : PlayerState
     {
         base.Update();
         
+        player.CheckForDashInput();
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (player.comboCounter == 2) player.stateMachine.ChangeState(player.attack3);
@@ -27,7 +29,8 @@ public class PlayerGroundedState : PlayerState
         else if (Input.GetKeyDown(KeyCode.R) && player.skill.freeze.CanUseSkill()) player.skill.freeze.SkillStart();
         else if (Input.GetKeyDown(KeyCode.Mouse1) && player.skill.sword.CanUseSkill()) player.stateMachine.ChangeState(player.aimSword);
         else if (Input.GetKeyDown(KeyCode.Q)) player.stateMachine.ChangeState(player.parryState);
-        else if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected()) player.stateMachine.ChangeState(player.jumpState);
+        else if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected() && !player.IsCeilingDetected())
+            player.stateMachine.ChangeState(player.jumpState);
         else if (!player.IsGroundDetected()) player.stateMachine.ChangeState(player.airState);
     }
 

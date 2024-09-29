@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.ShortcutManagement;
 using UnityEngine;
 
 public class Clone : Projectile
@@ -49,7 +45,15 @@ public class Clone : Projectile
         {
             sr.color = new Color(1, 1, 1, sr.color.a - (Time.deltaTime * colorloosingSpeed));
 
-            if (sr.color.a <= 0) Destroy(this.gameObject);
+            if (sr.color.a <= 0)
+            {
+                if (canCreatNewClone && clocestTarget != null && clocestTarget.GetComponent<Collider2D>().enabled)
+                {
+                    if (Random.Range(0, 100) < 35) SkillManager.instance.clone.CreatClone(transform);
+                }
+
+                Destroy(this.gameObject);
+            } 
         }
     }
 
@@ -63,6 +67,7 @@ public class Clone : Projectile
         canCreatNewClone = _canCreatNewClone;
 
         FaceClosestTarget();
+        if (clocestTarget == null) return;
 
         if (!player.IsGroundDetected()) anim.SetInteger("AttackNumber", 2);
         else 
@@ -89,15 +94,19 @@ public class Clone : Projectile
 
         foreach (var hit in colliders)
         {
-            if (hit.GetComponent<Enemy>() != null)
+            if (hit.gameObject.layer == 12)
             {
                 if (clocestTarget == null ||
                     (Vector2.Distance(transform.position, clocestTarget.position) > Vector2.Distance(transform.position, hit.transform.position)))
-                    clocestTarget = hit.GetComponent<Enemy>().transform;
+                    clocestTarget = hit.transform;
             }
         }
 
-        if (clocestTarget == null) Destroy(this.gameObject);
+        if (clocestTarget == null) 
+        {
+            Destroy(this.gameObject);
+            return;
+        }
         
         if (homingTarget)
         {

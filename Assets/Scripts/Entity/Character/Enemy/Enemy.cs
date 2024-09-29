@@ -99,6 +99,11 @@ public class Enemy : Character
         
     }
 
+    public virtual void DestroySelf()
+    {
+
+    }
+
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();

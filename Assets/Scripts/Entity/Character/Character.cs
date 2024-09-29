@@ -8,12 +8,15 @@ public class Character : Entity
     #region Components
     public EntityFX fx { get; private set; }
     public CharacterStats stats { get; private set; }
+    [HideInInspector] public Collider2D cd;
+    [HideInInspector] public SpriteRenderer sr;
     #endregion
 
+    #region Info
     [Header("Knockback Info")]
     [SerializeField] protected float knockbackDuration;
-    [SerializeField] protected Vector2 knockbackDirection;
-    protected bool isKnocked;
+    [SerializeField] protected float knockbackSpeed;
+    [HideInInspector] public bool isKnocked;
 
     [Header("Collision Info")]
     public Transform attackCheck;
@@ -26,6 +29,9 @@ public class Character : Entity
 
     public int facingDir { get; private set; } = 1;
     protected bool facingRight = true;
+    #endregion
+
+    public System.Action onFlipped;
 
     protected override void Awake()
     {
@@ -38,6 +44,8 @@ public class Character : Entity
 
         fx = GetComponent<EntityFX>();
         stats = GetComponent<CharacterStats>();
+        cd = GetComponent<Collider2D>();
+        sr = GetComponentInChildren<SpriteRenderer>();
     }
 
     protected override void Update()
@@ -45,26 +53,28 @@ public class Character : Entity
         base.Update();
     }
 
-    protected Transform damageFromPosition;
+    public virtual void IsDied()
+    {
+        rb.velocity = Vector2.zero;
+    }
 
+    #region Damage Effect
     public virtual void DamageFX(Transform damageFrom)
     {
-        damageFromPosition = damageFrom;
-
         fx.StartCoroutine("FlashFX");
         StartCoroutine("HitKnockback");
+
+        Vector2 knockbackDir = (Vector2) (transform.position - damageFrom.position).normalized * knockbackSpeed;
+        rb.velocity = new Vector2(knockbackDir.x, knockbackDir.y * rb.gravityScale / 2);
     }
     
     protected virtual IEnumerator HitKnockback()
     {
-        float moveDir =  (transform.position.x - damageFromPosition.position.x)
-            / Mathf.Abs(transform.position.x - damageFromPosition.position.x);
-
         isKnocked = true;
-        rb.velocity = new Vector2(knockbackDirection.x * moveDir, knockbackDirection.y);
         yield return new WaitForSeconds(knockbackDuration);
         isKnocked = false;
     }
+    #endregion
 
     #region Velocity
     public virtual void SetVelocity(float _xVelocity, float _yVelocity)
@@ -85,6 +95,8 @@ public class Character : Entity
         facingDir *= -1;
         facingRight = !facingRight;
         transform.Rotate(0, 180, 0);
+
+        onFlipped?.Invoke();
     }
     #endregion
 

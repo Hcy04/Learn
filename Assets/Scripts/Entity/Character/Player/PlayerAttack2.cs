@@ -13,7 +13,7 @@ public class PlayerAttack2 : PlayerPrimaryAttackState
     {
         base.Enter();
 
-        player.stats.damage.strength = .5f;
+        player.stats.damage.percentage = .5f;
     }
 
     public override void Update()

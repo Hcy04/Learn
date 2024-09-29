@@ -33,12 +33,17 @@ public class Player : Character
     public PlayerCatchSwordState catchSword { get; private set; }
 
     public PlayerFreezeState freezeState { get; private set; }
+
+    public PlayerHitState hitState { get; private set; }
+    public PlayerDiedState diedState { get; private set; }
     #endregion
 
     [HideInInspector] public SkillManager skill;
-    [HideInInspector] public SpriteRenderer sr;
 
-    #region  Info  
+    #region  Info
+    public Transform ceilingCheck;
+    public float ceilingCheckDistance;
+
     [Header("Move Info")]
     public float moveSpeed;
     public float jumpForce;
@@ -60,7 +65,6 @@ public class Player : Character
 
     [Header("Sword Skill")]
     public GameObject sword;
-    public float catchSpeed;
 
     [Space]
     public float wallJumpDuration;
@@ -96,6 +100,9 @@ public class Player : Character
         catchSword = new PlayerCatchSwordState(this, "CatchSword");
 
         freezeState = new PlayerFreezeState(this, "Freeze");
+
+        hitState = new PlayerHitState(this, "Hit");
+        diedState = new PlayerDiedState(this, "Died");
     }
 
     protected override void Start()
@@ -105,7 +112,6 @@ public class Player : Character
         stateMachine.Initialize(idleState);
 
         skill = SkillManager.instance;
-        sr = GetComponentInChildren<SpriteRenderer>();
     }
 
     protected override void Update()
@@ -119,12 +125,30 @@ public class Player : Character
     public virtual void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
     public void SetAttackMoveSpeed(float speed) => attackMoveSpeed = speed;
 
+    public bool CanDamage()
+    {
+        if (stateMachine.currentState == successfulParry || stateMachine.currentState == dashState || stateMachine.currentState == hitState) return false;
+        else return true;
+    }
+
+    public override void IsDied()
+    {
+        base.IsDied();
+
+        stateMachine.ChangeState(diedState);
+    }
+
+    public override void DamageFX(Transform damageFrom)
+    {
+        base.DamageFX(damageFrom);
+
+        if ((damageFrom.position.x - transform.position.x < 0 && facingRight) || (damageFrom.position.x - transform.position.x > 0 && !facingRight)) Flip();
+        stateMachine.ChangeState(hitState);
+    }
+
     public void CheckForDashInput()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill()
-            && stateMachine.currentState != wallSlide && stateMachine.currentState != successfulParry 
-            && stateMachine.currentState != aimSword && stateMachine.currentState != throwSword
-            && stateMachine.currentState != freezeState) 
+        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill()) 
         {
             dashDir = Input.GetAxisRaw("Horizontal");
             if (dashDir == 0) dashDir = facingDir;
@@ -143,6 +167,15 @@ public class Player : Character
             return true;
         }
         else return false;
+    }
+
+    public virtual bool IsCeilingDetected() => Physics2D.Raycast(ceilingCheck.position, Vector2.up, ceilingCheckDistance, whatIsGround);
+
+    protected override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+
+        Gizmos.DrawLine(ceilingCheck.position, new Vector3(ceilingCheck.position.x, ceilingCheckDistance + ceilingCheck.position.y));
     }
 
 }

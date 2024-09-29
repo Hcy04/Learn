@@ -27,7 +27,6 @@ public class PlayerState : CharacterState
         yInput = Input.GetAxisRaw("Vertical");
 
         if (Time.time - player.lastTimeAttacked > player.comboWindow) player.comboCounter = 0;
-        player.CheckForDashInput();
     }
 
     public override void Exit()

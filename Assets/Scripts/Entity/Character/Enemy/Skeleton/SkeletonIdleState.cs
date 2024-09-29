@@ -22,7 +22,7 @@ public class SkeletonIdleState : SkeletonGroundedState
         {
             Skeleton.stateMachine.ChangeState(Skeleton.moveState);
         }
-        Skeleton.SetVelocity(0, 0);
+        Skeleton.SetVelocity(0, Skeleton.rb.velocity.y);
     }
 
     public override void Exit()

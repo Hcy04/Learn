@@ -43,7 +43,7 @@ public class Freeze_Skill : Skill
                 if (targetindex >= targetList.Count) targetindex = 0;
 
                 player.comboCounter = Random.Range(0, 3);
-                SkillManager.instance.clone.CreatClone(targetList[targetindex].transform);
+                if (targetList[targetindex].GetComponent<Collider2D>().enabled) SkillManager.instance.clone.CreatClone(targetList[targetindex].transform);
 
                 lastAttack = Time.time;
             }

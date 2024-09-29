@@ -23,7 +23,7 @@ public class PlayerAnimationTriggers : MonoBehaviour
 
         foreach (var hit in colliders)
         {
-            if (hit.GetComponent<Enemy>() != null) player.stats.DoDamage(hit.GetComponent<EnemyStats>());
+            if (hit.gameObject.layer == 12) player.stats.DoDamage(hit.GetComponent<EnemyStats>());
         }
     }
 

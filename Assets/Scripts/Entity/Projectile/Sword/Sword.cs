@@ -109,7 +109,7 @@ public class Sword : Projectile
 
         if (isReturning)
         {
-            if (collision.GetComponent<Enemy>() != null) collision.GetComponent<EnemyStats>().TakeDamage(transform, damage / 2);
+            if (collision.gameObject.layer == 12) collision.GetComponent<EnemyStats>().TakeDamage(transform, damage / 2, 0, 0, 0);
         }
         else
         {
@@ -136,7 +136,7 @@ public class Sword : Projectile
                     StuckInto(collision);
                 }
 
-                collision.GetComponent<EnemyStats>().TakeDamage(transform, damage);
+                collision.GetComponent<EnemyStats>().TakeDamage(transform, damage, 0, 0, 0);
             }
             else StuckInto(collision);
         }

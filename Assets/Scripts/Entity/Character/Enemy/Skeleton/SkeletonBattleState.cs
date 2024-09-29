@@ -33,8 +33,8 @@ public class SkeletonBattleState : SkeletonState
             }
         }
         
-        if (!Skeleton.IsGroundDetected() || stateTimer < 0)
-            Skeleton.stateMachine.ChangeState(Skeleton.idleState);
+        if (!Skeleton.IsGroundDetected() || stateTimer < 0) Skeleton.stateMachine.ChangeState(Skeleton.idleState);
+        if (Skeleton.player.stateMachine.currentState == Skeleton.player.diedState) Skeleton.stateMachine.ChangeState(Skeleton.moveState);
 
         if (Skeleton.player.transform.position.x > Skeleton.transform.position.x) moveDir = 1;
         else if (Skeleton.player.transform.position.x < Skeleton.transform.position.x) moveDir = -1;

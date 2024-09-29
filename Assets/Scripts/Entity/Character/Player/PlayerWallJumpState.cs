@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWallJumpState : PlayerState
+public class PlayerWallJumpState : PlayerInAirState
 {
     public PlayerWallJumpState(Player _player, string _animName) : base(_player, _animName)
     {

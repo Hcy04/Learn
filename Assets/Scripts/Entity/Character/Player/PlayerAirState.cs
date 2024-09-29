@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 
-public class PlayerAirState : PlayerState
+public class PlayerAirState : PlayerInAirState
 {
     public PlayerAirState(Player _player, string _animName) : base(_player, _animName)
     {
