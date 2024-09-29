@@ -36,17 +36,17 @@ public class Enemy_Skeleton : Enemy
         base.Update();
     }
 
-    public override void Damage(Transform damageFrom)
-    {
-        base.Damage(damageFrom);
-
-        stateMachine.ChangeState(battleState);
-    }
-
     public override void IsStunned()
     {
         base.IsStunned();
 
         stateMachine.ChangeState(stunnedState);
+    }
+
+    public override void IsBattle()
+    {
+        base.IsBattle();
+
+        stateMachine.ChangeState(battleState);
     }
 }

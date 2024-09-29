@@ -27,7 +27,7 @@ public class CloneAnimationTriggers : MonoBehaviour
 
         foreach (var hit in colliders)
         {
-            if (hit.GetComponent<Enemy>() != null) hit.GetComponent<Enemy>().Damage(transform);
+            if (hit.GetComponent<Enemy>() != null) hit.GetComponent<EnemyStats>().TakeDamage(clone.transform, clone.damage);
         }
     }
 }

@@ -11,10 +11,12 @@ public class Clone : Projectile
     public bool canCreatNewClone;
 
     private SpriteRenderer sr;
+    private Player player;
 
     private float colorloosingSpeed;
     [HideInInspector] public bool triggerCalled;
 
+    public float damage;
     public Transform attackCheck;
     public float attackCheckRadius;
     public float moveSpeed;
@@ -27,6 +29,7 @@ public class Clone : Projectile
         base.Awake();
 
         sr = GetComponentInChildren<SpriteRenderer>();
+        player = PlayerManager.instance.player;
     }
 
     protected override void Start()
@@ -61,15 +64,21 @@ public class Clone : Projectile
 
         FaceClosestTarget();
 
-        if (!PlayerManager.instance.player.IsGroundDetected()) anim.SetInteger("AttackNumber", 2);
+        if (!player.IsGroundDetected()) anim.SetInteger("AttackNumber", 2);
         else 
         {
-            anim.SetInteger("AttackNumber", PlayerManager.instance.player.comboCounter % 3 + 1);
+            int nextCombo = player.comboCounter % 3 + 1;
+            anim.SetInteger("AttackNumber", nextCombo);
+
+            damage = player.stats.damage.baseValue;
+            if (nextCombo == 1) damage  *= 1;
+            else if (nextCombo == 2) damage *= .5f;
+            else if (nextCombo == 3) damage *= 1.5f;
             
             if (addComboCounter)
             {
-                PlayerManager.instance.player.lastTimeAttacked = Time.time;
-                PlayerManager.instance.player.comboCounter++;
+                player.lastTimeAttacked = Time.time;
+                player.comboCounter++;
             }
         }
     }
@@ -104,7 +113,7 @@ public class Clone : Projectile
         }
         else 
         {
-            if (PlayerManager.instance.player.facingDir == -1)
+            if (player.facingDir == -1)
             {
                 attackDir *= -1;
                 transform.Rotate(0, 180, 0);

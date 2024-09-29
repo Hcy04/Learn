@@ -133,15 +133,16 @@ public class Player : Character
         }
     }
 
-    public override void Damage(Transform damageFrom)
+    public bool CheckForParry(Transform _damageFrom)
     {
-        base.Damage(damageFrom);
-        
-        if (stateMachine.currentState == parryState && damageFrom.GetComponent<Enemy>() != null)
+        if (stateMachine.currentState == parryState && _damageFrom.GetComponent<Enemy>() != null)
         {
             stateMachine.ChangeState(successfulParry);
-            damageFrom.GetComponent<Enemy>().IsStunned();
+            _damageFrom.GetComponent<Enemy>().IsStunned();
+
+            return true;
         }
+        else return false;
     }
 
 }

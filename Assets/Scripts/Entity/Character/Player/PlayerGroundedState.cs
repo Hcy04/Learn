@@ -17,7 +17,7 @@ public class PlayerGroundedState : PlayerState
     public override void Update()
     {
         base.Update();
-
+        
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (player.comboCounter == 2) player.stateMachine.ChangeState(player.attack3);

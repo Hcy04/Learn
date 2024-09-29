@@ -11,6 +11,8 @@ public class PlayerAttack3 : PlayerPrimaryAttackState
     public override void Enter()
     {
         base.Enter();
+
+        player.stats.damage.strength = 1.5f;
     }
 
     public override void Update()
@@ -27,5 +29,7 @@ public class PlayerAttack3 : PlayerPrimaryAttackState
     public override void Exit()
     {
         base.Exit();
+
+        player.comboCounter = 0;
     }
 }

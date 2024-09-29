@@ -47,7 +47,7 @@ public class Character : Entity
 
     protected Transform damageFromPosition;
 
-    public virtual void Damage(Transform damageFrom)
+    public virtual void DamageFX(Transform damageFrom)
     {
         damageFromPosition = damageFrom;
 

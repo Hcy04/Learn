@@ -94,6 +94,11 @@ public class Enemy : Character
 
     }
 
+    public virtual void IsBattle()
+    {
+        
+    }
+
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();

@@ -32,8 +32,8 @@ public class PlayerPrimaryAttackState : PlayerState
     public override void Exit()
     {
         base.Exit();
-
-        player.comboCounter = (player.comboCounter + 1) % 3;
+        
         player.lastTimeAttacked = Time.time;
+        
     }
 }

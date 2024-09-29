@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class PlayerAnimationTriggers : MonoBehaviour
@@ -22,11 +23,7 @@ public class PlayerAnimationTriggers : MonoBehaviour
 
         foreach (var hit in colliders)
         {
-            if (hit.GetComponent<Enemy>() != null)
-            {
-                hit.GetComponent<Enemy>().Damage(player.transform);
-                hit.GetComponent<CharacterStats>().TakeDamage(player.stats.damage);
-            }
+            if (hit.GetComponent<Enemy>() != null) player.stats.DoDamage(hit.GetComponent<EnemyStats>());
         }
     }
 

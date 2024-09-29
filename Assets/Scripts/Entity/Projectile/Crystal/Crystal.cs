@@ -13,6 +13,7 @@ public class Crystal : Projectile
     public float crystalTimer;
     public bool triggerCalled;
     public float attackCheckRadius;
+    private float damage;
 
     private float moveSpeed;
     private Transform clocestTarget;
@@ -57,8 +58,9 @@ public class Crystal : Projectile
         if (triggerCalled) Destroy(this.gameObject);
     }
 
-    public void SetUpCrystal(float _attackCheckRadius, float _moveSpeed, bool _addDuration, bool _canExplode, bool _canMoving)
+    public void SetUpCrystal(float _damage, float _attackCheckRadius, float _moveSpeed, bool _addDuration, bool _canExplode, bool _canMoving)
     {
+        damage = _damage;
         attackCheckRadius = _attackCheckRadius;
         moveSpeed = _moveSpeed;
 
@@ -82,7 +84,7 @@ public class Crystal : Projectile
     {
         if (collision.GetComponent<Enemy>() != null)
         {
-            collision.GetComponent<Enemy>().Damage(transform);
+            collision.GetComponent<EnemyStats>().TakeDamage(transform, damage);
         }
     }
 

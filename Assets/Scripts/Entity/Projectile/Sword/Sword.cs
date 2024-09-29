@@ -105,19 +105,38 @@ public class Sword : Projectile
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        float damage = player.stats.damage.baseValue;
+
         if (isReturning)
         {
-            if (collision.GetComponent<Enemy>() != null) collision.GetComponent<Enemy>().Damage(transform);
+            if (collision.GetComponent<Enemy>() != null) collision.GetComponent<EnemyStats>().TakeDamage(transform, damage / 2);
         }
         else
         {
             if (collision.GetComponent<Enemy>() != null)
             {
-                collision.GetComponent<Enemy>().Damage(transform);
-                if (isBouncing) SwordBouncing();
-                else if (isPierce) SwordPierce(collision);
-                else if (isSpin) SwordSpin();
-                else StuckInto(collision);
+                if (isBouncing) 
+                {
+                    damage *= 1;
+                    SwordBouncing();
+                }
+                else if (isPierce)
+                {
+                    damage *= 3;
+                    SwordPierce(collision);
+                }
+                else if (isSpin) 
+                {
+                    damage *= .5f;
+                    SwordSpin();
+                }
+                else
+                {
+                    damage *= 2f;
+                    StuckInto(collision);
+                }
+
+                collision.GetComponent<EnemyStats>().TakeDamage(transform, damage);
             }
             else StuckInto(collision);
         }

@@ -12,6 +12,7 @@ public class Crystal_Skill : Skill
     [SerializeField] private bool canMoving;
 
     [Header("Skill Info")]
+    [SerializeField] private float damage = 10;
     [SerializeField] private float moveSpeed;
     [SerializeField] private GameObject crystalPrefab;
     [SerializeField] private float attackCheckRadius;
@@ -27,7 +28,7 @@ public class Crystal_Skill : Skill
             {
                 currentCrystal = Instantiate(crystalPrefab, player.transform.position, Quaternion.identity);
                 crystalScript = currentCrystal.GetComponent<Crystal>();
-                crystalScript.SetUpCrystal(attackCheckRadius, moveSpeed, addDuration, canExplode, canMoving);
+                crystalScript.SetUpCrystal(damage, attackCheckRadius, moveSpeed, addDuration, canExplode, canMoving);
             }
             else if (crystalScript.crystalTimer >= 0)
             {

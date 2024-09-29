@@ -18160,7 +18160,7 @@ MonoBehaviour:
   jumpForce: 12
   dashSpeed: 25
   dashDuration: 0.2
-  comboWindow: 0.3
+  comboWindow: 0.5
   comboCounter: 0
   lastTimeAttacked: 0
   attackTypeAhead: 0
@@ -18254,12 +18254,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1508441375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae6fe365e784b9445a38bf0a42f4eb80, type: 3}
+  m_Script: {fileID: 11500000, guid: e63d51e6f703c2944adc3604a0a617b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth:
+    baseValue: 100
+    modifiers: []
+    strength: 1
+  damage:
+    baseValue: 10
+    modifiers: []
+    strength: 1
   currentHealth: 0
-  damage: 10
 --- !u!1 &1509150077
 GameObject:
   m_ObjectHideFlags: 0
@@ -20633,6 +20639,7 @@ MonoBehaviour:
   addDuration: 0
   canExplode: 0
   canMoving: 0
+  damage: 10
   moveSpeed: 2
   crystalPrefab: {fileID: 4253601645864843431, guid: bfd502368371cf743ab88f491c0f0b60, type: 3}
   attackCheckRadius: 1
@@ -21246,21 +21253,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2630053755706394526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &752862822834840312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5842586418900646016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae6fe365e784b9445a38bf0a42f4eb80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 0
-  currentHealth: 0
-  damage: 0
 --- !u!212 &1287202723043764929
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21514,7 +21506,7 @@ GameObject:
   - component: {fileID: 6478847530209629990}
   - component: {fileID: 1997611272086654781}
   - component: {fileID: 1518624979818760974}
-  - component: {fileID: 752862822834840312}
+  - component: {fileID: 8621696649394988051}
   m_Layer: 12
   m_Name: Enemy_Skeleton
   m_TagString: Untagged
@@ -21662,6 +21654,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
+--- !u!114 &8621696649394988051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5842586418900646016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 476a952b96fd16e47851040f0957223a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth:
+    baseValue: 100
+    modifiers: []
+    strength: 1
+  damage:
+    baseValue: 5
+    modifiers: []
+    strength: 1
+  currentHealth: 0
 --- !u!212 &8802527298563657233
 SpriteRenderer:
   m_ObjectHideFlags: 0
