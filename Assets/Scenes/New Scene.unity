@@ -18090,7 +18090,7 @@ MonoBehaviour:
   m_ScreenX: 0.5
   m_ScreenY: 0.6
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0.4
+  m_DeadZoneWidth: 0.1
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
@@ -38384,7 +38384,7 @@ MonoBehaviour:
     modifiers: []
     percentage: 1
   fireDamage:
-    baseValue: 0
+    baseValue: 1
     modifiers: []
     percentage: 1
   iceDamage:
@@ -38392,7 +38392,7 @@ MonoBehaviour:
     modifiers: []
     percentage: 1
   lightningDamage:
-    baseValue: 1
+    baseValue: 0
     modifiers: []
     percentage: 1
   ignited: 0
@@ -46072,7 +46072,7 @@ Transform:
   m_GameObject: {fileID: 1855861670}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.836412, y: 0.41997755, z: -9.985026}
+  m_LocalPosition: {x: -14.836411, y: 0.41997755, z: -9.985026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46499,7 +46499,7 @@ Transform:
   m_GameObject: {fileID: 2065675585}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -14.836412, y: 0.41997755, z: -9.985026}
+  m_LocalPosition: {x: -14.836411, y: 0.41997755, z: -9.985026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
