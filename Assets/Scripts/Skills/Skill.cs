@@ -9,10 +9,12 @@ public class Skill : MonoBehaviour
     public float CDTimer;
 
     protected Player player;
+    protected Spawner spawner;
 
     protected virtual void Start()
     {
         player = PlayerManager.instance.player;
+        spawner = Spawner.instance;
     }
 
     protected virtual void Update()

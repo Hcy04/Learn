@@ -21,7 +21,7 @@ public class PlayerCatchSwordState : PlayerState
 
         float speedDir = 1;
         if (swordX - player.transform.position.x > 0) speedDir = -1;
-        player.rb.velocity += new Vector2(speedDir * player.skill.sword.GetReturnSpeed() / 2, player.transform.position.y);
+        player.rb.velocity += new Vector2(speedDir * player.moveSpeed, player.transform.position.y);
     }
 
     public override void Update()

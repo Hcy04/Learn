@@ -57,9 +57,8 @@ public class Clone : Projectile
         }
     }
 
-    public void SetupClone(Transform _Transform, float _colorloosingSpeed, bool _homingTarget, bool _addComboCounter, bool _canCreatNewClone)
+    public void SetupClone(float _colorloosingSpeed, bool _homingTarget, bool _addComboCounter, bool _canCreatNewClone)
     {
-        transform.position = _Transform.position;
         colorloosingSpeed = _colorloosingSpeed;
 
         homingTarget = _homingTarget;

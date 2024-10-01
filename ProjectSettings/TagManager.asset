@@ -20,7 +20,7 @@ TagManager:
   - Enemy
   - Projectile
   - Died
-  - 
+  - Particle
   - 
   - 
   - 
@@ -55,4 +55,10 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 694066765
+    locked: 0
+  - name: Particle
+    uniqueID: 527168815
+    locked: 0
+  - name: FX
+    uniqueID: 449832617
     locked: 0

@@ -84,7 +84,7 @@ public class Crystal : Projectile
     {
         if (collision.gameObject.layer == 12)
         {
-            collision.GetComponent<EnemyStats>().TakeDamage(transform, damage, 0, 0, 0);
+            collision.GetComponent<EnemyStats>().TakeDamage(transform, damage, 0, 5, 0);
         }
     }
 

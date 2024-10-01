@@ -15,6 +15,8 @@ public class Enemy_Skeleton : Enemy
     public SkeletonDiedState diedState { get; private set; }
     #endregion
 
+    public float idleTime = 1;
+
     protected override void Awake()
     {
         base.Awake();

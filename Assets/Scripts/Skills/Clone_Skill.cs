@@ -15,7 +15,6 @@ public class Clone_Skill : Skill
     [SerializeField] private bool canCreatNewClone;//分身攻击动作结束有概率创建新的分身
 
     [Header("Skill Info")]
-    [SerializeField] private GameObject clonePrefab;
     [SerializeField] private float colorloosingSpeed;
 
     public void CloneDashEnter()
@@ -36,8 +35,8 @@ public class Clone_Skill : Skill
 
     public void CreatClone(Transform _clonePosition)
     {
-        GameObject newClone = Instantiate(clonePrefab);
+        GameObject newClone = spawner.CreatClone(_clonePosition.position);
 
-        newClone.GetComponent<Clone>().SetupClone(_clonePosition, colorloosingSpeed, homingTarget, addComboCounter, canCreatNewClone);
+        newClone.GetComponent<Clone>().SetupClone(colorloosingSpeed, homingTarget, addComboCounter, canCreatNewClone);
     }
 }

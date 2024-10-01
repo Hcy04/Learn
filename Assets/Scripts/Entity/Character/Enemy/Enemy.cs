@@ -16,12 +16,8 @@ public class Enemy : Character
     [Header("Stunned Info")]
     public float stunDuration;
     public Vector2 stunDirection;
-    protected Transform attackWarning;
+    [SerializeField] protected Transform attackWarning;
     [SerializeField] protected float attackWarningTime;
-
-    [Header("Move Info")]
-    public float moveSpeed; 
-    public float idleTime;
 
     [Header("Attack Info")]
     public float attackDistance;
@@ -41,8 +37,6 @@ public class Enemy : Character
     protected override void Start()
     {
         base.Start();
-
-        attackWarning = transform.Find("AttackWarning");
 
         player = PlayerManager.instance.player;
     }

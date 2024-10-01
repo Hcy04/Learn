@@ -10,6 +10,7 @@ public class Player : Character
     public StateMachine<PlayerState> stateMachine { get; private set; }
 
     public PlayerIdleState idleState { get; private set; }
+    public PlayerMoveToIdle moveToIdle { get; private set; }
     public PlayerMoveState moveState { get; private set; }
 
     public PlayerJumpState jumpState { get; private set; }
@@ -41,16 +42,8 @@ public class Player : Character
     [HideInInspector] public SkillManager skill;
 
     #region  Info
-    public Transform ceilingCheck;
-    public float ceilingCheckDistance;
-
-    [Header("Move Info")]
-    public float moveSpeed;
-    public float jumpForce;
-
     [Header("Dash Info")]
-    public float dashSpeed;
-    public float dashDuration;
+    public float dashDuration = .2f;
     public float dashDir { get; private set; }
 
     [Header("Attack Info")]
@@ -77,6 +70,7 @@ public class Player : Character
         stateMachine = new StateMachine<PlayerState>();
 
         idleState = new PlayerIdleState(this, "Idle");
+        moveToIdle = new PlayerMoveToIdle(this, "MoveToIdle");
         moveState = new PlayerMoveState(this, "Move");
 
         jumpState = new PlayerJumpState(this, "Jump");
@@ -116,8 +110,8 @@ public class Player : Character
 
     protected override void Update()
     {
-        base.Start();
-
+        base.Update();
+        
         stateMachine.currentState.Update();
         if (Input.GetKeyDown(KeyCode.F)) skill.crystal.CanUseSkill();
     }
@@ -167,15 +161,6 @@ public class Player : Character
             return true;
         }
         else return false;
-    }
-
-    public virtual bool IsCeilingDetected() => Physics2D.Raycast(ceilingCheck.position, Vector2.up, ceilingCheckDistance, whatIsGround);
-
-    protected override void OnDrawGizmos()
-    {
-        base.OnDrawGizmos();
-
-        Gizmos.DrawLine(ceilingCheck.position, new Vector3(ceilingCheck.position.x, ceilingCheckDistance + ceilingCheck.position.y));
     }
 
 }

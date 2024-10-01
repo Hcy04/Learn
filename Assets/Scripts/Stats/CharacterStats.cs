@@ -6,6 +6,10 @@ public class CharacterStats : MonoBehaviour
 {
     Character character;
 
+    public ParticleSystem ignitedParticle;
+    public ParticleSystem chilledParticle;
+    public ParticleSystem shockedParticle;
+
     #region Info
     [Header("Ability Stats")]
     public Stat vitality;
@@ -31,13 +35,14 @@ public class CharacterStats : MonoBehaviour
     public Stat lightningDamage;
 
     [Header("Elemental Effect")]
-    public float ignited;//燃烧次数，向上取整
-    public float chilled;//减速的比例
-    public float shocked;//触电的伤害
+    [SerializeField] protected float ignited;//燃烧次数，向上取整
+    [SerializeField] protected float lastIgnitedDamage;//上次伤害时间
 
-    protected float lastIgnitedDamage;//上次伤害时间
-    private float chilledTimer = 3;//减速持续时间
-    protected float shockedTimer = 2;//延迟时间
+    [SerializeField] protected float chilled;//减速的比例
+    [SerializeField] protected float chilledTimer;//减速持续时间
+
+    [SerializeField] protected float shocked;//累计的真伤
+    [SerializeField] protected float shockedTimer;//伤害积累时间
 
     [Header("Current Stats")]
     public float currentHealth;
@@ -50,11 +55,17 @@ public class CharacterStats : MonoBehaviour
     {
         character = GetComponent<Character>();
 
+        ignitedParticle.Stop();
+        chilledParticle.Stop();
+        shockedParticle.Stop();
+
         currentHealth = maxHealth.GetValue();
     }
 
     protected virtual void Update()
     {
+        if (Died) return;
+
         if (ignited > 0 && Time.time - lastIgnitedDamage > 1)
         {
             currentHealth -= maxHealth.GetValue() * 0.01f;
@@ -62,14 +73,18 @@ public class CharacterStats : MonoBehaviour
 
             lastIgnitedDamage = Time.time;
             ignited -= 1;
+
+            if (ignited <= 0) ignitedParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
         if (chilled > 0)
-        {Debug.Log(character.gameObject.name + "Chilled" + chilled);
+        {
             chilledTimer -= Time.deltaTime;
             if (chilledTimer < 0)
             {
+                character.SlowOver();
+
                 chilled = 0;
-                chilledTimer = 3;
+                chilledParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             }
         }
         if (shocked > 0)
@@ -77,15 +92,16 @@ public class CharacterStats : MonoBehaviour
             shockedTimer -= Time.deltaTime;
             if (shockedTimer < 0)
             {
-                currentHealth -= shocked * 2;
+                currentHealth -= shocked;
                 onHealthChanged();
+                Spawner.instance.CreatThunderStrike(transform.position, transform);
 
                 shocked = 0;
-                shockedTimer = 2;
+                shockedParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             }
         }
 
-        if (currentHealth <= 0 && !Died) Die();
+        if (currentHealth <= 0) Die();
     }
 
     public virtual void DoDamage(CharacterStats _targetStats)
@@ -96,11 +112,11 @@ public class CharacterStats : MonoBehaviour
         _targetStats.TakeDamage(transform, finalDamage, fireDamage.GetValue(), iceDamage.GetValue(), lightningDamage.GetValue());
     }
 
-    public virtual void TakeDamage(Transform _damageFrom, float _Damage, float _fireDamage, float _iceDamage, float _lightningDamage)
+    public virtual void TakeDamage(Transform _damageFrom, float _damage, float _fireDamage, float _iceDamage, float _lightningDamage)
     {
         character.DamageFX(_damageFrom);//_damageFrom用于计算击退方向
 
-        float finalDamage = _Damage - armor.GetValue();
+        float finalDamage = _damage - armor.GetValue();
         if (finalDamage < 1) finalDamage = 1;
         currentHealth -= finalDamage;
         //元素伤害为百分比减伤
@@ -108,17 +124,37 @@ public class CharacterStats : MonoBehaviour
         currentHealth -= _iceDamage * (1 - iceResistance.GetValue());
         currentHealth -= _lightningDamage * (1 - lightningResistance.GetValue());
         //燃烧，抗性影响持续时间
-        if (_fireDamage > 0 && (Random.Range(0, 1000) < (1 - fireResistance.GetValue()) * 1000)) ignited = 10 * (1 - fireResistance.GetValue());
-        //冰冻，抗性影响减速比例
-        if (_iceDamage > 0 && (Random.Range(0, 1000) < (1 - iceResistance.GetValue()) * 1000)) chilled = 0.5f * (1 - iceResistance.GetValue());
-        //触电，抗性影响伤害大小
-        if (_lightningDamage > 0 && (Random.Range(0, 1000) < (1 - lightningResistance.GetValue()) * 1000)) shocked = _lightningDamage * (1 - lightningResistance.GetValue());
+        if (_fireDamage > 0 && (Random.Range(0, 1000) < (1 - fireResistance.GetValue()) * 1000))
+        {
+            ignitedParticle.Play();
+            ignited = 10 * (1 - fireResistance.GetValue());
+        }
+        //冰冻，抗性影响减速比例和时间
+        if (_iceDamage > 0 && (Random.Range(0, 1000) < (1 - iceResistance.GetValue()) * 1000))
+        {
+            chilledParticle.Play();
+            chilled = 0.5f * (1 - iceResistance.GetValue() * .6f);//最多减少到0.2
+            chilledTimer = 5 * (1 - iceResistance.GetValue() * .6f);//最多减少到2
+
+            character.SlowBy(chilled);
+        }
+        //触电，抗性影响真伤积累时间
+        if (_lightningDamage > 0 && (Random.Range(0, 1000) < (1 - lightningResistance.GetValue()) * 1000))
+        {
+            shockedParticle.Play();
+            shocked += (_lightningDamage + _damage) * .5f;
+            if(shockedTimer <= 0) shockedTimer = 10 * (1 - lightningResistance.GetValue() * .8f);//最多减少到两秒
+        }
 
         onHealthChanged();
     }
 
     protected virtual void Die()
     {
+        ignitedParticle.Stop();
+        chilledParticle.Stop();
+        shockedParticle.Stop();
+
         currentHealth = 0;
         Died = true;
         character.IsDied();

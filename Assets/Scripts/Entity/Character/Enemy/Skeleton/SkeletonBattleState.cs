@@ -15,7 +15,6 @@ public class SkeletonBattleState : SkeletonState
     {
         base.Enter();
 
-        Skeleton.anim.speed = 1.5f;
         stateTimer = Skeleton.battleTime;
     }
 
@@ -40,13 +39,11 @@ public class SkeletonBattleState : SkeletonState
         else if (Skeleton.player.transform.position.x < Skeleton.transform.position.x) moveDir = -1;
         else moveDir = 0;
 
-        Skeleton.SetVelocity(Skeleton.moveSpeed * moveDir * 1.5f, Skeleton.rb.velocity.y);
+        Skeleton.SetVelocity(Skeleton.moveSpeed * moveDir, Skeleton.rb.velocity.y);
     }
 
     public override void Exit()
     {
         base.Exit();
-
-        Skeleton.anim.speed = 1;
     }
 }

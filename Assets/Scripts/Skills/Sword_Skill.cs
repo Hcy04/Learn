@@ -10,7 +10,6 @@ public class Sword_Skill : Skill
     [SerializeField] private int skillMode;//1:isBouncing 2:isPierce 3:isSpin
     
     [Header("Skill Info")]
-    [SerializeField] private GameObject swordPrefab;
     [SerializeField] private float launchForce = 20;
     [SerializeField] private float swordGravity = 3;
     [SerializeField] private float returnSpeed = 16;
@@ -18,7 +17,6 @@ public class Sword_Skill : Skill
     [Header("Aim Dots")]
     [SerializeField] private int numberOfDots = 10;
     [SerializeField] private float spaceBeetwenDots = .1f;
-    [SerializeField] private GameObject dotPrefab;
 
     private GameObject[] dots;
 
@@ -49,7 +47,7 @@ public class Sword_Skill : Skill
     {
         if (canThrowSword)
         {
-            GameObject newSword = Instantiate(swordPrefab, player.transform.position, transform.rotation);
+            GameObject newSword = spawner.CreatSword(player.transform.position);
             
             newSword.GetComponent<Sword>().SetUpSword(AimDirection() * launchForce, swordGravity, returnSpeed, skillMode);
 
@@ -81,7 +79,7 @@ public class Sword_Skill : Skill
         dots = new GameObject[numberOfDots];
         for (int i = 0; i < numberOfDots; i++)
         {
-            dots[i] = Instantiate(dotPrefab, player.transform.position, Quaternion.identity, player.transform);
+            dots[i] = spawner.CreatDot(player.transform.position, player.transform);
             dots[i].SetActive(false);
         }
     }
@@ -91,8 +89,4 @@ public class Sword_Skill : Skill
         return (Vector2)player.transform.position +  AimDirection() * launchForce * t + .5f * Physics2D.gravity * swordGravity * t * t;
     }
 
-    public float GetReturnSpeed()
-    {
-        return returnSpeed;
-    }
 }

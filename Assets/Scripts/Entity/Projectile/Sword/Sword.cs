@@ -136,7 +136,7 @@ public class Sword : Projectile
                     StuckInto(collision);
                 }
 
-                collision.GetComponent<EnemyStats>().TakeDamage(transform, damage, 0, 0, 0);
+                collision.GetComponent<EnemyStats>().TakeDamage(transform, damage, 0, 0, 2);
             }
             else StuckInto(collision);
         }

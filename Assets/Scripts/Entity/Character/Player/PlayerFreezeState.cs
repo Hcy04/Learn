@@ -13,11 +13,14 @@ public class PlayerFreezeState : PlayerState
         base.Enter();
 
         player.sr.enabled = false;
+        
     }
 
     public override void Update()
     {
         base.Update();
+
+        player.SetVelocity(0, 0);
     }
 
     public override void Exit()
