@@ -22,12 +22,12 @@ public class PlayerAttack2 : PlayerPrimaryAttackState
 
         if (triggerCalled)
         {
-            if (player.attackTypeAhead)
-            {  
-                player.stateMachine.ChangeState(player.attack3);
-                player.attackTypeAhead = false;
-            }
+            if (player.dashTypeAhead) player.DoDash();
+            else if (player.attackTypeAhead) player.stateMachine.ChangeState(player.attack3);
             else player.stateMachine.ChangeState(player.idleState);
+
+            player.attackTypeAhead = false;
+            player.dashTypeAhead = false;
         }
     }
 

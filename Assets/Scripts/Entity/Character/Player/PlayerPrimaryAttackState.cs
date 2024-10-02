@@ -27,6 +27,7 @@ public class PlayerPrimaryAttackState : PlayerState
         else player.SetVelocity(player.attackMoveSpeed * player.facingDir * attackDir, 0);
 
         if (Input.GetKeyDown(KeyCode.Mouse0)) player.attackTypeAhead = true;
+        if (Input.GetKeyDown(KeyCode.LeftShift)) player.dashTypeAhead = true;
     }
 
     public override void Exit()

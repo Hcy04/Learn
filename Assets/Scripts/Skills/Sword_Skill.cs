@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class Sword_Skill : Skill
 {
+    public enum SwordSkillMode
+    {
+        Default,
+        Bouncing,
+        Pierce,
+        Spin
+    }
+
     [Header("Skill Active")]
     [SerializeField] private bool canThrowSword;
     [SerializeField] private bool haveAimDots;
-    [SerializeField] private int skillMode;//1:isBouncing 2:isPierce 3:isSpin
+    [SerializeField] private SwordSkillMode swordSkillMode;
     
     [Header("Skill Info")]
     [SerializeField] private float launchForce = 20;
@@ -49,7 +57,7 @@ public class Sword_Skill : Skill
         {
             GameObject newSword = spawner.CreatSword(player.transform.position);
             
-            newSword.GetComponent<Sword>().SetUpSword(AimDirection() * launchForce, swordGravity, returnSpeed, skillMode);
+            newSword.GetComponent<Sword>().SetUpSword(AimDirection() * launchForce, swordGravity, returnSpeed, swordSkillMode);
 
             DotsActive(false);
             player.sword = newSword;

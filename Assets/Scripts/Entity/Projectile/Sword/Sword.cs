@@ -65,15 +65,15 @@ public class Sword : Projectile
         }
     }
 
-    public void SetUpSword(Vector2 _dir, float _gravityScale, float _returnSpeed, int skillMode)
+    public void SetUpSword(Vector2 _dir, float _gravityScale, float _returnSpeed, Sword_Skill.SwordSkillMode skillMode)
     {
         rb.velocity = _dir;
         rb.gravityScale = _gravityScale;
         returnSpeed = _returnSpeed;
 
-        if (skillMode == 1) isBouncing = true;
-        else if (skillMode == 2) isPierce = true;
-        else if (skillMode == 3) isSpin = true;
+        if (skillMode == Sword_Skill.SwordSkillMode.Bouncing) isBouncing = true;
+        else if (skillMode == Sword_Skill.SwordSkillMode.Pierce) isPierce = true;
+        else if (skillMode == Sword_Skill.SwordSkillMode.Spin) isSpin = true;
 
         if (!isPierce) anim.SetBool("Rotation", true);
     }

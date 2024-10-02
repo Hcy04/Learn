@@ -45,6 +45,7 @@ public class Player : Character
     [Header("Dash Info")]
     public float dashDuration = .2f;
     public float dashDir { get; private set; }
+    [HideInInspector] public bool dashTypeAhead;
 
     [Header("Attack Info")]
     public float comboWindow;
@@ -142,7 +143,12 @@ public class Player : Character
 
     public void CheckForDashInput()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill()) 
+        if (Input.GetKeyDown(KeyCode.LeftShift)) DoDash();
+    }
+
+    public void DoDash()
+    {
+        if (SkillManager.instance.dash.CanUseSkill())
         {
             dashDir = Input.GetAxisRaw("Horizontal");
             if (dashDir == 0) dashDir = facingDir;

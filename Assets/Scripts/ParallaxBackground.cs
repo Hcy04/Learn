@@ -10,8 +10,11 @@ public class ParallaxBackground : MonoBehaviour
 
     private float xPosition;
     private float yPosition;
-
     private float length;
+
+    [SerializeField] private float distanceMoved;
+    [SerializeField] private float xDiatanceToMove;
+    [SerializeField] private float yDiatanceToMove;
 
     void Start()
     {
@@ -22,17 +25,17 @@ public class ParallaxBackground : MonoBehaviour
         xPosition = transform.position.x;
         yPosition = transform.position.y; 
     }
-
+    
     void Update()
     {
-        float distanceMoved = cam.transform.position.x * (1 - parallaxEffect);
+        distanceMoved = cam.transform.position.x * (1 - parallaxEffect);
         
-        float xDiatanceToMove = cam.transform.position.x * parallaxEffect;
-        float yDiatanceToMove = cam.transform.position.y * parallaxEffect;
+        xDiatanceToMove = cam.transform.position.x * parallaxEffect;
+        yDiatanceToMove = cam.transform.position.y * parallaxEffect;
 
         transform.position = new Vector3(xPosition + xDiatanceToMove, yPosition + yDiatanceToMove);
 
-        if (distanceMoved > xPosition + length) xPosition = xPosition + length;
-        else if (distanceMoved < xPosition - length) xPosition = xPosition - length;
+        if (distanceMoved > xPosition + length) xPosition += length;
+        else if (distanceMoved < xPosition - length) xPosition -= length;
     }
 }

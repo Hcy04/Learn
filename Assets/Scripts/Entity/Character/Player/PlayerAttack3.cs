@@ -22,7 +22,9 @@ public class PlayerAttack3 : PlayerPrimaryAttackState
         if (triggerCalled) 
         {
             player.stateMachine.ChangeState(player.idleState);
+            
             player.attackTypeAhead = false;
+            player.dashTypeAhead = false;
         }
     }
 

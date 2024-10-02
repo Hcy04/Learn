@@ -21,12 +21,13 @@ public class PlayerMoveState : PlayerGroundedState
 
         if (stateTimer >= 0 && xInput == -player.facingDir) stateTimer = 1.5f;//转向重跑
         
-        if (xInput == 0 || player.IsWallDetected() || (xInput == -player.facingDir && stateTimer < 0))//停止 有障碍物 转向
+        if ((xInput == 0 || player.IsWallDetected() || xInput == -player.facingDir) && stateTimer < 0)
+            player.stateMachine.ChangeState(player.moveToIdle);
+        else
         {
-            if (stateTimer < 0) player.stateMachine.ChangeState(player.moveToIdle);//单方向移动超1.5s 急停
-            else if (xInput == 0 || player.IsWallDetected()) player.stateMachine.ChangeState(player.idleState);//转向不经过Idle
+            player.SetVelocity(xInput * player.moveSpeed, player.rb.velocity.y);
+            if (xInput == 0 || player.IsWallDetected()) player.stateMachine.ChangeState(player.idleState);
         }
-        else player.SetVelocity(xInput * player.moveSpeed, player.rb.velocity.y);
     }
 
     public override void Exit()
