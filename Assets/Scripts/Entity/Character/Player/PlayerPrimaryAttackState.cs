@@ -28,6 +28,8 @@ public class PlayerPrimaryAttackState : PlayerState
 
         if (Input.GetKeyDown(KeyCode.Mouse0)) player.attackTypeAhead = true;
         if (Input.GetKeyDown(KeyCode.LeftShift)) player.dashTypeAhead = true;
+
+        if (!player.IsGroundDetected()) player.stateMachine.ChangeState(player.jumpToAir2);
     }
 
     public override void Exit()

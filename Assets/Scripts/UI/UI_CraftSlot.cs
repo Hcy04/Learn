@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_EquipmentSlot : UI_ItemSlot
+public class UI_CraftSlot : UI_ItemSlot
 {
-    public EquipmentType slotType;
+    private void OnEnable()
+    {
+        UpdateSlot(item);
+    }
 
     public override void OnPointerDown(PointerEventData eventData)
     {
         if (item == null || item.stackSize == 0) return;
 
-        Inventory.instance.ManageEquipment((ItemData_Equipment)item.data, false);
-        CleanUpSlot();
+        ItemData_Equipment craftInfo = (ItemData_Equipment)item.data;
+
+        Inventory.instance.CanCraft(craftInfo);
     }
 }

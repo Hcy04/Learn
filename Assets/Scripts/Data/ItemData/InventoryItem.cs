@@ -10,7 +10,7 @@ public class InventoryItem
     public InventoryItem(ItemData _newItemData)
     {
         data = _newItemData;
-        AddStack();
+        stackSize = 1;
     }
 
     public void AddStack() => stackSize++;

@@ -40,8 +40,11 @@ public class Player : Character
     #endregion
 
     [HideInInspector] public SkillManager skill;
+    [HideInInspector] public PlayerStats stats { get; private set; }
 
     #region  Info
+    [Header("Player")]
+
     [Header("Dash Info")]
     public float dashDuration = .2f;
     public float dashDir { get; private set; }
@@ -107,6 +110,7 @@ public class Player : Character
         stateMachine.Initialize(idleState);
 
         skill = SkillManager.instance;
+        stats = GetComponent<PlayerStats>();
     }
 
     protected override void Update()

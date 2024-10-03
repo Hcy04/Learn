@@ -113,7 +113,7 @@ public class Sword : Projectile
         }
         else
         {
-            if (collision.GetComponent<Enemy>() != null)
+            if (collision.gameObject.layer == 12)
             {
                 if (isBouncing) 
                 {
@@ -138,7 +138,7 @@ public class Sword : Projectile
 
                 collision.GetComponent<EnemyStats>().TakeDamage(transform, damage, 0, 0, 2);
             }
-            else StuckInto(collision);
+            else if (collision.gameObject.layer == 10) StuckInto(collision);
         }
     }
 

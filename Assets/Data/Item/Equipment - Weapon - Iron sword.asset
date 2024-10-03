@@ -10,9 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99ceda2583a59d741809c8d4258b842b, type: 3}
-  m_Name: Wooden sword
+  m_Name: Equipment - Weapon - Iron sword
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: "\u6728\u5251"
-  icon: {fileID: 1025091068, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemName: "\u94C1\u5251"
+  icon: {fileID: 1526008332, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   equipment: 0
+  vitality: 0
+  strength: 0
+  agility: 0
+  intelligence: 0
+  maxHealth: 0
+  damage: 10
+  armor: 0
+  critChance: 0
+  critDamage: 0
+  fireResistance: 0
+  iceResistance: 0
+  lightningResistance: 0
+  fireDamage: 0
+  iceDamage: 0
+  lightningDamage: 0

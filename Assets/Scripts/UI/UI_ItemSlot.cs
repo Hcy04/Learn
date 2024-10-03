@@ -33,8 +33,10 @@ public class UI_ItemSlot : MonoBehaviour , IPointerDownHandler
         itemText.text = "";
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public virtual void OnPointerDown(PointerEventData eventData)
     {
-        if (item.data.itemType == ItemType.Equipment) Inventory.instance.EquipItem(item.data);
+        if (item == null || item.stackSize == 0) return;
+
+        if (item.data.itemType == ItemType.Equipment) Inventory.instance.ManageEquipment((ItemData_Equipment)item.data, true);
     }
 }

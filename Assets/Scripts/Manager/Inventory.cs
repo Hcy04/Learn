@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,23 +10,17 @@ public class Inventory : MonoBehaviour
     public static Inventory instance;
 
     public List<InventoryItem> equipment;
-    public Dictionary<ItemData_Equipment, InventoryItem> equipmentDictionary;
-
     public List<InventoryItem> inventory;
-    public Dictionary<ItemData, InventoryItem> inventoryDictionary;//物品映射到对应的背包空间
-
-    public List<InventoryItem> stash;
-    public Dictionary<ItemData, InventoryItem> stashDictionary;
+    public List<InventoryItem> materials;
 
     [Header("Inventory UI")]
     [SerializeField] private Transform equipmentSlotParent;
-    private UI_EquipmentSlot[] equipmentItemSlot;
-
     [SerializeField] private Transform inventorySlotParent;
-    private UI_ItemSlot[] inventoryItemSlot;
-
-    [SerializeField] private Transform stashSlotParent;
-    private UI_ItemSlot[] stashItemSlot;
+    [SerializeField] private Transform materialsSlotParent;
+    
+    private UI_EquipmentSlot[] equipmentSlot;
+    private UI_ItemSlot[] inventorySlot;
+    private UI_ItemSlot[] materialsSlot;
 
     private void Awake()
     {
@@ -36,123 +31,118 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         equipment = new List<InventoryItem>();
-        equipmentDictionary = new Dictionary<ItemData_Equipment, InventoryItem>();
-
         inventory = new List<InventoryItem>();
-        inventoryDictionary = new Dictionary<ItemData, InventoryItem>();
+        materials = new List<InventoryItem>();
+
+        equipmentSlot = equipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
+        inventorySlot = inventorySlotParent.GetComponentsInChildren<UI_ItemSlot>();
+        materialsSlot = materialsSlotParent.GetComponentsInChildren<UI_ItemSlot>();
         
-        stash = new List<InventoryItem>();
-        stashDictionary = new Dictionary<ItemData, InventoryItem>();
-
-        equipmentItemSlot = equipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
-        inventoryItemSlot = inventorySlotParent.GetComponentsInChildren<UI_ItemSlot>();
-        stashItemSlot = stashSlotParent.GetComponentsInChildren<UI_ItemSlot>();
     }
 
-    public void EquipItem(ItemData _item)
+    public void ManageEquipment(ItemData_Equipment _equipment, bool _isAdd)
     {
-        ItemData_Equipment newEquipment = _item as ItemData_Equipment;
-        InventoryItem newItem = new InventoryItem(newEquipment);
-        //如果对应槽位已经有物品 添加一份到inventory 然后在eqiupment中删除
-        foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
+        UI_EquipmentSlot targetSlot = equipmentSlot.First(UI_EquipmentSlot => UI_EquipmentSlot.slotType == _equipment.equipmentType);
+        
+        if (_isAdd)
         {
-            if (item.Key.equipment == newEquipment.equipment)
+            if (targetSlot.item != null && targetSlot.item.stackSize != 0)
             {
-                AddToInventory(item.Value.data);
+                ManageEquipment((ItemData_Equipment)targetSlot.item.data, false);
+                ManageEquipment(_equipment, true);
+            }
+            else
+            {
+                ManageItem(_equipment, false);
 
-                equipment.Remove(item.Value);
-                equipmentDictionary.Remove(item.Key);
-
-                break;
+                equipment.Add(new InventoryItem(_equipment));
+                _equipment.AddModifiers();
+                targetSlot.UpdateSlot(equipment.Last());
             }
         }
-        //添加装备到equipment 在inventory中删除对应物品
-        equipment.Add(newItem);
-        equipmentDictionary.Add(newEquipment, newItem);
-        RemoveItem(_item);
-        //每个装备遍历所有槽位 在对应的UISlot中加载
-        foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
-        {
-            for (int i = 0; i < equipmentItemSlot.Length; i++)
-            {
-                if (item.Key.equipment == equipmentItemSlot[i].slotType)
-                {
-                    equipmentItemSlot[i].UpdateSlot(item.Value);
-                    break;
-                }
-            }
-        }
-    }
-
-    #region Add Item
-    public void AddItem(ItemData _item)
-    {
-        if (_item.itemType == ItemType.Equipment) AddToInventory(_item);
-        else if (_item.itemType == ItemType.Material) AddToStash(_item);
-    }
-
-    private void AddToInventory(ItemData _item)
-    {
-        if (inventoryDictionary.TryGetValue(_item, out InventoryItem value)) value.AddStack();
-        else//如果背包中没有该物品 创建新的背包物品格
-        {
-            InventoryItem newItem = new InventoryItem(_item);
-            inventory.Add(newItem);
-            inventoryDictionary.Add(_item, newItem);
-        }
-
-        LoadSlots(inventoryItemSlot, inventory);
-    }
-
-    private void AddToStash(ItemData _item)
-    {
-        if (stashDictionary.TryGetValue(_item, out InventoryItem value)) value.AddStack();
         else
         {
-            InventoryItem newItem = new InventoryItem(_item);
-            stash.Add(newItem);
-            stashDictionary.Add(_item, newItem);
+            equipment.Remove(targetSlot.item);
+            _equipment.RemoveModifiers();
+            targetSlot.CleanUpSlot();
+
+            ManageItem(_equipment, true);
         }
-
-        LoadSlots(stashItemSlot, stash);
-    }
-    #endregion
-
-    #region Remove Item
-    public void RemoveItem(ItemData _item)
-    {
-        if (inventoryDictionary.TryGetValue(_item, out InventoryItem value)) RemoveInInventory(_item, value);
-        else if (stashDictionary.TryGetValue(_item, out InventoryItem stashValue)) RemoveInStash(_item, stashValue);
     }
 
-    private void RemoveInInventory(ItemData _item, InventoryItem value)
+    public void ManageItem(ItemData _item, bool _isAdd)
     {
-        if (value.stackSize <= 1)
+        if (_item.itemType == ItemType.Equipment) ManageInventory((ItemData_Equipment)_item, _isAdd);
+        else if (_item.itemType == ItemType.Material) ManageMaterial((ItemData_Material)_item, _isAdd);
+
+        ReloadUI();
+    }
+
+    private void ManageInventory(ItemData_Equipment _equipment, bool _isAdd)
+    {
+        InventoryItem target = inventory.Find(InventoryItem => InventoryItem.data.itemName == _equipment.itemName);
+
+        if (_isAdd)
         {
-            inventory.Remove(value);
-            inventoryDictionary.Remove(_item);
+            if (target != null) target.stackSize++;
+            else inventory.Add(new InventoryItem(_equipment));
         }
-        else value.RemoveStack();
-
-        LoadSlots(inventoryItemSlot, inventory);
-    }
-
-    private void RemoveInStash(ItemData _item, InventoryItem stashValue)
-    {
-        if (stashValue.stackSize <= 1)
+        else
         {
-            stash.Remove(stashValue);
-            stashDictionary.Remove(_item);
+            if (target != null)
+            {
+                if (target.stackSize == 1) inventory.Remove(target);
+                else target.stackSize--;
+            }
+            else Debug.LogError("Not found target item");
         }
-        else stashValue.RemoveStack();
-
-        LoadSlots(stashItemSlot, stash);
     }
-    #endregion
 
-    private void LoadSlots<T>(T[] targetSlots, List<InventoryItem> targetSpace) where T :UI_ItemSlot
+    private void ManageMaterial(ItemData_Material _material, bool _isAdd)
     {
-        for (int i = 0; i < targetSlots.Length; i++) targetSlots[i].CleanUpSlot();
-        for (int i = 0; i < targetSpace.Count; i++) targetSlots[i].UpdateSlot(targetSpace[i]);
+        InventoryItem target = materials.Find(InventoryItem => InventoryItem.data.itemName == _material.itemName);
+
+        if (_isAdd)
+        {
+            if (target != null) target.stackSize++;
+            else materials.Add(new InventoryItem(_material));
+        }
+        else
+        {
+            if (target != null)
+            {
+                if (target.stackSize == 1) materials.Remove(target);
+                else target.stackSize--;
+            }
+            else Debug.LogError("Not found target item");
+        }
+    }
+
+    private void ReloadUI()
+    {
+        for (int i = 0; i < inventorySlot.Length; i++) inventorySlot[i].CleanUpSlot();
+        for (int i = 0; i < materialsSlot.Length; i++) materialsSlot[i].CleanUpSlot();
+
+        for (int i = 0; i < inventory.Count; i++) inventorySlot[i].UpdateSlot(inventory[i]);
+        for (int i = 0; i < materials.Count; i++) materialsSlot[i].UpdateSlot(materials[i]);
+    }
+
+    public bool CanCraft(ItemData_Equipment _equipment)
+    {
+        for (int i = 0; i < _equipment.craftingMaterials.Count; i++)
+        {
+            InventoryItem targetMaterial = materials.Find(InventoryItem => InventoryItem.data.itemName == _equipment.craftingMaterials[i].data.itemName);
+
+            if (targetMaterial == null || targetMaterial.stackSize < _equipment.craftingMaterials[i].stackSize) return false;
+        }
+
+        for (int i = 0; i < _equipment.craftingMaterials.Count; i++)
+        {
+            for (int j = 0; j < _equipment.craftingMaterials[i].stackSize; j++) ManageItem(_equipment.craftingMaterials[i].data, false);
+        }
+
+        ManageItem(_equipment, true);
+
+        return true;
     }
 }

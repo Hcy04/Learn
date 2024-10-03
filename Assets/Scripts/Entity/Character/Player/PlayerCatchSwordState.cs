@@ -15,13 +15,13 @@ public class PlayerCatchSwordState : PlayerState
     {
         base.Enter();
 
-        swordX= player.sword.transform.position.x;
+        swordX = player.sword.transform.position.x;
         if (swordX < player.transform.position.x && player.facingDir == 1) player.Flip();
         else if (swordX > player.transform.position.x && player.facingDir == -1) player.Flip();
 
         float speedDir = 1;
         if (swordX - player.transform.position.x > 0) speedDir = -1;
-        player.rb.velocity += new Vector2(speedDir * player.moveSpeed, player.transform.position.y);
+        player.rb.velocity += new Vector2(speedDir * player.moveSpeed, player.rb.velocity.y);
     }
 
     public override void Update()

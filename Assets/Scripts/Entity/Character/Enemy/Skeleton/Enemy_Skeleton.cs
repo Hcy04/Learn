@@ -42,6 +42,7 @@ public class Enemy_Skeleton : Enemy
         base.Update();
     }
 
+    #region Change State
     public override void IsStunned()
     {
         base.IsStunned();
@@ -62,11 +63,5 @@ public class Enemy_Skeleton : Enemy
 
         stateMachine.ChangeState(diedState);
     }
-
-    public override void DestroySelf()
-    {
-        base.DestroySelf();
-
-        Destroy(this.gameObject);
-    }
+    #endregion
 }

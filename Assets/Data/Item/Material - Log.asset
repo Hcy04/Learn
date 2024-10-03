@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99ceda2583a59d741809c8d4258b842b, type: 3}
-  m_Name: Iron armor
+  m_Script: {fileID: 11500000, guid: c022c157eb0ba884abdfc2c9228a0c4d, type: 3}
+  m_Name: Material - Log
   m_EditorClassIdentifier: 
-  itemType: 1
-  itemName: "\u94C1\u7532"
-  icon: {fileID: -1547736094, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
-  equipment: 1
+  itemType: 0
+  itemName: "\u539F\u6728"
+  icon: {fileID: 2005540724, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}

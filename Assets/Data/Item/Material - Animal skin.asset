@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71cf851ecc3a3054c848dd7ff12a6c9c, type: 3}
-  m_Name: Animal skin
+  m_Script: {fileID: 11500000, guid: c022c157eb0ba884abdfc2c9228a0c4d, type: 3}
+  m_Name: Material - Animal skin
   m_EditorClassIdentifier: 
+  itemType: 0
+  amount: 1
   itemName: "\u52A8\u7269\u76AE"
   icon: {fileID: -973012730, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}

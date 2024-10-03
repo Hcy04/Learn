@@ -15,6 +15,9 @@ public class Spawner : MonoBehaviour
 
     [Header("FX")]
     [SerializeField] private GameObject thunderStrike;
+
+    [Header("Item")]
+    [SerializeField] private GameObject item;
     #endregion
 
     private void Awake()
@@ -49,6 +52,13 @@ public class Spawner : MonoBehaviour
     public GameObject CreatThunderStrike(Vector3 _position, Transform _parent)
     {
         return Instantiate(thunderStrike, _position, Quaternion.identity, _parent);
+    }
+    #endregion
+
+    #region Item
+    public GameObject CreatItem(Vector3 _position)
+    {
+        return Instantiate(item, _position, Quaternion.identity);
     }
     #endregion
 }

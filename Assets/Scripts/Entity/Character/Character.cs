@@ -7,12 +7,14 @@ public class Character : Entity
 {
     #region Components
     [HideInInspector] public EntityFX fx { get; private set; }
-    [HideInInspector] public CharacterStats stats { get; private set; }
+    
     [HideInInspector] public Collider2D cd;
     [HideInInspector] public SpriteRenderer sr;
     #endregion
 
     #region Info
+    [Header("Character")]
+    
     [Header("Speed Info")]
     [SerializeField] protected float defaultMoveSpeed;
     public float moveSpeed;
@@ -53,7 +55,7 @@ public class Character : Entity
         base.Start();
 
         fx = GetComponent<EntityFX>();
-        stats = GetComponent<CharacterStats>();
+        
         cd = GetComponent<Collider2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
         
@@ -86,7 +88,6 @@ public class Character : Entity
     public virtual void IsDied()
     {
         rb.velocity = Vector2.zero;
-        anim.speed = 1;//防止在冻结时死亡 动画变慢
     }
 
     #region Damage Effect

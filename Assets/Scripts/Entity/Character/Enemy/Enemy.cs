@@ -7,8 +7,19 @@ public class Enemy : Character
 {
     public StateMachine<EnemyState> stateMachine { get; private set; }
 
-    public Player player;
+    #region Component
+    [HideInInspector] public Player player;
+    [HideInInspector] public EnemyStats stats;
+    #endregion
     
+    #region Info
+    [Header("Enemy")]
+
+    [Header("Drop Info")]
+    [SerializeField] private DropList dropList;
+    private List<ItemData> drops;
+
+    [Header("Player Check")]
     [SerializeField] protected Transform playerCheck;
     [SerializeField] protected float detectionDistance;
     [SerializeField] protected LayerMask whatIsPlayer;
@@ -26,6 +37,8 @@ public class Enemy : Character
     [HideInInspector] public float lastTimeAttacked;
 
     protected bool isFreeze;
+    protected bool dropFlag;
+    #endregion
 
     protected override void Awake()
     {
@@ -39,28 +52,62 @@ public class Enemy : Character
         base.Start();
 
         player = PlayerManager.instance.player;
+        stats = GetComponent<EnemyStats>();
     }
 
     protected override void Update()
     {
         base.Update();
 
-        if (player.skill.freeze.isActive && !isFreeze) FreezeTime(true);
-        else if (!player.skill.freeze.isActive && isFreeze) FreezeTime(false);
+        CheckFreeze();
 
-        if (!isFreeze) stateMachine.currentState.Update();
-        else anim.speed = 0;
+        if (!isFreeze)
+        {
+            stateMachine.currentState.Update();
+            if (dropFlag) GenerateDrop();
+        }
     }
 
     public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
     public virtual RaycastHit2D IsPlayerDetected() => Physics2D.Raycast(playerCheck.position, Vector2.right * facingDir, detectionDistance, whatIsPlayer);
 
-    public virtual void FreezeTime(bool _timeFrozen)
+    #region Drop
+    public void GenerateDrop()
+    {
+        drops = new List<ItemData>();
+
+        for (int i = 0; i < dropList.possibleDrop.Length; i++)
+        {
+            if (dropList.dropPercentage[i] * 1000 > Random.Range(0, 1000)) drops.Add(dropList.possibleDrop[i]);
+        }
+
+        foreach (ItemData item in drops) DropItem(item);
+
+        dropFlag = false;
+    }
+
+    private void DropItem(ItemData _item)
+    {
+        GameObject newDrop = Spawner.instance.CreatItem(transform.position);
+
+        newDrop.GetComponent<Item>().SetUpItem(_item, new Vector2(Random.Range(-5, 6), Random.Range(10, 15)));
+    }
+    #endregion
+
+    #region Freeze
+    protected virtual void CheckFreeze()
+    {
+        if (player.skill.freeze.isActive && !isFreeze) FreezeTime(true);
+        else if (!player.skill.freeze.isActive && isFreeze) FreezeTime(false);
+    }
+
+    protected virtual void FreezeTime(bool _timeFrozen)
     {
         if (_timeFrozen)
         {
             isFreeze = true;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            anim.speed = 0;
         }
         else
         {
@@ -70,7 +117,9 @@ public class Enemy : Character
             anim.speed = 1;
         }
     }
+    #endregion
 
+    #region Attack Warning
     public virtual void AttackWarning()
     {
         StartCoroutine("Warning");
@@ -82,7 +131,9 @@ public class Enemy : Character
         yield return new WaitForSeconds(attackWarningTime);
         attackWarning.gameObject.SetActive(false);
     }
+    #endregion
 
+    #region Change State
     public virtual void IsStunned()
     {
 
@@ -93,9 +144,17 @@ public class Enemy : Character
         
     }
 
+    public override void IsDied()
+    {
+        base.IsDied();
+
+        dropFlag = true;
+    }
+    #endregion
+
     public virtual void DestroySelf()
     {
-
+        Destroy(this.gameObject);
     }
 
     protected override void OnDrawGizmos()
