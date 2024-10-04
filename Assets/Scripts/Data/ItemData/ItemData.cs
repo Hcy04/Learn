@@ -3,7 +3,8 @@ using UnityEngine;
 public enum ItemType
 {
     Material,
-    Equipment
+    Equipment,
+    Potion
 }
 
 public class ItemData : ScriptableObject

@@ -8,6 +8,7 @@ public class Character : Entity
     #region Components
     [HideInInspector] public EntityFX fx { get; private set; }
     
+    
     [HideInInspector] public Collider2D cd;
     [HideInInspector] public SpriteRenderer sr;
     #endregion
@@ -88,6 +89,7 @@ public class Character : Entity
     public virtual void IsDied()
     {
         rb.velocity = Vector2.zero;
+        gameObject.layer = 14;
     }
 
     #region Damage Effect

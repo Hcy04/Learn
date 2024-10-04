@@ -5,11 +5,9 @@ using UnityEditor.MPE;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
-{
-    #region Components
+{ 
     [HideInInspector] public Animator anim;
     [HideInInspector] public Rigidbody2D rb;
-    #endregion
 
     protected virtual void Awake()
     {

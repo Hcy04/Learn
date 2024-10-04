@@ -7,7 +7,7 @@ public enum EquipmentType
     Weapon,
     Armor,
     Amulet,
-    Flask
+    Magic
 }
 
 [CreateAssetMenu(fileName = "New Item Data", menuName = "Data/Equipment")]
@@ -15,6 +15,7 @@ public enum EquipmentType
 public class ItemData_Equipment : ItemData
 {
     public EquipmentType equipmentType;
+    public ItemEffect[] effect;
 
     [Header("Ability Modifiers")]
     public float vitality;

@@ -65,6 +65,7 @@ public class Player : Character
 
     [Space]
     public float wallJumpDuration;
+    public float canUseMagicTime;
     #endregion
     
     protected override void Awake()

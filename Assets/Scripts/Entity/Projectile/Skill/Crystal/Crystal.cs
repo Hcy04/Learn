@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crystal : Projectile
+public class Crystal : ProjectileSkill
 {
     private bool addDuration;
     private bool canExplode;

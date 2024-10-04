@@ -2,9 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BuffState
+{
+    Start,
+    Duration,
+    End
+}
+
 public class CharacterStats : MonoBehaviour
 {
-    Character character;
+    public Character character;
+    [SerializeField] private List<Buff> buffList;
 
     public ParticleSystem ignitedParticle;
     public ParticleSystem chilledParticle;
@@ -35,14 +43,9 @@ public class CharacterStats : MonoBehaviour
     public Stat lightningDamage;
 
     [Header("Elemental Effect")]
-    [SerializeField] protected float ignited;//燃烧次数，向上取整
-    [SerializeField] protected float lastIgnitedDamage;//上次伤害时间
-
-    [SerializeField] protected float chilled;//减速的比例
-    [SerializeField] protected float chilledTimer;//减速持续时间
-
-    [SerializeField] protected float shocked;//累计的真伤
-    [SerializeField] protected float shockedTimer;//伤害积累时间
+    [SerializeField] protected Ignited ignited;
+    [SerializeField] protected Chilled chilled;
+    [SerializeField] protected Shocked shocked;
 
     [Header("Current Stats")]
     public float currentHealth;
@@ -54,6 +57,7 @@ public class CharacterStats : MonoBehaviour
     protected virtual void Start()
     {
         character = GetComponent<Character>();
+        buffList = new List<Buff>();
 
         ignitedParticle.Stop();
         chilledParticle.Stop();
@@ -66,42 +70,17 @@ public class CharacterStats : MonoBehaviour
     {
         if (Died) return;
 
-        if (ignited > 0 && Time.time - lastIgnitedDamage > 1)
+        for (int i = buffList.Count - 1; i >= 0; i--)
         {
-            currentHealth -= maxHealth.GetValue() * 0.01f;
-            onHealthChanged();
+            buffList[i].time -= Time.deltaTime;
 
-            lastIgnitedDamage = Time.time;
-            ignited -= 1;
-
-            if (ignited <= 0) ignitedParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-        }
-        if (chilled > 0)
-        {
-            chilledTimer -= Time.deltaTime;
-            if (chilledTimer < 0)
+            if (buffList[i].time < 0)
             {
-                character.SlowOver();
-
-                chilled = 0;
-                chilledParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                buffList[i].Effect(this, BuffState.End);
+                buffList.Remove(buffList[i]);
             }
+            else buffList[i].Effect(this, BuffState.Duration);
         }
-        if (shocked > 0)
-        {
-            shockedTimer -= Time.deltaTime;
-            if (shockedTimer < 0)
-            {
-                currentHealth -= shocked;
-                onHealthChanged();
-                Spawner.instance.CreatThunderStrike(transform.position, transform);
-
-                shocked = 0;
-                shockedParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-            }
-        }
-
-        if (currentHealth <= 0) Die();
     }
 
     public virtual void DoDamage(CharacterStats _targetStats)
@@ -116,47 +95,90 @@ public class CharacterStats : MonoBehaviour
     {
         character.DamageFX(_damageFrom);//_damageFrom用于计算击退方向
 
-        float finalDamage = _damage - armor.GetValue();
-        if (finalDamage < 1) finalDamage = 1;
-        currentHealth -= finalDamage;
-        //元素伤害为百分比减伤
-        currentHealth -= _fireDamage * (1 - fireResistance.GetValue());
-        currentHealth -= _iceDamage * (1 - iceResistance.GetValue());
-        currentHealth -= _lightningDamage * (1 - lightningResistance.GetValue());
+        float damage = 0;
+        if (_damage != 0)
+        {
+            damage = _damage - armor.GetValue();
+            if (damage < 1) damage = 1;
+        }
+
+        float fireDamage = _fireDamage * (1 - fireResistance.GetValue());
+        float iceDamage = _iceDamage * (1 - iceResistance.GetValue());
+        float lightningDamage = _lightningDamage * (1 - lightningResistance.GetValue());
+
+        ChangeHealth(-(damage + fireDamage + iceDamage + lightningDamage));
+
+        if (Died) return;
         //燃烧，抗性影响持续时间
         if (_fireDamage > 0 && (Random.Range(0, 1000) < (1 - fireResistance.GetValue()) * 1000))
         {
-            ignitedParticle.Play();
-            ignited = 10 * (1 - fireResistance.GetValue());
+            ignited.Setup(10 * (1 - fireResistance.GetValue()));
+            AddBuff(ignited);
         }
-        //冰冻，抗性影响减速比例和时间
+
+        //冰冻，抗性影响减速强度和时间,强度0.2-0.5，时间2-5
         if (_iceDamage > 0 && (Random.Range(0, 1000) < (1 - iceResistance.GetValue()) * 1000))
         {
-            chilledParticle.Play();
-            chilled = 0.5f * (1 - iceResistance.GetValue() * .6f);//最多减少到0.2
-            chilledTimer = 5 * (1 - iceResistance.GetValue() * .6f);//最多减少到2
-
-            character.SlowBy(chilled);
+            chilled.Setup(5 * (1 - iceResistance.GetValue() * .6f), 0.5f * (1 - iceResistance.GetValue() * .6f));
+            AddBuff(chilled);
         }
-        //触电，抗性影响真伤积累时间
+
+        //触电，抗性影响真伤积累时间,时间2-10
         if (_lightningDamage > 0 && (Random.Range(0, 1000) < (1 - lightningResistance.GetValue()) * 1000))
         {
-            shockedParticle.Play();
-            shocked += (_lightningDamage + _damage) * .5f;
-            if(shockedTimer <= 0) shockedTimer = 10 * (1 - lightningResistance.GetValue() * .8f);//最多减少到两秒
+            Shocked target = (Shocked)buffList.Find(Buff => Buff.buffName == shocked.buffName);
+            if (target == null)
+            {
+                shocked.SetUp(10 * (1 - lightningResistance.GetValue() * .8f), _damage + _lightningDamage);
+                AddBuff(shocked);
+            }
+            else target.AddDamege(_damage + _lightningDamage);
         }
+    }
 
+    public virtual void ChangeHealth(float _value)
+    {
+        currentHealth += _value;
+        if (currentHealth > maxHealth.GetValue()) currentHealth = maxHealth.GetValue();
+        else if (currentHealth <= 0) Die();
         onHealthChanged();
     }
 
     protected virtual void Die()
     {
-        ignitedParticle.Stop();
-        chilledParticle.Stop();
-        shockedParticle.Stop();
+        ignitedParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        chilledParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        shockedParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
 
         currentHealth = 0;
         Died = true;
         character.IsDied();
+    }
+
+    public void AddBuff(Buff _buff)
+    {
+        Buff target = buffList.Find(Buff => Buff.buffName == _buff.buffName);
+
+        if (target != null)
+        {
+            if (target.time < _buff.time) target.time = _buff.time;
+        }
+        else
+        {
+            Buff buff;
+            if (_buff.buffType == BuffType.ChangeStats) buff = Factory.CopyInstance((ChangeStat)_buff);
+            else if (_buff.buffType == BuffType.InstantHealth) buff = Factory.CopyInstance((InstantHealth)_buff);
+            else if (_buff.buffType == BuffType.Ignited) buff = Factory.CopyInstance((Ignited)_buff);
+            else if (_buff.buffType == BuffType.Chilled) buff = Factory.CopyInstance((Chilled)_buff);
+            else if (_buff.buffType == BuffType.Shocked) buff = Factory.CopyInstance((Shocked)_buff);
+            else
+            {
+                Debug.LogError("Not Found BuffType");
+                return;
+            }
+
+            buffList.Add(buff);
+            buff.Effect(this, BuffState.Start);
+        }
     }
 }

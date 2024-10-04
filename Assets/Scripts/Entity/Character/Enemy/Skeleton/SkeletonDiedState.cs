@@ -12,8 +12,7 @@ public class SkeletonDiedState : SkeletonState
     public override void Enter()
     {
         base.Enter();
-
-        Skeleton.gameObject.layer = 14;
+        
         stateTimer = 5;
     }
 

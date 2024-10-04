@@ -13,6 +13,13 @@ public class PlayerStats : CharacterStats
         player = GetComponent<Player>();
     }
 
+    public override void DoDamage(CharacterStats _targetStats)
+    {
+        Inventory.instance.DoEquipmentEffect(EquipmentType.Weapon);
+        
+        base.DoDamage(_targetStats);
+    }
+
     public override void TakeDamage(Transform _damageFrom, float _Damage, float _fireDamage, float _iceDamage, float _lightningDamage)
     {
         if (!player.CheckForParry(_damageFrom) && player.stateMachine.currentState != player.successfulParry && player.stateMachine.currentState != player.dashState)

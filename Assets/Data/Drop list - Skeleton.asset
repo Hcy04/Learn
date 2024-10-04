@@ -13,28 +13,10 @@ MonoBehaviour:
   m_Name: Drop list - Skeleton
   m_EditorClassIdentifier: 
   possibleDrop:
-  - {fileID: 11400000, guid: 49d21cbc974dbeb429695528f20e1b3a, type: 2}
-  - {fileID: 11400000, guid: 25ab503985439b24caea4b42a645380d, type: 2}
-  - {fileID: 11400000, guid: bf1622982fea81848b0899ee1f61f4d6, type: 2}
-  - {fileID: 11400000, guid: e8e6ef50d6d6c7542ade870bda4be31e, type: 2}
-  - {fileID: 11400000, guid: 4593e73db2407b54dbbdf9e923609759, type: 2}
-  - {fileID: 11400000, guid: 840e78e429d89e146b9ef967b8412d29, type: 2}
-  - {fileID: 11400000, guid: 5bc8ce505c48bcb439e091ba613dd966, type: 2}
   - {fileID: 11400000, guid: 64feb55dd0891bc488927c6f59d03c23, type: 2}
-  - {fileID: 11400000, guid: 801f6e360807fd74fabfce9a13db66dd, type: 2}
-  - {fileID: 11400000, guid: 801f6e360807fd74fabfce9a13db66dd, type: 2}
-  - {fileID: 11400000, guid: 801f6e360807fd74fabfce9a13db66dd, type: 2}
-  - {fileID: 11400000, guid: 801f6e360807fd74fabfce9a13db66dd, type: 2}
+  - {fileID: 11400000, guid: 64feb55dd0891bc488927c6f59d03c23, type: 2}
+  - {fileID: 11400000, guid: 64feb55dd0891bc488927c6f59d03c23, type: 2}
   dropPercentage:
   - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
+  - 0.5
+  - 0.25

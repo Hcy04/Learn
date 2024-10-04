@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Clone : Projectile
+public class Clone : ProjectileSkill
 {
     private bool homingTarget;
     private bool addComboCounter;

@@ -11,8 +11,6 @@ public class PlayerDiedState : PlayerState
     public override void Enter()
     {
         base.Enter();
-
-        player.gameObject.layer = 14;
     }
 
     public override void Update()

@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Sword : Projectile
+public class Sword : ProjectileSkill
 {
     private CircleCollider2D cd;
 
