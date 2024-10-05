@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   possibleDrop:
   - {fileID: 11400000, guid: 64feb55dd0891bc488927c6f59d03c23, type: 2}
-  - {fileID: 11400000, guid: 64feb55dd0891bc488927c6f59d03c23, type: 2}
-  - {fileID: 11400000, guid: 64feb55dd0891bc488927c6f59d03c23, type: 2}
+  - {fileID: 11400000, guid: e8e6ef50d6d6c7542ade870bda4be31e, type: 2}
+  - {fileID: 11400000, guid: 4593e73db2407b54dbbdf9e923609759, type: 2}
   dropPercentage:
   - 1
-  - 0.5
-  - 0.25
+  - 1
+  - 1

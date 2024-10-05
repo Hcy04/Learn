@@ -12,6 +12,5 @@ public class UI_EquipmentSlot : UI_ItemSlot
         if (item == null || item.stackSize == 0) return;
 
         Inventory.instance.ManageEquipment((ItemData_Equipment)item.data, false, true);
-        CleanUpSlot();
     }
 }

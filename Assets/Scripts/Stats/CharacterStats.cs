@@ -34,13 +34,13 @@ public class CharacterStats : MonoBehaviour
     public Stat critDamage;
 
     [Header("Elemental Stats")]
-    public Stat fireResistance;
-    public Stat iceResistance;
-    public Stat lightningResistance;
-
     public Stat fireDamage;
     public Stat iceDamage;
     public Stat lightningDamage;
+
+    public Stat fireResistance;
+    public Stat iceResistance;
+    public Stat lightningResistance;
 
     [Header("Elemental Effect")]
     [SerializeField] protected Ignited ignited;

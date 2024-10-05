@@ -18,7 +18,7 @@ public class Item : MonoBehaviour
 
     public void PickUpItem()
     {
-        Inventory.instance.ManageItem(itemData, true);
-        Destroy(gameObject);
+        if (Inventory.instance.ManageItem(itemData, true)) Destroy(gameObject);
+        else rb.velocity = new Vector2(Random.Range(-5, 6), Random.Range(10, 15));
     }
 }

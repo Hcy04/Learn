@@ -11,11 +11,19 @@ public class Stat
     
     public float percentage = 1;
 
-    public float GetValue()
+    public float GetBaseValue()
     {
         float finalValue = baseValue;
 
         foreach (float modifier in modifiers) finalValue += modifier;
+
+        return finalValue;
+    }
+
+    public float GetValue()
+    {
+        float finalValue = GetBaseValue();
+
         finalValue *= percentage;
 
         return finalValue;
@@ -29,11 +37,15 @@ public class Stat
     public void AddModifier(float _modifier)
     {
         modifiers.Add(_modifier);
+
+        UI_Manager.instance.UpdateValue();
     }
 
     public void RemoveModifier(float _modifier)
     {
         modifiers.Remove(_modifier);
+
+        UI_Manager.instance.UpdateValue();
     }
     
 }

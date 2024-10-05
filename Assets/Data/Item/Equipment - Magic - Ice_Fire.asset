@@ -27,8 +27,8 @@ MonoBehaviour:
   armor: 0
   critChance: 0
   critDamage: 0
-  fireResistance: 0
-  iceResistance: 0
+  fireResistance: 0.1
+  iceResistance: 0.1
   lightningResistance: 0
   fireDamage: 0
   iceDamage: 0

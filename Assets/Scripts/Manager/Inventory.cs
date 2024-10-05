@@ -58,8 +58,18 @@ public class Inventory : MonoBehaviour
         {
             if (targetSlot.item != null && targetSlot.item.stackSize != 0 && _isPlayer)
             {
-                ManageEquipment((ItemData_Equipment)targetSlot.item.data, false, true);
-                ManageEquipment(_equipment, true, true);
+                //取出要换下的物品 但不放入背包
+                ItemData_Equipment temp = (ItemData_Equipment)targetSlot.item.data;
+                equipment.Remove(targetSlot.item);
+                temp.RemoveModifiers();
+
+                equipment.Add(new InventoryItem(_equipment));
+                _equipment.AddModifiers();
+                targetSlot.UpdateSlot(equipment.Last());
+
+                //背包中要装备的物品被移除之后 再把卸下的物品添加到背包
+                if (_isPlayer) ManageItem(_equipment, false);
+                if (_isPlayer) ManageItem(temp, true);
             }
             else
             {
@@ -71,7 +81,9 @@ public class Inventory : MonoBehaviour
             }
         }
         else
-        {
+        {  
+            if (inventory.Count >= inventorySlot.Length) return;
+
             equipment.Remove(targetSlot.item);
             _equipment.RemoveModifiers();
             targetSlot.CleanUpSlot();
@@ -80,22 +92,50 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void ManageItem(ItemData _item, bool _isAdd)
+    public bool ManageItem(ItemData _item, bool _isAdd)
     {
-        if (_item.itemType == ItemType.Equipment) ManageInventory((ItemData_Equipment)_item, _isAdd);
-        else if (_item.itemType == ItemType.Material) ManageMaterial((ItemData_Material)_item, _isAdd);
-        else if (_item.itemType == ItemType.Potion) ManagePotion((ItemData_Potion)_item, _isAdd);
+        if (_item.itemType == ItemType.Equipment) 
+        {
+            if (inventory.Count >= inventorySlot.Length && _isAdd) return false;
+            ManageInventory((ItemData_Equipment)_item, _isAdd);
+        }
+        else if (_item.itemType == ItemType.Material)
+        {
+            if (materials.Count >= materialsSlot.Length && _isAdd) return false;
+            ManageMaterial((ItemData_Material)_item, _isAdd);
+        }
+        else if (_item.itemType == ItemType.Potion)
+        {
+            if (potions.Count >= potionsSlot.Length && _isAdd) return false;
+            ManagePotion((ItemData_Potion)_item, _isAdd);
+        }
 
         ReloadUI();
+
+        return true;
     }
 
-    public void ManageItem(InventoryItem _items, bool _isAdd)
+    public bool ManageItem(InventoryItem _items, bool _isAdd)
     {
-        if (_items.data.itemType == ItemType.Equipment) ManageInventory(_items, _isAdd);
-        else if (_items.data.itemType == ItemType.Material) ManageMaterial(_items, _isAdd);
-        else if (_items.data.itemType == ItemType.Potion) ManagePotion(_items, _isAdd);
+        if (_items.data.itemType == ItemType.Equipment)
+        {
+            if (inventory.Count >= inventorySlot.Length && _isAdd) return false;
+            ManageInventory(_items, _isAdd);
+        }
+        else if (_items.data.itemType == ItemType.Material)
+        {
+            if (materials.Count >= materialsSlot.Length && _isAdd) return false;
+            ManageMaterial(_items, _isAdd);
+        }
+        else if (_items.data.itemType == ItemType.Potion)
+        {
+            if (potions.Count >= potionsSlot.Length && _isAdd) return false;
+            ManagePotion(_items, _isAdd);
+        }
 
         ReloadUI();
+
+        return true;
     }
 
     private void ManageInventory(ItemData_Equipment _equipment, bool _isAdd)

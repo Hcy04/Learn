@@ -28,8 +28,8 @@ MonoBehaviour:
   critChance: 0
   critDamage: 0
   fireResistance: 0
-  iceResistance: 0
-  lightningResistance: 0
+  iceResistance: 0.1
+  lightningResistance: 0.1
   fireDamage: 0
   iceDamage: 0
   lightningDamage: 0
