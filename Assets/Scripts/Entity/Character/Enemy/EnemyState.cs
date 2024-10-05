@@ -19,7 +19,12 @@ public class EnemyState : CharacterState
 
     public override void Update()
     {
+        enemy.CheckFreeze();
+        if (enemy.isFreeze) return;
+
         base.Update();
+
+        if (enemy.dropFlag) enemy.GenerateDrop();
     }
 
     public override void Exit()

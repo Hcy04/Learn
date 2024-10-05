@@ -9,7 +9,7 @@ public class PlayerAnimationTriggers : MonoBehaviour
 
     private void AnimationTrigger()
     {
-        player.AnimationTrigger();
+        player.AnimationFinishTrigger();
     }
 
     private void HandleAttackMoveSpeed(float speed)

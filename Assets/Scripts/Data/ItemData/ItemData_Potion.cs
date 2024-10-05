@@ -7,4 +7,5 @@ using UnityEngine;
 public class ItemData_Potion : ItemData
 {
     public Buff buff;
+    public float potionCD;
 }

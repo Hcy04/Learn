@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4289ce41b12346f458cdf2a294e59929
+guid: 3d2ceb4de2a713147abc06da178fec62
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -65,7 +65,7 @@ TextureImporter:
   ignorePngGamma: 0
   applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -93,1207 +93,1055 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Server
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_0
+      name: ui-large-buttons-horizontal_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 822
-        width: 116
-        height: 75
-      alignment: 1
+        x: 1
+        y: 64
+        width: 46
+        height: 15
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fd7a0e3ae6729d4b8ca58e06dc7330c
-      internalID: 1093646995
+      spriteID: 3cd496bc99c22ee4b9813aa71eb82a50
+      internalID: 1843632696
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_1
+      name: ui-large-buttons-horizontal_1
       rect:
         serializedVersion: 2
-        x: 192
-        y: 730
-        width: 163
-        height: 167
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 75b9bdb2a3105be4e925226c7b33f2cc
-      internalID: 503053968
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_2
-      rect:
-        serializedVersion: 2
-        x: 420
-        y: 863
-        width: 80
-        height: 21
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 13234548e1a54fa4ca2f751c7dcce1f6
-      internalID: 967764728
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_3
-      rect:
-        serializedVersion: 2
-        x: 424
-        y: 869
-        width: 105
-        height: 18
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e3e40de4cd9e2d0468d5ed7b258171df
-      internalID: -459429898
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_4
-      rect:
-        serializedVersion: 2
-        x: 519
-        y: 867
-        width: 13
-        height: 19
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 75dafbe889daef0488cdb4c8b8dd5725
-      internalID: 1257296984
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_5
-      rect:
-        serializedVersion: 2
-        x: 594
-        y: 869
-        width: 97
+        x: 49
+        y: 64
+        width: 46
         height: 13
-      alignment: 1
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c407f188b75f664a917a942ff42f67f
-      internalID: 1814432445
+      spriteID: 5af10a612e60c224a85bdeda9ea358e6
+      internalID: -952933344
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_6
+      name: ui-large-buttons-horizontal_2
       rect:
         serializedVersion: 2
-        x: 501
-        y: 863
-        width: 11
-        height: 4
-      alignment: 1
+        x: 97
+        y: 64
+        width: 46
+        height: 15
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88d4d03284e200c46917dc4c75769322
-      internalID: -1005464215
+      spriteID: 503b4a18554430442aef4dbd30a4ee65
+      internalID: 1677747693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_7
+      name: ui-large-buttons-horizontal_3
       rect:
         serializedVersion: 2
-        x: 595
-        y: 828
-        width: 64
+        x: 145
+        y: 64
+        width: 46
         height: 13
-      alignment: 1
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 901917da5ed5aa64cb2063db93bff663
-      internalID: -1149079739
+      spriteID: 522f70bdbfd9aa44a90d47be30dd9d09
+      internalID: -1370743125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_8
+      name: ui-large-buttons-horizontal_4
       rect:
         serializedVersion: 2
-        x: 18
-        y: 722
-        width: 105
-        height: 69
-      alignment: 1
+        x: 193
+        y: 64
+        width: 46
+        height: 15
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0cb1eced7351cff4d88bd2d371208f52
-      internalID: 856985049
+      spriteID: b32f340358fbdbb4fa18328c35926ebe
+      internalID: -601925206
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_9
+      name: ui-large-buttons-horizontal_5
       rect:
         serializedVersion: 2
-        x: 412
-        y: 790
-        width: 121
-        height: 31
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3953cf0618157d74692f273e27f37ed2
-      internalID: -1547723462
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_10
-      rect:
-        serializedVersion: 2
-        x: 593
-        y: 784
-        width: 56
-        height: 18
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4cb34dd6455dab54bbe7df8b7b2c0b5e
-      internalID: -2029754392
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_11
-      rect:
-        serializedVersion: 2
-        x: 463
-        y: 732
-        width: 30
-        height: 30
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e9a3cc7eeca8ee24189893b3a849a10e
-      internalID: -673132385
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_12
-      rect:
-        serializedVersion: 2
-        x: 505
-        y: 732
-        width: 25
-        height: 29
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fd1c060d4d33e924c9ae1b6ea52fb380
-      internalID: -1309812415
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_13
-      rect:
-        serializedVersion: 2
-        x: 508
-        y: 735
-        width: 25
-        height: 25
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a84db9a4de152994097f10875a1fae46
-      internalID: -568886094
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_14
-      rect:
-        serializedVersion: 2
-        x: 229
-        y: 617
-        width: 86
-        height: 80
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d2e6f3f619aca9743bcdf644621b8ebc
-      internalID: -545050903
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_15
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 692
-        width: 7
-        height: 7
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: faab07d1f1d700a40a928b1f69123268
-      internalID: 1498312554
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_16
-      rect:
-        serializedVersion: 2
-        x: 297
-        y: 692
-        width: 7
-        height: 7
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 50f07922df06c0d41b1e2deeab49f805
-      internalID: 1419296675
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_17
-      rect:
-        serializedVersion: 2
-        x: 362
-        y: 605
-        width: 104
-        height: 101
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0729ad20f6a15d247b1fefac242d843a
-      internalID: 2101944406
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_18
-      rect:
-        serializedVersion: 2
-        x: 526
-        y: 686
-        width: 17
-        height: 17
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b58956eceebe4dc4f974e6544a8981d8
-      internalID: -1856223202
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_19
-      rect:
-        serializedVersion: 2
-        x: 544
-        y: 686
-        width: 79
-        height: 16
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c07bf9087fde944469236d32db9808e2
-      internalID: 1825423128
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_20
-      rect:
-        serializedVersion: 2
-        x: 613
-        y: 686
-        width: 76
-        height: 19
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d8301361f8dac2f43a15c4fffde1c277
-      internalID: 1077341366
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_21
-      rect:
-        serializedVersion: 2
-        x: 690
-        y: 686
-        width: 17
-        height: 17
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8cd75a22ef61dc847bed5244c989cb5b
-      internalID: 1837400137
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_22
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 547
-        width: 162
-        height: 139
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c44dd8f366e323f4a817cec272355a8c
-      internalID: 133681599
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_23
-      rect:
-        serializedVersion: 2
-        x: 526
-        y: 598
-        width: 181
-        height: 87
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1f5ab4557a53c654f95d4b924d223e9c
-      internalID: 771247421
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_24
-      rect:
-        serializedVersion: 2
-        x: 239
-        y: 518
-        width: 66
-        height: 64
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b4e51f525094b7d44ab84dea26945086
-      internalID: 453357900
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_25
-      rect:
-        serializedVersion: 2
-        x: 370
-        y: 473
-        width: 94
-        height: 86
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2545e3036d5b83242a3f9cabfca61feb
-      internalID: -487104679
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_26
-      rect:
-        serializedVersion: 2
-        x: 19
-        y: 417
-        width: 190
-        height: 81
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3946ac99b2101b1408f0cd249bd9c6ce
-      internalID: -316101883
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_27
-      rect:
-        serializedVersion: 2
-        x: 19
-        y: 167
-        width: 217
-        height: 188
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 174512ae234bc104dba3c6a58f5557c4
-      internalID: -141056994
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_28
-      rect:
-        serializedVersion: 2
-        x: 283
-        y: 263
-        width: 182
-        height: 149
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c33df6d4ae39a09448a54173a13cbb9b
-      internalID: -1467014856
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_29
-      rect:
-        serializedVersion: 2
-        x: 389
-        y: 137
-        width: 13
+        x: 241
+        y: 64
+        width: 46
         height: 13
-      alignment: 1
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22f4780160bc80a418ca125d909e97c1
-      internalID: 422875680
+      spriteID: 5ead4b458c3721a4c81fe5c98e820c6c
+      internalID: -1398868371
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_30
+      name: ui-large-buttons-horizontal_6
       rect:
         serializedVersion: 2
-        x: 409
-        y: 139
-        width: 7
-        height: 7
-      alignment: 1
+        x: 289
+        y: 64
+        width: 46
+        height: 15
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f0f6ce21f36bbd4d9911277c94ad645
-      internalID: -1455270683
+      spriteID: c840bc8aeab377d4eb8cf5d4a468711b
+      internalID: 1895362414
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_31
+      name: ui-large-buttons-horizontal_7
       rect:
         serializedVersion: 2
-        x: 194
-        y: 113
-        width: 12
-        height: 16
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a102b389cbb3c4f42a4116ceb2821bf2
-      internalID: 448523023
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_32
-      rect:
-        serializedVersion: 2
-        x: 207
-        y: 121
-        width: 6
-        height: 6
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 42901f069c1c4e74baa43a7c5b4fc466
-      internalID: 671352479
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_33
-      rect:
-        serializedVersion: 2
-        x: 305
-        y: 120
-        width: 17
-        height: 17
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fbff9a483d6301343824d179e79909d7
-      internalID: -1979607175
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_34
-      rect:
-        serializedVersion: 2
-        x: 323
-        y: 120
-        width: 25
-        height: 16
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 348aa0ddd30663d4583cd08588c511d7
-      internalID: -633891677
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_35
-      rect:
-        serializedVersion: 2
-        x: 412
-        y: 111
-        width: 13
+        x: 337
+        y: 64
+        width: 46
         height: 13
-      alignment: 1
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fb4ccab77a9fdd4d852661cd5b0a563
-      internalID: 1422526809
+      spriteID: 999b96d438b7e794a968c4712fa605e5
+      internalID: 823210358
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_36
+      name: ui-large-buttons-horizontal_8
       rect:
         serializedVersion: 2
-        x: 306
-        y: 94
-        width: 20
-        height: 25
-      alignment: 1
+        x: 385
+        y: 64
+        width: 46
+        height: 15
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5a3205f0e6162b4581359764e4e6e71
-      internalID: -1427524505
+      spriteID: a3d5e340fc4ab384dbda79fb835e138c
+      internalID: 1111839212
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_37
+      name: ui-large-buttons-horizontal_9
       rect:
         serializedVersion: 2
-        x: 389
-        y: 105
-        width: 13
+        x: 433
+        y: 64
+        width: 46
         height: 13
-      alignment: 1
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d306c1774ca8094d9978f4f3b7b5833
-      internalID: -1838619035
+      spriteID: 481d2d48e48ce714180cf48d18256f3e
+      internalID: 1787473302
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_38
+      name: ui-large-buttons-horizontal_10
       rect:
         serializedVersion: 2
-        x: 424
-        y: 100
-        width: 7
-        height: 7
-      alignment: 1
+        x: 1
+        y: 48
+        width: 46
+        height: 15
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae3c884c1c5f2d448b3e74aef9e4d285
-      internalID: -562188564
+      spriteID: ffe8d56fa7a5d904c9190664f95aa419
+      internalID: -1143906742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_39
+      name: ui-large-buttons-horizontal_11
       rect:
         serializedVersion: 2
-        x: 64
-        y: 96
-        width: 9
-        height: 5
-      alignment: 1
+        x: 49
+        y: 48
+        width: 46
+        height: 13
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 756ba76ea3fd09e4196747ad75d74ee0
-      internalID: -1993353397
+      spriteID: 0ced9b71461666140924fa677cb1da53
+      internalID: 889632307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_40
+      name: ui-large-buttons-horizontal_12
       rect:
         serializedVersion: 2
-        x: 248
-        y: 89
-        width: 17
-        height: 16
-      alignment: 1
+        x: 97
+        y: 48
+        width: 46
+        height: 15
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54c35952d52bb6d44ab215145766842f
-      internalID: 288982557
+      spriteID: f8331c9bbace206428a919036c298b7c
+      internalID: 1617146500
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_41
+      name: ui-large-buttons-horizontal_13
       rect:
         serializedVersion: 2
-        x: 101
-        y: 83
-        width: 9
-        height: 5
-      alignment: 1
+        x: 145
+        y: 48
+        width: 46
+        height: 13
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afc96ee91ebbbc74d92880d81cf0a398
-      internalID: -255835933
+      spriteID: bebb831bde559cb439167c54835d7548
+      internalID: -1544382771
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_42
+      name: ui-large-buttons-horizontal_14
       rect:
         serializedVersion: 2
-        x: 169
-        y: 51
-        width: 12
-        height: 37
-      alignment: 1
+        x: 193
+        y: 48
+        width: 46
+        height: 15
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f23f2b404bdad1d4e8534eef606199a3
-      internalID: 1954507687
+      spriteID: 9875be29b3465e84588aca178cff4f55
+      internalID: 605493919
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_43
+      name: ui-large-buttons-horizontal_15
       rect:
         serializedVersion: 2
-        x: 389
-        y: 55
-        width: 13
-        height: 40
-      alignment: 1
+        x: 241
+        y: 48
+        width: 46
+        height: 13
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae9b8b45dd4e8bf43b5e378873d903c4
-      internalID: -1407718345
+      spriteID: a31f5eaa80ed2eb45b223205a8c3a545
+      internalID: 255411025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_44
+      name: ui-large-buttons-horizontal_16
       rect:
         serializedVersion: 2
-        x: 47
-        y: 69
-        width: 21
-        height: 14
-      alignment: 1
+        x: 289
+        y: 48
+        width: 46
+        height: 15
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 872a648dd7175af458d9610ac3d8f1a7
-      internalID: -1127154968
+      spriteID: 0d11bf04f6b01474abd4ca92fb2e82e3
+      internalID: 333542154
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_45
+      name: ui-large-buttons-horizontal_17
       rect:
         serializedVersion: 2
-        x: 78
-        y: 76
-        width: 15
-        height: 7
-      alignment: 1
+        x: 337
+        y: 48
+        width: 46
+        height: 13
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 270c4bc4cc0c244408d05d824de7a448
-      internalID: -395649630
+      spriteID: 256b1309e5c9bcd469cdab9d14e28c51
+      internalID: 2058785419
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_46
+      name: ui-large-buttons-horizontal_18
       rect:
         serializedVersion: 2
-        x: 210
-        y: 59
-        width: 8
-        height: 24
-      alignment: 1
+        x: 385
+        y: 48
+        width: 46
+        height: 15
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b20fdba8d4eb5f45850b65fe890f446
-      internalID: -849287198
+      spriteID: b7f0087f21dd25443867a376749b83fa
+      internalID: -1735617019
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_47
+      name: ui-large-buttons-horizontal_19
       rect:
         serializedVersion: 2
-        x: 83
-        y: 57
-        width: 15
-        height: 14
-      alignment: 1
+        x: 433
+        y: 48
+        width: 46
+        height: 13
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 584de4c2143a89b4298bf42f51562e1c
-      internalID: 629311103
+      spriteID: 5c2e1ee45c0d2764db0dd7af32046f9a
+      internalID: 1959759766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_48
+      name: ui-large-buttons-horizontal_20
       rect:
         serializedVersion: 2
-        x: 116
-        y: 58
-        width: 15
-        height: 14
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f04ef1809bf03464387bce0d9b407d8a
-      internalID: -1881919676
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_49
-      rect:
-        serializedVersion: 2
-        x: 304
-        y: 22
-        width: 48
-        height: 49
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 244250f1a9a89b045a844582e871e35a
-      internalID: -353227217
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_50
-      rect:
-        serializedVersion: 2
-        x: 435
-        y: 68
-        width: 5
-        height: 5
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5223dd0a572d7594db72450dff2bb065
-      internalID: -509702374
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_51
-      rect:
-        serializedVersion: 2
-        x: 53
-        y: 44
-        width: 21
-        height: 14
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c49b14e8fc714fc4ea9f58c1341782b1
-      internalID: 1187001030
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_52
-      rect:
-        serializedVersion: 2
-        x: 92
-        y: 46
-        width: 9
-        height: 5
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2648efb35ab5be744a55ae05657ac779
-      internalID: -2107073955
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_53
-      rect:
-        serializedVersion: 2
-        x: 228
-        y: 50
-        width: 21
-        height: 14
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d20f4f39f18edcb4b99783351c5efbf4
-      internalID: 948003264
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_54
-      rect:
-        serializedVersion: 2
-        x: 259
-        y: 50
-        width: 15
-        height: 7
-      alignment: 1
-      pivot: {x: 0, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 001a428f540580d43a073ebf157c95ad
-      internalID: -1935419285
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UIartdeco_PIPO_pack2_brown_55
-      rect:
-        serializedVersion: 2
-        x: 245
+        x: 1
         y: 32
-        width: 9
-        height: 5
-      alignment: 1
+        width: 46
+        height: 15
+      alignment: 9
       pivot: {x: 0, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5971779d67644c48beaa52b8652ca6c
-      internalID: -1214845543
+      spriteID: 28efa295bdf694d47aff00273a8d9027
+      internalID: -1951753279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_21
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 32
+        width: 46
+        height: 13
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ca476bbcc1dc1c42b68d85752343d0f
+      internalID: -1873960333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_22
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 32
+        width: 46
+        height: 15
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52c2c0bd8df859b4f827d97698752099
+      internalID: 2084669931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_23
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 32
+        width: 46
+        height: 13
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 017152c30e6ddf24ba589bb2ebd593ad
+      internalID: 65422369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_24
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 32
+        width: 46
+        height: 15
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f65c73356e9418f4abd4a86f977c24ea
+      internalID: -1480326138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_25
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 32
+        width: 46
+        height: 13
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c451d72a685fc8e4993621975019d6f4
+      internalID: 600772362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_26
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 32
+        width: 46
+        height: 15
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d87e9ba281e1eab43b557804730082a1
+      internalID: -1830018239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_27
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 32
+        width: 46
+        height: 13
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b050257031f869642b83b72a7a775832
+      internalID: 2118480865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_28
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 32
+        width: 46
+        height: 15
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1a9c86c2484fbc419f32998f7257137
+      internalID: 1431099625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_29
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 32
+        width: 46
+        height: 13
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1bf428d06062f04daf0fa903b637802
+      internalID: 1254785480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_30
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 16
+        width: 46
+        height: 15
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c9ef85b2e8470643a9f321a9f4c0b51
+      internalID: 1727689005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_31
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 16
+        width: 46
+        height: 13
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2383cce40f81e0a4f942bb7676d92b0a
+      internalID: 1638550318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_32
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 16
+        width: 46
+        height: 15
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c840cdf49788f844ab4ee3481e25495
+      internalID: -1347115912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_33
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 16
+        width: 46
+        height: 13
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52193311af133e5419c186ef51d1e547
+      internalID: -1245456541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_34
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 16
+        width: 46
+        height: 15
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc96efa1473cc7a4ab9b12a50293510d
+      internalID: 650904285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_35
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 16
+        width: 46
+        height: 13
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65d36cd210ee1ad4bbaf255fee02fc97
+      internalID: 893185062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_36
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 16
+        width: 46
+        height: 15
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdcb75c56f0c0104997b353322972ca2
+      internalID: -1309112659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_37
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 16
+        width: 46
+        height: 13
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80dd4f8d7a8202b4d86372e58b8a917f
+      internalID: -885981042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_38
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 16
+        width: 46
+        height: 15
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5a1d63cb4a62884aa26a2af763a0198
+      internalID: 1355894404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_39
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 16
+        width: 46
+        height: 13
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23281118f4ffc2445ae1ea4a5c386730
+      internalID: -294633199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_40
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 46
+        height: 15
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7fbbf96273dd5443afaf317ff4667a5
+      internalID: -708688392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_41
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 0
+        width: 46
+        height: 13
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26324e2ea2a896944b8768be2247b715
+      internalID: 144534006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_42
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 0
+        width: 46
+        height: 15
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58461bf3b3ec7374bb0b2342d018a92f
+      internalID: 429492344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_43
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 0
+        width: 46
+        height: 13
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1fac305cd76c274d95a849a14977002
+      internalID: 372345927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_44
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 0
+        width: 46
+        height: 15
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6321d588bf2b94645b2fa822edc2fca9
+      internalID: 1104769018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_45
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 0
+        width: 46
+        height: 13
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbd355c186f85224789cc0a251823344
+      internalID: 9038183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_46
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 0
+        width: 46
+        height: 15
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17b8d622a2e537a42bdc82b8c621b096
+      internalID: 1939967657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_47
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 0
+        width: 46
+        height: 13
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80c9c9a2cacc12b4996f3ce3ff85cfa4
+      internalID: -1501801738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_48
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 0
+        width: 46
+        height: 15
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17fdfb54f89abb6429b831ef8bbf6d65
+      internalID: 613181440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui-large-buttons-horizontal_49
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 0
+        width: 46
+        height: 13
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1c2aa326342f94459aa9ece669f4883
+      internalID: 269328839
       vertices: []
       indices: 
       edges: []
@@ -1309,62 +1157,56 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      UIartdeco_PIPO_pack2_brown_0: 1093646995
-      UIartdeco_PIPO_pack2_brown_1: 503053968
-      UIartdeco_PIPO_pack2_brown_10: -2029754392
-      UIartdeco_PIPO_pack2_brown_11: -673132385
-      UIartdeco_PIPO_pack2_brown_12: -1309812415
-      UIartdeco_PIPO_pack2_brown_13: -568886094
-      UIartdeco_PIPO_pack2_brown_14: -545050903
-      UIartdeco_PIPO_pack2_brown_15: 1498312554
-      UIartdeco_PIPO_pack2_brown_16: 1419296675
-      UIartdeco_PIPO_pack2_brown_17: 2101944406
-      UIartdeco_PIPO_pack2_brown_18: -1856223202
-      UIartdeco_PIPO_pack2_brown_19: 1825423128
-      UIartdeco_PIPO_pack2_brown_2: 967764728
-      UIartdeco_PIPO_pack2_brown_20: 1077341366
-      UIartdeco_PIPO_pack2_brown_21: 1837400137
-      UIartdeco_PIPO_pack2_brown_22: 133681599
-      UIartdeco_PIPO_pack2_brown_23: 771247421
-      UIartdeco_PIPO_pack2_brown_24: 453357900
-      UIartdeco_PIPO_pack2_brown_25: -487104679
-      UIartdeco_PIPO_pack2_brown_26: -316101883
-      UIartdeco_PIPO_pack2_brown_27: -141056994
-      UIartdeco_PIPO_pack2_brown_28: -1467014856
-      UIartdeco_PIPO_pack2_brown_29: 422875680
-      UIartdeco_PIPO_pack2_brown_3: -459429898
-      UIartdeco_PIPO_pack2_brown_30: -1455270683
-      UIartdeco_PIPO_pack2_brown_31: 448523023
-      UIartdeco_PIPO_pack2_brown_32: 671352479
-      UIartdeco_PIPO_pack2_brown_33: -1979607175
-      UIartdeco_PIPO_pack2_brown_34: -633891677
-      UIartdeco_PIPO_pack2_brown_35: 1422526809
-      UIartdeco_PIPO_pack2_brown_36: -1427524505
-      UIartdeco_PIPO_pack2_brown_37: -1838619035
-      UIartdeco_PIPO_pack2_brown_38: -562188564
-      UIartdeco_PIPO_pack2_brown_39: -1993353397
-      UIartdeco_PIPO_pack2_brown_4: 1257296984
-      UIartdeco_PIPO_pack2_brown_40: 288982557
-      UIartdeco_PIPO_pack2_brown_41: -255835933
-      UIartdeco_PIPO_pack2_brown_42: 1954507687
-      UIartdeco_PIPO_pack2_brown_43: -1407718345
-      UIartdeco_PIPO_pack2_brown_44: -1127154968
-      UIartdeco_PIPO_pack2_brown_45: -395649630
-      UIartdeco_PIPO_pack2_brown_46: -849287198
-      UIartdeco_PIPO_pack2_brown_47: 629311103
-      UIartdeco_PIPO_pack2_brown_48: -1881919676
-      UIartdeco_PIPO_pack2_brown_49: -353227217
-      UIartdeco_PIPO_pack2_brown_5: 1814432445
-      UIartdeco_PIPO_pack2_brown_50: -509702374
-      UIartdeco_PIPO_pack2_brown_51: 1187001030
-      UIartdeco_PIPO_pack2_brown_52: -2107073955
-      UIartdeco_PIPO_pack2_brown_53: 948003264
-      UIartdeco_PIPO_pack2_brown_54: -1935419285
-      UIartdeco_PIPO_pack2_brown_55: -1214845543
-      UIartdeco_PIPO_pack2_brown_6: -1005464215
-      UIartdeco_PIPO_pack2_brown_7: -1149079739
-      UIartdeco_PIPO_pack2_brown_8: 856985049
-      UIartdeco_PIPO_pack2_brown_9: -1547723462
+      ui-large-buttons-horizontal_0: 1843632696
+      ui-large-buttons-horizontal_1: -952933344
+      ui-large-buttons-horizontal_10: -1143906742
+      ui-large-buttons-horizontal_11: 889632307
+      ui-large-buttons-horizontal_12: 1617146500
+      ui-large-buttons-horizontal_13: -1544382771
+      ui-large-buttons-horizontal_14: 605493919
+      ui-large-buttons-horizontal_15: 255411025
+      ui-large-buttons-horizontal_16: 333542154
+      ui-large-buttons-horizontal_17: 2058785419
+      ui-large-buttons-horizontal_18: -1735617019
+      ui-large-buttons-horizontal_19: 1959759766
+      ui-large-buttons-horizontal_2: 1677747693
+      ui-large-buttons-horizontal_20: -1951753279
+      ui-large-buttons-horizontal_21: -1873960333
+      ui-large-buttons-horizontal_22: 2084669931
+      ui-large-buttons-horizontal_23: 65422369
+      ui-large-buttons-horizontal_24: -1480326138
+      ui-large-buttons-horizontal_25: 600772362
+      ui-large-buttons-horizontal_26: -1830018239
+      ui-large-buttons-horizontal_27: 2118480865
+      ui-large-buttons-horizontal_28: 1431099625
+      ui-large-buttons-horizontal_29: 1254785480
+      ui-large-buttons-horizontal_3: -1370743125
+      ui-large-buttons-horizontal_30: 1727689005
+      ui-large-buttons-horizontal_31: 1638550318
+      ui-large-buttons-horizontal_32: -1347115912
+      ui-large-buttons-horizontal_33: -1245456541
+      ui-large-buttons-horizontal_34: 650904285
+      ui-large-buttons-horizontal_35: 893185062
+      ui-large-buttons-horizontal_36: -1309112659
+      ui-large-buttons-horizontal_37: -885981042
+      ui-large-buttons-horizontal_38: 1355894404
+      ui-large-buttons-horizontal_39: -294633199
+      ui-large-buttons-horizontal_4: -601925206
+      ui-large-buttons-horizontal_40: -708688392
+      ui-large-buttons-horizontal_41: 144534006
+      ui-large-buttons-horizontal_42: 429492344
+      ui-large-buttons-horizontal_43: 372345927
+      ui-large-buttons-horizontal_44: 1104769018
+      ui-large-buttons-horizontal_45: 9038183
+      ui-large-buttons-horizontal_46: 1939967657
+      ui-large-buttons-horizontal_47: -1501801738
+      ui-large-buttons-horizontal_48: 613181440
+      ui-large-buttons-horizontal_49: 269328839
+      ui-large-buttons-horizontal_5: -1398868371
+      ui-large-buttons-horizontal_6: 1895362414
+      ui-large-buttons-horizontal_7: 823210358
+      ui-large-buttons-horizontal_8: 1111839212
+      ui-large-buttons-horizontal_9: 1787473302
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

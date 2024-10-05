@@ -7,7 +7,7 @@ using UnityEngine;
 public class Player : Character
 {
     #region States
-    public StateMachine<PlayerState> stateMachine { get; private set; }
+    public new StateMachine<PlayerState> stateMachine { get; private set; }
 
     public PlayerIdleState idleState { get; private set; }
     public PlayerMoveToIdle moveToIdle { get; private set; }
@@ -54,11 +54,13 @@ public class Player : Character
     public float comboWindow;
     public int comboCounter;
     [HideInInspector] public float lastTimeAttacked;
-
     [HideInInspector] public bool attackTypeAhead;
     [HideInInspector] public float attackMoveSpeed;
-
     public float counterAttackDuration = .2f;
+
+    [Header("Item CD")]
+    public float potionCD;
+    public float magicCD;
 
     [Header("Sword Skill")]
     public GameObject sword;
@@ -119,10 +121,10 @@ public class Player : Character
         base.Update();
         
         stateMachine.currentState.Update();
-        if (Input.GetKeyDown(KeyCode.F)) skill.crystal.CanUseSkill();
     }
 
-    public virtual void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+    public override void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+
     public void SetAttackMoveSpeed(float speed) => attackMoveSpeed = speed;
 
     public bool CanDamage()

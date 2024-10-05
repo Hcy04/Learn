@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Character : Entity
 {
+    public StateMachine<CharacterState> stateMachine { get; private set; }
+
     #region Components
     [HideInInspector] public EntityFX fx { get; private set; }
     
@@ -69,6 +71,8 @@ public class Character : Entity
     {
         base.Update();
     }
+
+    public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 
     public virtual void SlowBy(float _slowPercentage)
     {

@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: "\u4F24\u5BB3\u63D0\u5347\u836F\u6C34"
   icon: {fileID: 1463097486, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   buff: {fileID: 11400000, guid: 5b03f690dae17fa42b87f0d8b469f673, type: 2}
-  time: 10
+  potionCD: 20

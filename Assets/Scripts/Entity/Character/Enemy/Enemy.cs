@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-    public StateMachine<EnemyState> stateMachine { get; private set; }
+    public new StateMachine<EnemyState> stateMachine { get; private set; }
 
     #region Component
     [HideInInspector] public Player player;
@@ -36,8 +36,8 @@ public class Enemy : Character
     public float battleTime;
     [HideInInspector] public float lastTimeAttacked;
 
-    protected bool isFreeze;
-    protected bool dropFlag;
+    public bool isFreeze;
+    public bool dropFlag;
     #endregion
 
     protected override void Awake()
@@ -59,16 +59,11 @@ public class Enemy : Character
     {
         base.Update();
 
-        CheckFreeze();
-
-        if (!isFreeze)
-        {
-            stateMachine.currentState.Update();
-            if (dropFlag) GenerateDrop();
-        }
+        stateMachine.currentState.Update();
     }
 
-    public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+    public override void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+
     public virtual RaycastHit2D IsPlayerDetected() => Physics2D.Raycast(playerCheck.position, Vector2.right * facingDir, detectionDistance, whatIsPlayer);
 
     #region Drop
@@ -95,7 +90,7 @@ public class Enemy : Character
     #endregion
 
     #region Freeze
-    protected virtual void CheckFreeze()
+    public virtual void CheckFreeze()
     {
         if (player.skill.freeze.isActive && !isFreeze) FreezeTime(true);
         else if (!player.skill.freeze.isActive && isFreeze) FreezeTime(false);

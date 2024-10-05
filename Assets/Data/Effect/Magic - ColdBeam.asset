@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Magic - ColdBeam
   m_EditorClassIdentifier: 
   magicType: 1
+  magicCD: 3

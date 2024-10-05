@@ -26,10 +26,6 @@ public class PlayerGroundedState : PlayerState
             else if (player.comboCounter == 1) player.stateMachine.ChangeState(player.attack2);
             else if (player.comboCounter == 0) player.stateMachine.ChangeState(player.attack1);
         }
-        else if (Input.GetKeyDown(KeyCode.E))
-        {
-            Inventory.instance.DoEquipmentEffect(EquipmentType.Magic);
-        }
         else if (Input.GetKeyDown(KeyCode.R) && player.skill.freeze.CanUseSkill())
         {
             player.skill.freeze.SkillStart();

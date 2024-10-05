@@ -264,4 +264,15 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+
+    public void UsePotion(ItemData_Potion potion)
+    {
+        if (PlayerManager.instance.player.potionCD <= 0)
+        {
+            PlayerManager.instance.player.stats.AddBuff(potion.buff);
+            instance.ManageItem(potion, false);
+            
+            PlayerManager.instance.player.potionCD = potion.potionCD;
+        }
+    }
 }

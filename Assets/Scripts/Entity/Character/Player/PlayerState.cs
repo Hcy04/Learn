@@ -26,7 +26,13 @@ public class PlayerState : CharacterState
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
 
+        if (player.potionCD > 0) player.potionCD -= Time.deltaTime;
+        if (player.magicCD > 0) player.magicCD -= Time.deltaTime;
+
         if (Time.time - player.lastTimeAttacked > player.comboWindow) player.comboCounter = 0;
+
+        if (Input.GetKeyDown(KeyCode.E)) Inventory.instance.DoEquipmentEffect(EquipmentType.Magic);
+        if (Input.GetKeyDown(KeyCode.F)) player.skill.crystal.CanUseSkill();
     }
 
     public override void Exit()
