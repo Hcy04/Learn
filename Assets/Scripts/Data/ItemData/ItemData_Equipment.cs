@@ -32,13 +32,13 @@ public class ItemData_Equipment : ItemData
     public float critDamage;
 
     [Header("Elemental Modifiers")]
-    public float fireResistance;
-    public float iceResistance;
-    public float lightningResistance;
-
     public float fireDamage;
     public float iceDamage;
     public float lightningDamage;
+
+    public float fireResistance;
+    public float iceResistance;
+    public float lightningResistance;
 
     [Header("Craft Requirements")]
     public List<InventoryItem> craftingMaterials;
@@ -91,5 +91,41 @@ public class ItemData_Equipment : ItemData
         if (fireDamage != 0) playerStats.fireDamage.RemoveModifier(fireDamage);
         if (iceDamage != 0) playerStats.iceDamage.RemoveModifier(iceDamage);
         if (lightningDamage != 0) playerStats.lightningDamage.RemoveModifier(lightningDamage);
+    }
+
+    public override string GetDescription()
+    {
+        sb.Length = 0;
+
+        AddItemDescription(vitality, Factory.Translation("vitality"));
+        AddItemDescription(strength, Factory.Translation("strength"));
+        AddItemDescription(agility, Factory.Translation("agility"));
+        AddItemDescription(intelligence, Factory.Translation("intelligence"));
+
+        AddItemDescription(maxHealth, Factory.Translation("maxHealth"));
+        AddItemDescription(damage, Factory.Translation("damage"));
+        AddItemDescription(armor, Factory.Translation("armor"));
+
+        AddItemDescription(critChance, Factory.Translation("critChance"));
+        AddItemDescription(critDamage, Factory.Translation("critDamage"));
+
+        AddItemDescription(fireDamage, Factory.Translation("fireDamage"));
+        AddItemDescription(iceDamage, Factory.Translation("iceDamage"));
+        AddItemDescription(lightningDamage, Factory.Translation("lightningDamage"));
+
+        AddItemDescription(fireResistance * 100, Factory.Translation("fireResistance"));
+        AddItemDescription(iceResistance * 100, Factory.Translation("iceResistance"));
+        AddItemDescription(lightningResistance * 100, Factory.Translation("lightningResistance"));
+
+        return sb.ToString();
+    }
+
+    private void AddItemDescription(float _value, string _name)
+    {
+        if (_value != 0)
+        {
+            if (sb.Length > 0) sb.AppendLine();
+            if (_value > 0) sb.Append(_name + ":" + _value);
+        }
     }
 }

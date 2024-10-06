@@ -28,6 +28,9 @@ public class Inventory : MonoBehaviour
     private UI_ItemSlot[] materialsSlot;
     private UI_ItemSlot[] potionsSlot;
 
+    [SerializeField] private Transform stashParent;
+    private UI_ItemSlot[] stashSlot;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -45,6 +48,8 @@ public class Inventory : MonoBehaviour
         inventorySlot = inventorySlotParent.GetComponentsInChildren<UI_ItemSlot>();
         materialsSlot = materialsSlotParent.GetComponentsInChildren<UI_ItemSlot>();
         potionsSlot = potionsSlotParent.GetComponentsInChildren<UI_ItemSlot>();
+
+        stashSlot = stashParent.GetComponentsInChildren<UI_ItemSlot>();
         
         for (int i = 0; i < startingEquipment.Count; i++) ManageEquipment(startingEquipment[i], true, false);
         for (int i = 0; i < startingItem.Count; i++) ManageItem(startingItem[i], true);
@@ -270,6 +275,9 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < inventory.Count; i++) inventorySlot[i].UpdateSlot(inventory[i]);
         for (int i = 0; i < materials.Count; i++) materialsSlot[i].UpdateSlot(materials[i]);
         for (int i = 0; i < potions.Count; i++) potionsSlot[i].UpdateSlot(potions[i]);
+
+        for (int i = 0; i < stashSlot.Length; i++) stashSlot[i].CleanUpSlot();
+        for (int i = 0; i < instance.materials.Count; i++) stashSlot[i].UpdateSlot(instance.materials[i]);
     }
 
     public bool CanCraft(ItemData_Equipment _equipment)

@@ -23,6 +23,10 @@ public class Spawner : MonoBehaviour
 
     [Header("Item")]
     [SerializeField] private GameObject item;
+
+    [Header("UI")]
+    [SerializeField] private GameObject craftSlot;
+    [SerializeField] private GameObject craftMaterialSlot;
     #endregion
 
     private void Awake()
@@ -76,6 +80,18 @@ public class Spawner : MonoBehaviour
     public GameObject CreatItem(Vector3 _position)
     {
         return Instantiate(item, _position, Quaternion.identity);
+    }
+    #endregion
+
+    #region UI
+    public GameObject CreatCraftSlot(Transform _parent)
+    {   
+        return Instantiate(craftSlot, _parent);
+    }
+
+    public GameObject CreatCraftMaterialSlot(Transform _parent)
+    {
+        return Instantiate(craftMaterialSlot, _parent);
     }
     #endregion
 }

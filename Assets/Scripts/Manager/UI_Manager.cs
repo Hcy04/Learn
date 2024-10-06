@@ -10,6 +10,11 @@ public class UI_Manager : MonoBehaviour
     public static UI_Manager instance;
 
     [SerializeField] private GameObject menu;
+    public UI_ItemToolTip toolTip;
+    public UI_StatInfo statInfo;
+
+    [Header("Craft")]
+    public UI_CraftPanel craftPanel;
 
     #region Stats
     [Header("Ability Stats")]
@@ -81,4 +86,5 @@ public class UI_Manager : MonoBehaviour
         iceResistance.text = Mathf.RoundToInt(stats.iceResistance.GetBaseValue() * 100).ToString();
         lightningResistance.text = Mathf.RoundToInt(stats.lightningResistance.GetBaseValue() * 100).ToString();
     }
+
 }

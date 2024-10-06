@@ -1,3 +1,4 @@
+using System.Text;
 using UnityEngine;
 
 public enum ItemType
@@ -13,4 +14,11 @@ public class ItemData : ScriptableObject
     
     public string itemName;
     public Sprite icon;
+
+    protected StringBuilder sb = new StringBuilder();
+
+    public virtual string GetDescription()
+    {
+        return "";
+    }
 }
