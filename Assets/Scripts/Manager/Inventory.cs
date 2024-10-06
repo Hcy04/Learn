@@ -289,14 +289,17 @@ public class Inventory : MonoBehaviour
             if (targetMaterial == null || targetMaterial.stackSize < _equipment.craftingMaterials[i].stackSize) return false;
         }
 
+        return true;
+    }
+
+    public void DoCraft(ItemData_Equipment _equipment)
+    {
         for (int i = 0; i < _equipment.craftingMaterials.Count; i++)
         {
             for (int j = 0; j < _equipment.craftingMaterials[i].stackSize; j++) ManageItem(_equipment.craftingMaterials[i].data, false);
         }
 
         ManageItem(_equipment, true);
-
-        return true;
     }
 
     public void DoEquipmentEffect(EquipmentType _equipmentType)
