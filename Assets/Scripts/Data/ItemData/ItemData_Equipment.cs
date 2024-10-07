@@ -52,7 +52,11 @@ public class ItemData_Equipment : ItemData
         if (agility != 0) playerStats.agility.AddModifier(agility);
         if (intelligence != 0) playerStats.intelligence.AddModifier(intelligence);
 
-        if (maxHealth != 0) playerStats.maxHealth.AddModifier(maxHealth);
+        if (maxHealth != 0)
+        {
+            playerStats.AddModifierToMaxHealth(maxHealth);
+            playerStats.onHealthChanged();
+        }
         if (damage != 0) playerStats.damage.AddModifier(damage);
         if (armor != 0) playerStats.armor.AddModifier(armor);
 
@@ -77,7 +81,11 @@ public class ItemData_Equipment : ItemData
         if (agility != 0) playerStats.agility.RemoveModifier(agility);
         if (intelligence != 0) playerStats.intelligence.RemoveModifier(intelligence);
 
-        if (maxHealth != 0) playerStats.maxHealth.RemoveModifier(maxHealth);
+        if (maxHealth != 0)
+        {
+            playerStats.RemoveModifierToMaxHealth(maxHealth);
+            playerStats.onHealthChanged();
+        }
         if (damage != 0) playerStats.damage.RemoveModifier(damage);
         if (armor != 0) playerStats.armor.RemoveModifier(armor);
 

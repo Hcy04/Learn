@@ -136,6 +136,20 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
+    public virtual void AddModifierToMaxHealth(float _value)
+    {
+        maxHealth.AddModifier(_value);
+        if (currentHealth > maxHealth.GetValue()) currentHealth = maxHealth.GetValue();
+        onHealthChanged();
+    }
+
+    public virtual void RemoveModifierToMaxHealth(float _value)
+    {
+        maxHealth.RemoveModifier(_value);
+        if (currentHealth > maxHealth.GetValue()) currentHealth = maxHealth.GetValue();
+        onHealthChanged();
+    }
+
     public virtual void ChangeHealth(float _value)
     {
         currentHealth += _value;

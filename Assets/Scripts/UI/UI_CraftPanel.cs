@@ -48,6 +48,9 @@ public class UI_CraftPanel : MonoBehaviour
         if (equipmentToCraft != null)
         {
             if(Inventory.instance.CanCraft(equipmentToCraft)) Inventory.instance.DoCraft(equipmentToCraft);
+
+            if(Inventory.instance.CanCraft(equipmentToCraft)) canCraft.text = "制作";
+            else canCraft.text = "材料不足";
         }
     }
 }

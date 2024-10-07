@@ -14,7 +14,7 @@ public class UI_ItemToolTip : MonoBehaviour
 
     public void ShowToolTip(ItemData item)
     {
-        transform.position = self.anchoredPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
         itemNameText.text = item.itemName;
 

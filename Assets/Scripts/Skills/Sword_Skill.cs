@@ -14,7 +14,7 @@ public class Sword_Skill : Skill
 
     [Header("Skill Active")]
     [SerializeField] private bool canThrowSword;
-    [SerializeField] private bool haveAimDots;
+    [SerializeField] private bool canDamegeReturn;
     [SerializeField] private SwordSkillMode swordSkillMode;
     
     [Header("Skill Info")]
@@ -45,6 +45,15 @@ public class Sword_Skill : Skill
         }
     }
 
+    public override void UpdateBool()
+    {
+        canThrowSword = UI_Manager.instance.sword_Default.isActive;
+        canDamegeReturn = UI_Manager.instance.sword_DamageReturn.isActive;
+        if (UI_Manager.instance.sword_Pierce.isActive) swordSkillMode = SwordSkillMode.Pierce;
+        else if (UI_Manager.instance .sword_Bouncing.isActive) swordSkillMode = SwordSkillMode.Bouncing;
+        else if (UI_Manager.instance.sword_Spin.isActive) swordSkillMode = SwordSkillMode.Spin;
+    }
+
     public override bool CanUseSkill()
     {
         if (base.CanUseSkill() && !player.sword && canThrowSword) return true;
@@ -57,16 +66,17 @@ public class Sword_Skill : Skill
         {
             GameObject newSword = spawner.CreatSword(player.transform.position);
             
-            newSword.GetComponent<Sword>().SetUpSword(AimDirection() * launchForce, swordGravity, returnSpeed, swordSkillMode);
+            newSword.GetComponent<Sword>().SetUpSword(AimDirection() * launchForce, swordGravity, returnSpeed, canDamegeReturn, swordSkillMode);
 
             DotsActive(false);
             player.sword = newSword;
+            UI_Manager.instance.inGame.UpdateSwordImage(false);
         }
     }
 
     public void CanSetDotsActive()
     {
-        if (haveAimDots) DotsActive(true);
+        DotsActive(true);
     }
 
     private Vector2 AimDirection()

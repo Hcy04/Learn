@@ -32,4 +32,14 @@ public class Skill : MonoBehaviour
 
         return false;
     }
+
+    public virtual void UpdateBool()
+    {
+        
+    }
+
+    public virtual void UpdateImage()
+    {
+        
+    }
 }

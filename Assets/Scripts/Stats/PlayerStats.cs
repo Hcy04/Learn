@@ -11,6 +11,7 @@ public class PlayerStats : CharacterStats
         base.Start();
 
         player = GetComponent<Player>();
+        UI_Manager.instance.inGame.UpdateHealthBar();
     }
 
     public override void DoDamage(CharacterStats _targetStats)

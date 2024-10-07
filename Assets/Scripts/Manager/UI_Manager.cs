@@ -9,9 +9,21 @@ public class UI_Manager : MonoBehaviour
 {
     public static UI_Manager instance;
 
+    public UI_InGame inGame;
     [SerializeField] private GameObject menu;
+
+    [Header("Character")]
     public UI_ItemToolTip toolTip;
     public UI_StatInfo statInfo;
+
+    [Header("Skill")]
+    public UI_SKillToolTip skillTip;
+
+    public UI_SkillSlot sword_Default;
+    public UI_SkillSlot sword_DamageReturn;
+    public UI_SkillSlot sword_Pierce;
+    public UI_SkillSlot sword_Bouncing;
+    public UI_SkillSlot sword_Spin;
 
     [Header("Craft")]
     public UI_CraftPanel craftPanel;
@@ -59,8 +71,16 @@ public class UI_Manager : MonoBehaviour
 
     private void OpenOrCloseMenu()
     {
-        if (menu.activeSelf) menu.SetActive(false);
-        else menu.SetActive(true);
+        if (menu.activeSelf)
+        {
+            menu.SetActive(false);
+            inGame.gameObject.SetActive(true);
+        }
+        else
+        {
+            inGame.gameObject.SetActive(false);
+            menu.SetActive(true);
+        }
     }
 
     public void UpdateValue()
@@ -87,4 +107,8 @@ public class UI_Manager : MonoBehaviour
         lightningResistance.text = Mathf.RoundToInt(stats.lightningResistance.GetBaseValue() * 100).ToString();
     }
 
+    public void UpdateSkillBool()
+    {
+        SkillManager.instance.GetComponent<Sword_Skill>().UpdateBool();
+    }
 }

@@ -12,6 +12,8 @@ public class Sword : ProjectileSkill
     private bool isReturning;
     private float returnSpeed;
 
+    private bool canDamegeReturn;
+
     [Header("Bouncing")]
     public bool isBouncing;
     public int amountOfBounce = 4;
@@ -61,15 +63,18 @@ public class Sword : ProjectileSkill
             {
                 player.stateMachine.ChangeState(player.catchSword);
                 Destroy(player.sword);
+                UI_Manager.instance.inGame.UpdateSwordImage(true);
             }
         }
     }
 
-    public void SetUpSword(Vector2 _dir, float _gravityScale, float _returnSpeed, Sword_Skill.SwordSkillMode skillMode)
+    public void SetUpSword(Vector2 _dir, float _gravityScale, float _returnSpeed, bool _canDamageReturn, Sword_Skill.SwordSkillMode skillMode)
     {
         rb.velocity = _dir;
         rb.gravityScale = _gravityScale;
         returnSpeed = _returnSpeed;
+
+        canDamegeReturn = _canDamageReturn;
 
         if (skillMode == Sword_Skill.SwordSkillMode.Bouncing) isBouncing = true;
         else if (skillMode == Sword_Skill.SwordSkillMode.Pierce) isPierce = true;
@@ -109,7 +114,8 @@ public class Sword : ProjectileSkill
 
         if (isReturning)
         {
-            if (collision.gameObject.layer == 12) collision.GetComponent<EnemyStats>().TakeDamage(transform, damage / 2, 0, 0, 0);
+            if (collision.gameObject.layer == 12 && canDamegeReturn)
+                collision.GetComponent<EnemyStats>().TakeDamage(transform, damage / 2, 0, 0, 0);
         }
         else
         {
