@@ -5,13 +5,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler , ISaveManager
 {
     public string skillName;
     [TextArea]
     public string skillDescription;
 
-    public bool islocked;
+    public bool isUnLocked;
     public bool isActive;
 
     [SerializeField] private UI_SkillSlot[] parents;
@@ -24,7 +24,7 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         skillImage = GetComponent<Image>();
 
-        if (!islocked) skillImage.color = Color.red;
+        if (!isUnLocked) skillImage.color = Color.red;
         else if (!isActive) skillImage.color = Color.grey;
         else if (isActive) skillImage.color = Color.white;
 
@@ -33,7 +33,7 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void Click()
     {
-        if (!islocked) UnlockSkill();
+        if (!isUnLocked) UnlockSkill();
         else if (!isActive) SetActive(true);
         else if (isActive) SetActive(false);
     }
@@ -42,10 +42,10 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         for (int i = 0; i < parents.Length; i++)
         {
-            if (parents[i].islocked == false) return;
+            if (parents[i].isUnLocked == false) return;
         }
 
-        islocked = true;
+        isUnLocked = true;
 
         //父节点都激活时 解锁后的默认状态才为激活 否则能解锁 担默认为未激活
         bool flag = true;
@@ -95,5 +95,38 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void OnPointerExit(PointerEventData eventData)
     {
         UI_Manager.instance.skillTip.HideTip();
+    }
+
+    public void LoadData(GameData _data)
+    {
+        if (_data.skillTree.TryGetValue(skillName, out int value))
+        {
+            if (value == 0)
+            {
+                isUnLocked = false;
+                isActive = false;
+            }
+            else if (value == 1)
+            {
+                isUnLocked = true;
+                isActive = false;
+            }
+            else if (value == 2)
+            {
+                isUnLocked = true;
+                isActive = true;
+            }
+        }
+
+        UI_Manager.instance.UpdateSkillBool();
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        if (_data.skillTree.TryGetValue(skillName, out _)) _data.skillTree.Remove(skillName);
+        
+        if (!isUnLocked) _data.skillTree.Add(skillName, 0);
+        else if (!isActive) _data.skillTree.Add(skillName, 1);
+        else if (isActive) _data.skillTree.Add(skillName, 2);
     }
 }

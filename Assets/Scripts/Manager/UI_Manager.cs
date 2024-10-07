@@ -10,7 +10,7 @@ public class UI_Manager : MonoBehaviour
     public static UI_Manager instance;
 
     public UI_InGame inGame;
-    [SerializeField] private GameObject menu;
+    public GameObject menu;
 
     [Header("Character")]
     public UI_ItemToolTip toolTip;
@@ -72,15 +72,9 @@ public class UI_Manager : MonoBehaviour
     private void OpenOrCloseMenu()
     {
         if (menu.activeSelf)
-        {
             menu.SetActive(false);
-            inGame.gameObject.SetActive(true);
-        }
         else
-        {
-            inGame.gameObject.SetActive(false);
             menu.SetActive(true);
-        }
     }
 
     public void UpdateValue()

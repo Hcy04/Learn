@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour , ISaveManager
 {
     public static Inventory instance;
 
@@ -31,6 +32,10 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Transform stashParent;
     private UI_ItemSlot[] stashSlot;
 
+    [Header("Data Base")]
+    public List<InventoryItem> loadedItems;
+    public List<InventoryItem> loadedEquipments;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -50,7 +55,23 @@ public class Inventory : MonoBehaviour
         potionsSlot = potionsSlotParent.GetComponentsInChildren<UI_ItemSlot>();
 
         stashSlot = stashParent.GetComponentsInChildren<UI_ItemSlot>();
-        
+
+        AddStartingItems();
+    }
+
+    private void AddStartingItems()
+    {
+        if (loadedItems.Count > 0)
+        {
+            foreach (InventoryItem item in loadedItems) ManageItem(item, true);
+        }
+
+        if (loadedEquipments.Count > 0)
+        {
+            foreach (InventoryItem item in loadedEquipments) ManageEquipment((ItemData_Equipment)item.data, true, false);
+            return;
+        }
+
         for (int i = 0; i < startingEquipment.Count; i++) ManageEquipment(startingEquipment[i], true, false);
         for (int i = 0; i < startingItem.Count; i++) ManageItem(startingItem[i], true);
     }
@@ -325,5 +346,63 @@ public class Inventory : MonoBehaviour
             
             PlayerManager.instance.player.potionCD = potion.potionCD;
         }
+    }
+
+    public void LoadData(GameData _data)
+    {
+        foreach (KeyValuePair<string, int> pair in _data.inventory)
+        {
+            foreach (var item in GetItemDataBase())
+            {
+                if (item != null && item.itemId == pair.Key)
+                {
+                    InventoryItem itemToLoad = new InventoryItem(item);
+                    itemToLoad.stackSize = pair.Value;
+
+                    loadedItems.Add(itemToLoad);
+                }
+            }
+        }
+
+        foreach (KeyValuePair<string, int> pair in _data.equipment)
+        {
+            foreach (var item in GetItemDataBase())
+            {
+                if (item != null && item.itemId == pair.Key)
+                {
+                    InventoryItem equipmentToLoad = new InventoryItem(item);
+                    equipmentToLoad.stackSize = pair.Value;
+
+                    loadedEquipments.Add(equipmentToLoad);
+                }
+            }
+        }
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        _data.inventory.Clear();
+        _data.equipment.Clear();
+
+        foreach (InventoryItem item in inventory) _data.inventory.Add(item.data.itemId, item.stackSize);
+        foreach (InventoryItem item in potions) _data.inventory.Add(item.data.itemId, item.stackSize);
+        foreach (InventoryItem item in materials) _data.inventory.Add(item.data.itemId, item.stackSize);
+
+        foreach (InventoryItem item in equipment) _data.equipment.Add(item.data.itemId, item.stackSize);
+    }
+
+    private List<ItemData> GetItemDataBase()
+    {
+        List<ItemData> itemDataBase = new List<ItemData>();
+        string[] assetNames = AssetDatabase.FindAssets("", new[] {"Assets/Data/Item"});
+
+        foreach(string SOName in assetNames)
+        {
+            var SOpath = AssetDatabase.GUIDToAssetPath(SOName);
+            var itemData = AssetDatabase.LoadAssetAtPath<ItemData>(SOpath);
+            itemDataBase.Add(itemData);
+        }
+
+        return itemDataBase;
     }
 }

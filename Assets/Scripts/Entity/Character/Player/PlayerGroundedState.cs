@@ -20,7 +20,7 @@ public class PlayerGroundedState : PlayerState
         
         player.CheckForDashInput();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !UI_Manager.instance.menu.activeSelf)
         {
             if (player.comboCounter == 2) player.stateMachine.ChangeState(player.attack3);
             else if (player.comboCounter == 1) player.stateMachine.ChangeState(player.attack2);

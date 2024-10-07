@@ -61,6 +61,7 @@ public class Enemy_Skeleton : Enemy
     {
         base.IsDied();
 
+        PlayerManager.instance.currency += 15;
         stateMachine.ChangeState(diedState);
     }
     #endregion
