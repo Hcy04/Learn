@@ -11,6 +11,9 @@ public class UI_Manager : MonoBehaviour
 
     public UI_InGame inGame;
     public GameObject menu;
+    [Space]
+    public GameObject darkScreen;
+    public GameObject restartButton;
 
     [Header("Character")]
     public UI_ItemToolTip toolTip;
@@ -105,4 +108,6 @@ public class UI_Manager : MonoBehaviour
     {
         SkillManager.instance.GetComponent<Sword_Skill>().UpdateBool();
     }
+
+    public void RestartGame() => GameManager.instance.RestartScene();
 }
